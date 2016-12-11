@@ -22,7 +22,7 @@ console.log("\x1b[36m[Debug] [API] starting...");
 
 connection.connect(function (err) {
     if (err) {
-        console.err('[Error] [MySQL] Error while connecting: ' + err);
+        console.error('[Error] [MySQL] Error while connecting: ' + err);
         return;
     }
     console.log('\x1b[32m[Info] [MySQL] Connection established');
