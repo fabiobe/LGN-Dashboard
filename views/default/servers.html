@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=0.75, maximum-scale=1.0, user-scalable=0">
+    <meta lang="de">
+    <title>Lessing-Gymnasium Norderstedt | IT-Dashboard</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reboto.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+<div id="upper-nav">
+    <img id="logo" src="images/logo.png" alt="Logo" onclick="redirect('/')">
+    <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
+    <p id="username">Fabio Bertuzzi</p><img id="profile-picture" src="images/user.png" alt="Profilepicture">
+    <i class="fa fa-angle-down fa-2x"
+       style="color: white;float: right;position: relative;margin-top: -50px;margin-right: -137px;"
+       aria-hidden="true"></i>
+</div>
+<div id="lower-nav">
+    <div class="navigation">
+        <i class="fa fa-bars fa-3x" style="color: white;" aria-hidden="true"></i>
+    </div>
+    <div class="navigation-item-left">
+        <a href="dashboard"><i class="fa fa-tachometer fa-3x" style="color:white;" aria-hidden="true"></i></br>Dashboard</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="reports"><i class="fa fa-bug fa-3x" style="color: white;" aria-hidden="true"></i></br>Berichte</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="users"><i class="fa fa-users fa-3x" style="color: white;" aria-hidden="true"></i></br>Benutzer</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="wifi"><i class="fa fa-wifi fa-3x" style="color: white;" aria-hidden="true"></i></br>Wi-Fi</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="email"><i class="fa fa-envelope fa-3x" style="color: white;" aria-hidden="true"></i></br>E-Mail</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="tasks"><i class="fa fa-tasks fa-3x" style="color: white;" aria-hidden="true"></i></br>Aufgaben</a>
+    </div>
+    <div class="navigation-item-left active">
+        <a href="servers"><i class="fa fa-server fa-3x" style="color: white;" aria-hidden="true"></i></br>Server</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="printers"><i class="fa fa-print fa-3x" style="color: white;" aria-hidden="true"></i></br>Drucker</a>
+    </div>
+    <div class="navigation-item-right">
+        <a href="settings"><i class="fa fa-cogs fa-3x" style="color: white;" aria-hidden="true"></i></br>Einstellungen</a>
+    </div>
+</div>
+
+<div id="navigation-mobile" class="overlay">
+
+    <a href="javascript:void(0)" class="close" onclick="closeNav()">&times;</a>
+
+    <div class="navigation-content">
+        <a href="dashboard"><i class="fa fa-tachometer fa-3x" aria-hidden="true"></i></a>
+        <a href="reports"><i class="fa fa-bug fa-3x" aria-hidden="true"></i></a>
+        <a href="users"><i class="fa fa-users fa-3x" aria-hidden="true"></i></a>
+        <a href="wifi"><i class="fa fa-wifi fa-3x" aria-hidden="true"></i></a>
+        <a href="email"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        <a href="tasks"><i class="fa fa-tasks fa-3x" aria-hidden="true"></i></a>
+        <a href="servers"><i class="fa fa-server fa-3x" aria-hidden="true"></i></a>
+        <a href="printers"><i class="fa fa-print fa-3x" aria-hidden="true"></i></a>
+        <a href="settings"><i class="fa fa-cogs fa-3x" aria-hidden="true"></i></a>
+    </div>
+
+</div>
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io('http://localhost:8080');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', {my: 'data'});
+    });
+</script>
+<script src="js/redirect.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+
+<script src="js/mobileNavigation.js"></script>
+</html>

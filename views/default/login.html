@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=0.75, maximum-scale=1.0, user-scalable=0">
+    <meta lang="de">
+    <title>Lessing-Gymnasium Norderstedt | IT-Dashboard</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reboto.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body style="background: #913D88;">
+<div id="upper-nav">
+    <img id="logo" src="/images/logo.png" alt="Logo" onclick="redirect('/')">
+    <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
+</div>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" method="post" action="/api/login">
+            <input type="text" placeholder="E-Mail" name="email" id="email"/>
+            <input type="password" placeholder="Passwort" name="password" id="password"/>
+            <button>login</button>
+            <p class="help">Benötigst du Hilfe? <a href="/support/faq">Klicke hier</a></p>
+        </form>
+    </div>
+</div>
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io('http://localhost:8080');
+</script>
+<script src="/js/redirect.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+
+<script src="/js/mobileNavigation.js"></script>
+</html>
