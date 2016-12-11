@@ -22,10 +22,10 @@ console.log("\x1b[36m[Debug] [API] starting...");
 
 connection.connect(function (err) {
     if (err) {
-        console.error('[Error] [MySQL] Error while connecting: ' + err);
+        console.error('\x1b[91m[Error] [MySQL] Error while connecting: ' + err);
         return;
     }
-    console.log('\x1b[91m[Info] [MySQL] Connection established');
+    console.log('[Info] [MySQL] Connection established');
 });
 connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
 
