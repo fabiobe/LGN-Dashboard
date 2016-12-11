@@ -10,13 +10,9 @@ let Hashmap = require('hashmap');
 let users = [];
 let authenticatedUsers = new Hashmap();
 let io = require('./../server.js').io;
+var config = require('./../config/config.json');
 
-let connection = mysql.createConnection({
-    "host": "localhost",
-    "user": "netzwerkag",
-    "password": "lgnIT2014!",
-    "database": "netzwerkag"
-});
+let connection = mysql.createConnection(config);
 
 console.log("\x1b[36m[Debug] [API] starting...");
 
