@@ -7,7 +7,7 @@ let path = require('path');
 let mysql = require("mysql");
 let crypto = require('crypto');
 var mysql_config = require('./../config/mysql.json');
-let config = require('./config/config.json');
+let config = require('./../config/config.json');
 
 let connection = mysql.createConnection(mysql_config);
 
