@@ -8,6 +8,7 @@ let mysql = require("mysql");
 let crypto = require('crypto');
 var mysql_config = require('./../config/mysql.json');
 let config = require('./../config/config.json');
+let fs = require('fs');
 
 let connection = mysql.createConnection(mysql_config);
 
@@ -46,8 +47,9 @@ router.post('/createadmin', (req, res) => {
     connection.query("INSERT INTO dashboard_users (firstname, lastname, email, password) VALUES ('" + firstname + "', '" + lastname + "', '" + email + "', '" + value + "')");
     res.sendFile(path.join(__dirname, '../views/setup/success.html'));
     config.setup = true;
+    fs.writeFileSync('./../config/config.json', JSON.stringify(config));
     setTimeout(() => {
-        process.exit();
+        require('child_process').exec('kill -9 ' + process.pid + '');
     }, 200);
 
 
