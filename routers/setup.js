@@ -47,7 +47,7 @@ router.post('/createadmin', (req, res) => {
     connection.query("INSERT INTO dashboard_users (firstname, lastname, email, password) VALUES ('" + firstname + "', '" + lastname + "', '" + email + "', '" + value + "')");
     res.sendFile(path.join(__dirname, '../views/setup/success.html'));
     config.setup = true;
-    fs.writeFileSync('../config/config.json', JSON.stringify(config));
+    fs.writeFileSync(path.join(__dirname, '../config/config.json'), JSON.stringify(config));
     setTimeout(() => {
         require('child_process').exec('kill -9 ' + process.pid + '');
     }, 200);
