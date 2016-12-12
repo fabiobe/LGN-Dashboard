@@ -10,9 +10,9 @@ let Hashmap = require('hashmap');
 let users = [];
 let authenticatedUsers = new Hashmap();
 let io = require('./../server.js').io;
-var config = require('./../config/config.json');
+var mysql_config = require('./../config/mysql.json');
 
-let connection = mysql.createConnection(config);
+let connection = mysql.createConnection(mysql_config);
 
 console.log("\x1b[36m[Debug] [API] starting...");
 

@@ -14,13 +14,17 @@
     <img id="logo" src="images/logo.png" alt="Logo" onclick="redirect('/')">
     <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
 </div>
-<div class="login-page">
+<div class="setup-page">
     <div class="form">
-        <form class="login-form" method="post" action="/api/login">
-            <input type="text" placeholder="Email" name="email" id="email"/>
-            <input type="password" placeholder="Password" name="password" id="password"/>
-            <button>login</button>
-            <p class="help">Do you need help? <a href="/support/faq">Click here</a></p>
+        <span class="label">Administrator einrichten</span>
+        </br>
+        </br>
+        <form class="setup-form" method="post" action="/setup/createadmin">
+            <input type="text" placeholder="Vorname" name="firstname" id="firstname"/>
+            <input type="text" placeholder="Nachname" name="lastname" id="lastname"/>
+            <input type="text" placeholder="E-Mail" name="email" id="email"/>
+            <input type="password" placeholder="Passwort" name="password" id="password"/>
+            <button>Erstellen</button>
         </form>
     </div>
 </div>
@@ -30,10 +34,6 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io('http://localhost:8080');
-    socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', {my: 'data'});
-    });
 </script>
 <script src="js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
