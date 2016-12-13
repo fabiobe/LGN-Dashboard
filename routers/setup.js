@@ -49,7 +49,8 @@ router.post('/createadmin', (req, res) => {
     config.setup = true;
     fs.writeFileSync(path.join(__dirname, '../config/config.json'), JSON.stringify(config));
     setTimeout(() => {
-        require('child_process').exec('kill -9 ' + process.pid + '');
+        process.stdin.end();
+        process.exit(0);
     }, 200);
 
 
