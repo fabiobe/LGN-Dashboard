@@ -47,7 +47,7 @@ net.createServer((socket) => {
  });*/
 
 workerProcess.stdout.on('data', (data) => {
-    if (data.trim() === "exit") {
+    if (new String(data).trim() === "exit") {
         workerProcess.exit(0);
         return;
     }
