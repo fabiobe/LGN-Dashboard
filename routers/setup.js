@@ -49,8 +49,7 @@ router.post('/createadmin', (req, res) => {
     config.setup = true;
     fs.writeFileSync(path.join(__dirname, '../config/config.json'), JSON.stringify(config));
     setTimeout(() => {
-        process.stdin.end();
-        process.exit(0);
+        console.log("exit");
     }, 200);
 
 
