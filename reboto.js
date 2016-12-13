@@ -8,7 +8,7 @@ var net = require('net');
 let workerProcess = child_process.spawn("node", ["server.js"]);
 let running = true;
 
-net.createServer((socket) => {
+let server = net.createServer((socket) => {
 
     socket.on("error", (err) => {
         console.log(err.stack);
@@ -48,7 +48,8 @@ net.createServer((socket) => {
 
 workerProcess.stdout.on('data', (data) => {
     if (new String(data).trim() === "exit") {
-        workerProcess.kill('SIGINT');
+        workerProcess.kill();
+        server.close();
         return;
     }
     console.log(chalk.cyan('[' + date.toISOString().split('T')[0] + ' ' + date.getHours() + ':' + addZero(date.getMinutes()) + ':' + date.getSeconds() + '] ') + data + '\x1b[0m');
