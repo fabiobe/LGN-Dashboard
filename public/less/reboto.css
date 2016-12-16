@@ -165,6 +165,9 @@ body {
   margin-left: 2%;
   float: left;
 }
+#profile {
+  display: none;
+}
 #logo-title {
   position: relative;
   font-family: 'Roboto Black', sans-serif;
