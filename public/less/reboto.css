@@ -203,12 +203,6 @@ div.navigation-item-right:hover {
 .active {
   display: none;
 }
-#username {
-  display: none;
-}
-#profile-picture {
-  display: none;
-}
 .navigation-item-left a {
   display: none;
 }
@@ -335,7 +329,7 @@ div.navigation-item-right:hover {
     width: 96px;
     border-radius: 5px;
   }
-  #username {
+  #profile {
     display: inline-block;
     float: right;
     position: relative;
@@ -345,13 +339,5 @@ div.navigation-item-right:hover {
     color: white;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
-  }
-  #profile-picture {
-    display: inline-block;
-    position: relative;
-    float: right;
-    margin-top: -57px;
-    height: 42px;
-    width: 42px;
   }
 }
