@@ -45,14 +45,14 @@ if (config.setup) {
 
 
     });
-    return;
-} else {
+
+} else if(!config.setup) {
     app.use('/setup', setupRouter);
 
     app.get('*', (req, res) => {
         res.redirect('/setup');
     });
-    return;
+
 }
 
 
