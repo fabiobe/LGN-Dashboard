@@ -48,9 +48,12 @@ let server = net.createServer((socket) => {
 
 workerProcess.stdout.on('data', (data) => {
     if (new String(data).trim() === "exit") {
-        workerProcess.kill();
-        server.close();
-        return;
+        if (running) {
+            workerProcess.kill('SIGINT');
+            running = false;
+            server.close();
+            return;
+        }
     }
     console.log(chalk.cyan('[' + date.toISOString().split('T')[0] + ' ' + date.getHours() + ':' + addZero(date.getMinutes()) + ':' + date.getSeconds() + '] ') + data + '\x1b[0m');
 });
