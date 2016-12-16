@@ -10,7 +10,6 @@ let io = require('socket.io')(server);
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-let setupRouter = require('./routers/setup.js');
 
 /* CONFIGURATION */
 
@@ -46,7 +45,8 @@ if (config.setup) {
 
     });
 
-} else if(!config.setup) {
+} else {
+    let setupRouter = require('./routers/setup.js');
     app.use('/setup', setupRouter);
 
     app.get('*', (req, res) => {
