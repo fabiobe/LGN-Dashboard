@@ -217,9 +217,10 @@ div.navigation-item-right:hover {
   display: none;
 }
 .content {
-  margin-top: 180px;
+  padding-top: 190px;
   color: #4CAF50;
   height: 20px;
+  position: absolute;
 }
 @media screen and (min-width: 980px) {
   html,
