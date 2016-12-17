@@ -218,10 +218,9 @@ div.navigation-item-right:hover {
   display: none;
 }
 .content {
-  top: 190px;
+  padding-top: 190px;
   background-color: #4CAF50;
   height: 20px;
-  position: absolute;
 }
 @media screen and (min-width: 980px) {
   html,
