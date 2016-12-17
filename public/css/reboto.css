@@ -115,8 +115,16 @@ body {
   text-align: center;
   margin-top: 30px;
 }
-.navigation-content a i .active {
+.overlay a i .active-mobile {
   color: white;
+}
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
 }
 .navigation-content a i {
   color: #818181;
@@ -167,7 +175,7 @@ body {
   position: relative;
   font-family: 'Roboto Black', sans-serif;
   color: #FFF;
-  top: 0;
+  top: 0%;
   font-size: 1em;
   margin-left: 7%;
   font-weight: bold;
@@ -250,7 +258,7 @@ div.navigation-item-right:hover {
     position: relative;
     font-family: 'Roboto Black', sans-serif;
     color: #FFF;
-    top: 0;
+    top: 0%;
     font-size: 1em;
     margin-left: 7%;
     font-weight: bold;
