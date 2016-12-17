@@ -216,6 +216,11 @@ div.navigation-item-right:hover {
 .navigation-item-right a {
   display: none;
 }
+.content {
+  margin-top: 180px;
+  color: #4CAF50;
+  height: 20px;
+}
 @media screen and (min-width: 980px) {
   html,
   body {
