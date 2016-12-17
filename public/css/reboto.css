@@ -4,8 +4,7 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
-  border: 1px solid transparent;
-  padding: 0;
+  padding: 0 0 1px;
   min-height: 100%;
 }
 .error-page {
