@@ -221,7 +221,7 @@ div.navigation-item-right:hover {
   top: 190px;
   background-color: #4CAF50;
   height: 20px;
-  position: absolute;
+  position: relative;
 }
 @media screen and (min-width: 980px) {
   html,
