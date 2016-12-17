@@ -153,6 +153,7 @@ body {
   width: 100%;
   height: 76px;
   background: #733D9A;
+  top: 0;
   position: absolute;
 }
 #lower-nav {
@@ -217,8 +218,8 @@ div.navigation-item-right:hover {
   display: none;
 }
 .content {
-  padding-top: 190px;
-  color: #4CAF50;
+  top: 190px;
+  background-color: #4CAF50;
   height: 20px;
   position: absolute;
 }
@@ -239,6 +240,7 @@ div.navigation-item-right:hover {
     width: 100%;
     height: 76px;
     background: #733D9A;
+    top: 0;
     position: absolute;
   }
   #lower-nav {
