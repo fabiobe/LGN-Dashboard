@@ -333,6 +333,7 @@ div.navigation-item-right:hover {
     border-radius: 5px;
   }
   #profile {
+    text-decoration: none;
     display: inline-block;
     float: right;
     position: relative;
@@ -342,5 +343,9 @@ div.navigation-item-right:hover {
     color: white;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
+  }
+  #profile:hover {
+    color: lightgray;
+    text-decoration: underline;
   }
 }

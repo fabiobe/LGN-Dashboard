@@ -125,7 +125,6 @@ html, body {
   font-family: @font;
 }
 
-
 .overlay {
   height: 0;
   width: 100%;
@@ -402,6 +401,7 @@ div.navigation-item-right:hover {
   }
 
   #profile {
+    text-decoration: none;
     display: inline-block;
     float: right;
     position: relative;
@@ -413,5 +413,9 @@ div.navigation-item-right:hover {
     font-family: 'Roboto', sans-serif;
   }
 
+  #profile:hover {
+    color: lightgray;
+    text-decoration: underline;
+  }
 
 }
