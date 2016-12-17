@@ -217,8 +217,8 @@ div.navigation-item-right:hover {
   display: none;
 }
 .content {
-  padding-top: 190px;
-  color: #4CAF50;
+  top: 190px;
+  background-color: #4CAF50;
   height: 20px;
   position: absolute;
 }
