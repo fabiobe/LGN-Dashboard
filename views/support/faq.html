@@ -48,9 +48,9 @@
     </br>
     <div class="faqs">
         <div class="faq-section">
-            <a class="faq-question" href="#Anmeldung">
+            <div class="faq-question" id="#Anmeldung">
                 <h3>Wie kann ich mich anmelden?</h3>
-            </a>
+            </div>
             <div class="faq-answer" id="Anmeldung">
                 <p>
                     Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
@@ -78,7 +78,7 @@
     $(document).ready(() => {
 
         $('.faq-question').click(() => {
-            var answer = $(this).attr('href');
+            var answer = $(this).attr('id');
             $(this).addClass('faq-active');
             $('.faqs ' + answer).slideDown(300).addClass('open');
         });
