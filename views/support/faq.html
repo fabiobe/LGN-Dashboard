@@ -88,9 +88,8 @@
 
 <script>
     $(document).ready(() => {
-        $("a[href^=#]").on("click", function(e) {
-            e.preventDefault();
-            history.pushState(null, null, this.href);
+        addEventListener('click', function (ev) {
+            ev.preventDefault();
         });
     });
 </script>
