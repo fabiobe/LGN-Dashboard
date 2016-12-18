@@ -42,7 +42,12 @@
     <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
 </div>
 <div class="faq-content">
-    <div class="faq-page-header"><h1>FAQ</h1></div>
+    <div class="faq-page-header">
+        <h1>FAQ</h1></div>
+    <div class="faq-content">
+        <h3>Wie kann ich mich anmelden?</h3>
+        <p>Verwende zum Anmelden deine E-Mail Adresse und dein WLAN-Passwort!</p>
+    </div>
 </div>
 
 </body>
@@ -54,4 +59,10 @@
 <script src="http://it.lg-n.de:8080/js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+        $(".faq-content").accordion();
+    });
+</script>
 </html>
