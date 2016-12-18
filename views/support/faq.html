@@ -48,7 +48,7 @@
     </br>
     <div class="faqs">
         <div class="faq-section" id="Anmeldung" onclick="toggle()">
-            <a href="#Anmeldung"><h3>Wie kann ich mich anmelden?</h3></a>
+            <a><h3>Wie kann ich mich anmelden?</h3></a>
             <p>
                 Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
                 WLAN-Nutzung
@@ -89,6 +89,7 @@
 <script>
     $(document).ready(() => {
         function toggle() {
+            console.log("toggling");
             $(this).next("p").slideToggle("fast");
         }
     });
