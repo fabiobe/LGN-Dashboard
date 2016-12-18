@@ -227,9 +227,9 @@ div.navigation-item-right:hover {
   border-bottom: 1px solid #eeeeee;
 }
 .page-header h1 {
-  font-family: inherit;
+  font-family: "Roboto Thin";
   font-size: 36px;
-  color: inherit;
+  color: #333333;
 }
 @media screen and (min-width: 980px) {
   html,
