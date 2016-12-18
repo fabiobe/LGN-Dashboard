@@ -69,28 +69,14 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function () {
-
-        function close_accordion_section() {
-            $('.faq-question').removeClass('active');
-            $('.faq-answer').slideUp(300).removeClass('open');
-        }
+    $(document).ready(() => {
 
         $('.faq-question').click((e) => {
-            var currentAttrValue = $(this).attr('href');
+            let answer = $(this).attr('href');
+            $('#' + answer).css({'display': 'inherit'});
+            $(this).addClass('faq-active');
+        });
 
-            if ($(e.target).is('.faq-active')) {
-                close_accordion_section();
-            } else {
-                close_accordion_section();
-
-                $(this).addClass('faq-active');
-
-                $('.faq-answer ' + currentAttrValue).slideDown(300).addClass('open');
-            }
-
-            e.preventDefault();
-        })
     });
 </script>
 </html>

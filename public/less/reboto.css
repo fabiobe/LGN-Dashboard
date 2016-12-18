@@ -280,6 +280,7 @@ div.navigation-item-right:hover {
 .faq-question:hover {
   background: #4c4c4c;
   text-decoration: none;
+  color: #FFF;
 }
 @media screen and (min-width: 980px) {
   html,
