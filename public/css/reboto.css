@@ -267,7 +267,7 @@ div.navigation-item-right:hover {
 }
 .faq-section-title.faq-active,
 .faq-section-title:hover {
-  background: #7c2fad;
+  background: #913D88;
   text-decoration: none;
   color: #FFF;
 }
@@ -283,6 +283,7 @@ div.navigation-item-right:hover {
   width: 100%;
   text-align: center;
   text-decoration: none;
+  padding: 15px;
 }
 .faqs .faq-section-title a {
   font-family: "Roboto", sans-serif;
