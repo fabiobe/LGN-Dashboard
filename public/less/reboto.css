@@ -271,7 +271,7 @@ div.navigation-item-right:hover {
   text-decoration: none;
   color: #FFF;
 }
-.faq-section-title.faq-active,
+.faq-section-title.faq-active a,
 .faq-section-title:hover a {
   text-decoration: none;
   color: #FFF;
