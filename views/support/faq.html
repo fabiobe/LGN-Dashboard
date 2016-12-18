@@ -79,6 +79,7 @@
 
         $('.faq-question').click(() => {
             var answer = $(this)[0].id;
+            alert(answer);
             $(this).addClass('faq-active');
             $('.faqs ' + answer).slideDown(300).css({'display': 'inherit'});
         });
