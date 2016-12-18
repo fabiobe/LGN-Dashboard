@@ -46,15 +46,19 @@
         <h1>FAQ</h1>
     </div>
     </br>
-    <div class="faq-question" href="#Anmeldung">
-        <h3>Wie kann ich mich anmelden?</h3>
-    </div>
-    <div class="faq-answer" id="Anmeldung">
-        <p>
-            Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die WLAN-Nutzung
-            anmeldest. Sobald du dich angemeldet hast, erhälst du eine E-Mail mit deinem Benutzernamen (E-Mail-Adresse)
-            und einem Passwort. Diese Daten verwendest du um dich in unserem Portal anzumelden.
-        </p>
+    <div class="faqs">
+        <div class="faq-question" href="#Anmeldung">
+            <h3>Wie kann ich mich anmelden?</h3>
+        </div>
+        <div class="faq-answer" id="Anmeldung">
+            <p>
+                Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
+                WLAN-Nutzung
+                anmeldest. Sobald du dich angemeldet hast, erhälst du eine E-Mail mit deinem Benutzernamen
+                (E-Mail-Adresse)
+                und einem Passwort. Diese Daten verwendest du um dich in unserem Portal anzumelden.
+            </p>
+        </div>
     </div>
 </div>
 
@@ -72,9 +76,9 @@
     $(document).ready(() => {
 
         $('.faq-question').click(() => {
-            let answer = $(this).attr('href');
+            var answer = $(this).attr('href');
             alert(answer);
-            $('#' + answer).css({'display': 'inherit'});
+            $('.faqs ' + answer).css({'display': 'inherit'});
             $(this).addClass('faq-active');
         });
 
