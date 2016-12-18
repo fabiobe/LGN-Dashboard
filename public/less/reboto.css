@@ -268,6 +268,7 @@ div.navigation-item-right:hover {
 .faq-section-title.faq-active,
 .faq-section-title:hover {
   background: #733D9A;
+  border: 1px solid #e6e6e6;
   text-decoration: none;
   color: #FFF;
 }
@@ -281,9 +282,6 @@ div.navigation-item-right:hover {
   background: #913D88;
 }
 .faqs .faq-section {
-  border-left: 1px solid #e6e6e6;
-  border-right: 1px solid #e6e6e6;
-  border-top: 1px solid #e6e6e6;
   width: 100%;
   overflow: hidden;
 }
