@@ -267,17 +267,13 @@ div.navigation-item-right:hover {
 }
 .faq-section-title.faq-active,
 .faq-section-title:hover {
-  background: #4c4c4c;
+  background: #7c2fad;
   text-decoration: none;
 }
 .faq-section:last-child .faq-section-title {
   border-bottom: none;
 }
 .faqs .faq-section {
-  width: 100%;
-}
-.faqs .faq-section {
-  border: 1px solid #e6e6e6;
   width: 100%;
 }
 .faqs .faq-section-title {
