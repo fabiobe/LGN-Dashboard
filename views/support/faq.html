@@ -56,6 +56,7 @@
                     anmeldest. Sobald du dich angemeldet hast, erhälst du eine E-Mail mit deinem Benutzernamen
                     (E-Mail-Adresse)
                     und einem Passwort. Diese Daten verwendest du um dich in unserem Portal anzumelden.
+                    </br>
                 </p>
             </div>
         </div>
@@ -65,6 +66,7 @@
             <div id="Kennwort-vergessen" class="faq-section-content">
                 <p>
                     Das zurücksetzen deines Passworts ist derzeit leider nicht möglich!
+                    </br>
                 </p>
             </div>
         </div>
@@ -102,7 +104,7 @@
 
                 $(this).css({'border-bottom': 'none', 'color': 'white'});
 
-                if ($(this).is(':last-child')) {
+                if ($(this + ' p').is(':last-child')) {
                     $('.faqs ' + currentAttrValue).slideDown(300).addClass('open').parent().css({
                         'border': '1px solid rgb(230, 230, 230)'
                     });
