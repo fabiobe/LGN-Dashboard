@@ -271,13 +271,20 @@ div.navigation-item-right:hover {
   text-decoration: none;
   color: #FFF;
 }
-.faq-section:last-child .faq-section-title {
-  border-bottom: none;
-}
 .faqs .faq-section {
+  border: 1px solid #e6e6e6;
   width: 100%;
 }
 .faqs .faq-section-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #333333;
+  border: 1px solid #e6e6e6;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+.faqs .faq-section-title a {
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   color: #333333;
