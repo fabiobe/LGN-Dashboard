@@ -247,7 +247,6 @@ div.navigation-item-right:hover {
 }
 .faq-page-header {
   border-bottom: 1px solid #eeeeee;
-  margin-bottom: 15px;
 }
 .faq-page-header h1 {
   font-family: "Roboto Thin", sans-serif;
@@ -289,7 +288,6 @@ div.navigation-item-right:hover {
   text-align: center;
   text-decoration: none;
   padding: 15px;
-  margin-top: -16px;
 }
 .faqs .faq-section-title a {
   font-family: "Roboto", sans-serif;
