@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.get('/faq', (req, res) => {
 
-    res.send('OK');
+    res.sendFile(path.join(__dirname, '../views/support/faq.html'));
 
 });
 
