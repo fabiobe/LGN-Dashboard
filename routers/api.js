@@ -10,20 +10,16 @@ let Hashmap = require('hashmap');
 let users = [];
 let authenticatedUsers = new Hashmap();
 let io = require('./../server.js').io;
-var mysql_config = require('./../config/mysql.json');
+let mysql_config = require('./../config/mysql.json');
 
-let connection = mysql.createConnection(mysql_config);
+let pool = mysql.createPool(mysql_config);
 
 console.log("\x1b[36m[Debug] [API] starting...");
 
-connection.connect(function (err) {
-    if (err) {
-        console.error('\x1b[91m[Error] [MySQL] Error while connecting: ' + err);
-        return;
-    }
-    console.log('\x1b[32m[Info] [MySQL] Connection established');
+pool.getConnection((err, connection) => {
+    connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
+    connection.release();
 });
-connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
 
 router.get('/login', (req, res) => {
 
@@ -40,26 +36,28 @@ router.post('/login', (req, res) => {
     hash.update(password);
     let value = hash.digest('Hex');
 
+    pool.getConnection((err, connection) => {
+        connection.query("SELECT * FROM dashboard_users WHERE email='" + email + "' LIMIT 1", (err, rows) => {
 
-    connection.query("SELECT * FROM dashboard_users WHERE email='" + email + "' LIMIT 1", (err, rows) => {
-
-        if (err) {
-            res.redirect('/');
-        }
-        if (rows.length > 0) {
-            if (value == rows[0].password) {
-                let token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
-                res.cookie('token', token);
-                users.push(token);
-                console.log('\x1b[32m[Info] [Users] ' + rows[0].firstname + ' ' + rows[0].lastname + ' has logged in!');
-                res.redirect('/');
-            } else {
+            if (err) {
                 res.redirect('/');
             }
-        } else {
-            res.sendFile(path.join(__dirname + '/../views/api/login-failed.html'));
-        }
+            if (rows.length > 0) {
+                if (value == rows[0].password) {
+                    let token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+                    res.cookie('token', token);
+                    users.push(token);
+                    console.log('\x1b[32m[Info] [Users] ' + rows[0].firstname + ' ' + rows[0].lastname + ' has logged in!');
+                    res.redirect('/');
+                } else {
+                    res.redirect('/');
+                }
+            } else {
+                res.sendFile(path.join(__dirname + '/../views/api/login-failed.html'));
+            }
 
+        });
+        connection.release();
     });
 
 
