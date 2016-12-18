@@ -76,7 +76,7 @@
     $(document).ready(function () {
         function close_faq_section() {
             $('.faqs .faq-section-title').removeClass('faq-active');
-            $('.faqs .faq-section-title').css({'border-bottom': 'none'});
+            $('.faqs .faq-section-title').css({'border-bottom': 'none', 'color': 'white'});
             $('.faqs .faq-section-content').slideUp(300).removeClass('open');
         }
 
@@ -90,7 +90,7 @@
 
                 $(this).addClass('faq-active');
 
-                $('.faqs ' + currentAttrValue).slideDown(300).addClass('open').addClass('faq-active');
+                $('.faqs ' + currentAttrValue).slideDown(300).addClass('open');
             }
 
             e.preventDefault();
