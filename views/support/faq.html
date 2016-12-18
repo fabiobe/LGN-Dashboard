@@ -43,20 +43,7 @@
 </div>
 <div class="faq-content">
     <div class="faq-page-header">
-        <h1>FAQ</h1></div>
-    <div class="faq-accordion">
-        <div class="faq-section">
-            <a class="faq-section-title" href="#anmelden">Wie kann ich mich anmdelden?</a>
-            <div id="anmelden" class="faq-section-content">
-                <p>
-                    Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
-                    WLAN-Nutzung anmeldest.
-                    Sobald du dich angemeldet hast, erhälst du eine E-Mail mit deinem Benutzernamen (E-Mail-Adresse) und
-                    einem Passwort.
-                    Diese Daten verwendest du um dich in unserem Portal anzumelden.
-                </p>
-            </div>
-        </div>
+        <h1>FAQ</h1>
     </div>
 </div>
 
@@ -72,29 +59,7 @@
 
 <script>
     $(document).ready(function () {
-        function close_accordion_section() {
-            $('.faq-accordion .faq-section-title').removeClass('section-active');
-            $('.faq-accordion .faq-section-content').slideUp(300).removeClass('open');
-            $('.faq-accordion .faq-section-title').css({'border-bottom': 'none'});
-        }
 
-        $('.faq-section-title').click(function (e) {
-            var currentAttrValue = $(this).attr('href');
-
-            if ($(e.target).is('.section-active')) {
-                close_accordion_section();
-            } else {
-                close_accordion_section();
-
-
-                $(this).addClass('section-active');
-                $(this).css({'border-bottom': '1px solid rgb(214, 214, 214)'});
-
-                $('.faq-accordion ' + currentAttrValue).slideDown(300).addClass('open');
-            }
-
-            e.preventDefault();
-        });
     });
 </script>
 </html>
