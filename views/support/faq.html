@@ -88,9 +88,8 @@
 
 <script>
     $(document).ready(() => {
-        addEventListener('click', function (ev) {
-            ev.preventDefault();
-            alert(ev.target.href);
+        $('.faq-section a').click(() => {
+            $(this).next("p").slideToggle("fast");
         });
     });
 </script>
