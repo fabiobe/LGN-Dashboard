@@ -47,7 +47,7 @@
     </div>
     </br>
     <div class="faqs">
-        <div class="faq-section" id="Anmeldung">
+        <div class="faq-section" id="Anmeldung" onclick="toggle()">
             <a href="#Anmeldung"><h3>Wie kann ich mich anmelden?</h3></a>
             <p>
                 Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
@@ -88,9 +88,9 @@
 
 <script>
     $(document).ready(() => {
-        $('.faq-section a').click(() => {
+        function toggle() {
             $(this).next("p").slideToggle("fast");
-        });
+        }
     });
 </script>
 </html>
