@@ -266,7 +266,7 @@ div.navigation-item-right:hover {
   color: #333;
 }
 .faq-section-title.faq-active,
-.faq-section-title :hover {
+.faq-section-title:hover {
   background: #733D9A;
   border: 1px solid #e6e6e6;
   text-decoration: none;
