@@ -263,6 +263,11 @@ div.navigation-item-right:hover {
   color: #333333;
   text-align: center;
 }
+.faq-answer {
+  width: 100%;
+  border: 1px solid #d6d6d6;
+  display: none;
+}
 @media screen and (min-width: 980px) {
   html,
   body {
