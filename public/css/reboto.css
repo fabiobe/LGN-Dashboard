@@ -267,6 +267,9 @@ div.navigation-item-right:hover {
   color: #333;
 }
 .faqs .faq-section {
+  width: 100%;
+}
+.faqs .faq-section:target {
   border: 1px solid #e6e6e6;
   width: 100%;
 }
@@ -274,11 +277,13 @@ div.navigation-item-right:hover {
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   color: #333333;
+  border: 1px solid #e6e6e6;
   width: 100%;
   text-align: center;
   text-decoration: none;
 }
 .faqs .faq-section:target a {
+  border: none;
   border-bottom: 1px solid #e6e6e6;
 }
 .faqs .faq-section a h3 {
