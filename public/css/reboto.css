@@ -281,7 +281,9 @@ div.navigation-item-right:hover {
   background: #913D88;
 }
 .faqs .faq-section {
-  border: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
   width: 100%;
   overflow: hidden;
 }
