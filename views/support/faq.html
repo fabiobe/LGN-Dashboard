@@ -59,6 +59,14 @@
                 </p>
             </div>
         </div>
+        <div class="faq-section">
+            <a href="#Kennwort-vergessen" class="faq-section-title">Wie kann ich mein Passwort zurücksetzen wenn ich es vergessen habe?</a>
+            <div id="Kennwort-vergessen" class="faq-section-content">
+                <p>
+                    Das zurücksetzen deines Passworts ist derzeit leider nicht möglich!
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -78,6 +86,7 @@
             $('.faqs .faq-section-title').removeClass('faq-active');
             $('.faqs .faq-section-title').css({'border-bottom': '1px solid rgb(230, 230, 230)', 'color': '#333'});
             $('.faqs .faq-section-content').slideUp(300).removeClass('open');
+            $('.faqs .faq-section').css({'border': 'none'});
         }
 
         $('.faq-section-title').click(function (e) {
