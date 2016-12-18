@@ -253,6 +253,29 @@ div.navigation-item-right:hover {
   font-size: 36px;
   color: #333333;
 }
+.faqs .faq-section p {
+  display: none;
+}
+.faqs .faq-section:target p {
+  display: inherit;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: justify;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  color: #333;
+}
+.faqs .faq-section {
+  border: 1px solid #e6e6e6;
+  width: 100%;
+}
+.faqs .faq-section a {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #333333;
+  text-align: center;
+  text-decoration: none;
+}
 @media screen and (min-width: 980px) {
   html,
   body {
