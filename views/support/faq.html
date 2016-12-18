@@ -76,6 +76,7 @@
     $(document).ready(() => {
 
         $('.faq-question').click(() => {
+            alert(this);
             var answer = $(this).attr('href');
             alert(answer);
             $('.faqs ' + answer).css({'display': 'inherit'});
