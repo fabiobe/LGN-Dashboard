@@ -269,6 +269,7 @@ div.navigation-item-right:hover {
 .faq-section-title:hover {
   background: #7c2fad;
   text-decoration: none;
+  color: #FFF;
 }
 .faq-section:last-child .faq-section-title {
   border-bottom: none;
