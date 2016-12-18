@@ -277,7 +277,7 @@ div.navigation-item-right:hover {
 .faqs .faq-section {
   width: 100%;
 }
-.faqs .faq-section-title a {
+.faqs .faq-section-title {
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   color: #333333;
