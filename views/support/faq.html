@@ -1,6 +1,15 @@
 <html>
 <head>
     <style>
+
+        #upper-nav {
+            width: 100%;
+            height: 76px;
+            background: #733D9A;
+            top: 0;
+            position: absolute;
+        }
+
         body {
             color: #393f57;
             font-size: 120%;
@@ -65,7 +74,8 @@
         }
 
         header .header-title {
-            background: #733D9A;
+            top: 76px;
+            background: #8245AD;
             height: 200px;
             color: #efefef;
             line-height: 200px;
@@ -110,6 +120,10 @@
         }</style>
 </head>
 <body>
+<div id="upper-nav">
+    <img id="logo" src="http://it.lg-n.de:8080/images/logo.png" alt="Logo" onclick="redirect('/')">
+    <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
+</div>
 <header>
     <div class="bars">
         <ul>
@@ -157,5 +171,7 @@
 <footer>
     This footer will always be positioned at the end of the page and <strong>not fixed</strong>.
 </footer>
+
+<script src="http://it.lg-n.de:8080/js/redirect.js"></script>
 </body>
 </html>
