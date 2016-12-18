@@ -269,8 +269,8 @@ div.navigation-item-right:hover {
   display: none;
 }
 .faq-answer p {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   text-align: justify;
   font-family: "Roboto", sans-serif;
   font-size: 1.25rem;
