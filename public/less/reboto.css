@@ -218,14 +218,19 @@ div.navigation-item-right:hover {
   display: none;
 }
 .content {
-  top: 180px;
+  top: 220px;
   background-color: #FFF;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   height: auto;
   position: relative;
   border: 1px solid #ddd;
 }
 .page-header {
   border-bottom: 1px solid #eeeeee;
+  top: 20px;
+  bottom: 20px;
 }
 .page-header h1 {
   font-family: "Roboto Thin";
