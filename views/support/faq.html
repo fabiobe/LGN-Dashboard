@@ -59,7 +59,7 @@
             line-height: 1.4;
         }
 
-        header .header-title {
+        .header .header-title {
             top: 76px;
             background: #8245AD;
             height: 200px;
@@ -116,23 +116,18 @@
             background-color: #efefef;
             text-align: center;
         }
-
-        @media screen and (max-width: 960px) {
-            header .bars {
-                position: inherit;
-            }
-        }</style>
+    </style>
 </head>
 <body>
 <div id="upper-nav">
     <img id="logo" src="http://it.lg-n.de:8080/images/logo.png" alt="Logo" onclick="redirect('/')">
     <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
 </div>
-<header>
+<div class="header">
     <div class="header-title">
         FAQ
     </div>
-</header>
+</div>
 <section class="content-block">
     <h1>Lorem ipsum dolor sit amet</h1>
     <h2>Lorem ipsum?</h2>
