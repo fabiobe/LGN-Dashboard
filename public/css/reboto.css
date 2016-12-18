@@ -263,7 +263,7 @@ div.navigation-item-right:hover {
   width: 100%;
   padding: 15px;
   display: inline-block;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #FFF !important;
   background: #333;
   transition: all linear 0.15s;
   font-size: 1.200em;
@@ -287,6 +287,8 @@ div.navigation-item-right:hover {
   font-family: "Roboto Thin", sans-serif;
   font-size: 1.5rem;
   word-break: normal;
+  text-align: justify;
+  color: #FFF;
 }
 @media screen and (min-width: 980px) {
   html,
