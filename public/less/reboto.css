@@ -257,6 +257,12 @@ div.navigation-item-right:hover {
   width: 100%;
   border: 1px solid #d6d6d6;
 }
+.faq-question h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #333333;
+  text-align: center;
+}
 @media screen and (min-width: 980px) {
   html,
   body {
