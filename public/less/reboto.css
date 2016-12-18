@@ -270,7 +270,7 @@ div.navigation-item-right:hover {
   text-shadow: 0px 1px 0px #1a1a1a;
   color: #fff;
 }
-.faq-section-content.active,
+.faq-section-content.section-active,
 .accordion-section-title:hover {
   background: #4c4c4c;
   text-decoration: none;

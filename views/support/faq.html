@@ -73,20 +73,20 @@
 <script>
     $(document).ready(function () {
         function close_accordion_section() {
-            $('.faq-accordion .faq-section-title').removeClass('active');
+            $('.faq-accordion .faq-section-title').removeClass('section-active');
             $('.faq-accordion .faq-section-content').slideUp(300).removeClass('open');
         }
 
         $('.faq-section-title').click(function (e) {
             var currentAttrValue = $(this).attr('href');
 
-            if ($(e.target).is('.active')) {
+            if ($(e.target).is('.section-active')) {
                 close_accordion_section();
             } else {
                 close_accordion_section();
 
 
-                $(this).addClass('active');
+                $(this).addClass('section-active');
 
                 $('.faq-accordion ' + currentAttrValue).slideDown(300).addClass('open');
             }
