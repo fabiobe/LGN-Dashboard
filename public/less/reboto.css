@@ -278,7 +278,7 @@ div.navigation-item-right:hover {
 }
 .faq-question.faq-active,
 .faq-question:hover,
-.faq-question h3 {
+.faq-question:hover h3 {
   background: #4c4c4c;
   text-decoration: none;
   color: #FFF;
