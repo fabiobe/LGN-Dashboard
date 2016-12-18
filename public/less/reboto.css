@@ -257,13 +257,15 @@ div.navigation-item-right:hover {
   overflow: hidden;
 }
 .faq-section {
-  border: 1px solid #eeeeee;
+  border: 1px solid #d6d6d6;
 }
 .faq-section-title {
   width: 100%;
   padding: 15px;
+  text-align: center;
   display: inline-block;
   transition: all linear 0.15s;
+  border-bottom: 1px solid #d6d6d6;
   font-size: 1.5rem;
   color: #333333;
 }
