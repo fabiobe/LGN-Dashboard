@@ -78,17 +78,9 @@
     $(document).ready(() => {
 
         $('.faq-question').click(() => {
-
-            $.each(this.attributes, function () {
-                if (this.specified) {
-                    alert(this.name + ' : ' + this.value);
-                }
-            });
-
             var answer = $(this).attr('href');
-            alert(answer);
-            $('.faqs ' + answer).css({'display': 'inherit'});
             $(this).addClass('faq-active');
+            $('.faqs ' + answer).slideDown(300).addClass('open');
         });
 
     });
