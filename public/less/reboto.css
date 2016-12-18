@@ -278,14 +278,13 @@ div.navigation-item-right:hover {
 }
 .faqs .faq-section {
   width: 100%;
-  overflow: hidden;
 }
 .faqs .faq-section-title {
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   color: #333333;
   border: 1px solid #e6e6e6;
-  width: 99%;
+  width: 98%;
   text-align: center;
   text-decoration: none;
   padding: 15px;
