@@ -71,8 +71,9 @@
 <script>
     $(document).ready(() => {
 
-        $('.faq-question').click((e) => {
+        $('.faq-question').click(() => {
             let answer = $(this).attr('href');
+            alert(answer);
             $('#' + answer).css({'display': 'inherit'});
             $(this).addClass('faq-active');
         });
