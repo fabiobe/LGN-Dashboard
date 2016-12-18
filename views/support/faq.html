@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=0.75, maximum-scale=1.0, user-scalable=0">
@@ -13,6 +14,8 @@
     <meta name="language" content="Deutsch"/>
     <meta name="revisit" content="After 1 days"/>
     <title>Lessing-Gymnasium Norderstedt | IT-Dashboard</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reboto.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="57x57" href="http://it.lg-n.de:8080/images/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="http://it.lg-n.de:8080/images/apple-icon-60x60.png">
@@ -32,136 +35,29 @@
     <meta name="msapplication-TileImage" content="http://it.lg-n.de:8080/images/ms-icon-144x144.png">
     <meta name="msapplication-config" content="http://it.lg-n.de:8080/documents/browserconfig.xml">
     <meta name="theme-color" content="#733D9A">
-    <style>
-        #upper-nav {
-            width: 100%;
-            height: 76px;
-            background: #733D9A;
-            top: 0;
-            position: absolute;
-        }
-
-        body {
-            color: #393f57;
-            margin: 0;
-        }
-
-        h1 {
-            color: #8245AD;
-            line-height: 1.1;
-        }
-
-        h2 {
-            line-height: 1.1;
-        }
-
-        p {
-            line-height: 1.4;
-        }
-
-        .header .header-title {
-            top: 76px;
-            background: #8245AD;
-            height: 200px;
-            color: #efefef;
-            line-height: 200px;
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        #logo {
-            position: relative;
-            top: 10%;
-            height: 80%;
-            margin-left: 2%;
-            float: left;
-        }
-
-        #logo-title {
-            position: relative;
-            font-family: 'Roboto Black', sans-serif;
-            color: #FFF;
-            top: 0%;
-            font-size: 1em;
-            margin-left: 7%;
-            font-weight: bold;
-        }
-
-        section {
-            margin: 0 auto;
-            padding-top: 2.5%;
-            padding-bottom: 2.5%;
-            max-width: 600px;
-        }
-
-        section:first-child:last-child {
-            padding-top: 5%;
-            padding-bottom: 5%;
-        }
-
-        section.content-block {
-            font-family: 'proxima-nova-soft';
-        }
-
-        section.content-block p {
-            font-weight: 500;
-        }
-
-        footer {
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 1rem;
-            background-color: #efefef;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <div id="upper-nav">
-    <img id="logo" src="http://it.lg-n.de:8080/images/logo.png" alt="Logo" onclick="redirect('/')">
+    <img id="logo" src="images/logo.png" alt="Logo" onclick="redirect('/')">
     <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
+    <a href="/profile" id="profile">Mein Profil</a>
 </div>
-<div class="header">
-    <div class="header-title">
-        FAQ
-    </div>
+<div id="lower-nav">
+
 </div>
-<section class="content-block">
-    <h1>Lorem ipsum dolor sit amet</h1>
-    <h2>Lorem ipsum?</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore
-        magna aliqua. Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut
-        labore et dolore magna aliqua.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore
-        magna aliqua.</p>
-</section>
 
-<section class="content-block">
-    <h1>Lorem ipsum dolor sit amet</h1>
-    <h2>Lorem ipsum?</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore
-        magna aliqua. Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut
-        labore et dolore magna aliqua.</p>
-    <p>Lorcontent-blockem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut
-        labore et dolore magna aliqua.</p>
-</section>
 
-<section class="content-block">
-    <h1>Lorem ipsum dolor sit amet</h1>
-    <h2>Lorem ipsum?</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore
-        magna aliqua. Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut
-        labore et dolore magna aliqua.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore
-        magna aliqua.</p>
-</section>
+<div class="content">
+    <div class="page-header"><h1>Berichte</h1></div>
+</div>
 
-<footer>
-    This footer will always be positioned at the end of the page and <strong>not fixed</strong>.
-</footer>
-
-<script src="http://it.lg-n.de:8080/js/redirect.js"></script>
 </body>
+
+<script src="http://it.lg-n.de:8080/socket.io/socket.io.js"></script>
+<script>
+    var socket = io('http://localhost:8080');
+</script>
+<script src="http://it.lg-n.de:8080/js/redirect.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
 </html>
