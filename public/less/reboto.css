@@ -222,6 +222,7 @@ div.navigation-item-right:hover {
   background-color: #FFF;
   height: auto;
   position: relative;
+  border: 1px solid #ddd;
 }
 .page-header {
   border-bottom: 1px solid #eeeeee;
