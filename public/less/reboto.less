@@ -311,12 +311,11 @@ div.navigation-item-right:hover {
   color: #333333;
 }
 
-.faqs .faq-section p {
+.faq-section-content {
   display: none;
 }
 
-.faqs .faq-section:target p {
-  transition: all 0.5s ease-in;
+.faqs .faq-section-content p {
   display: inherit;
   margin-left: 20px;
   margin-right: 20px;
@@ -324,6 +323,15 @@ div.navigation-item-right:hover {
   font-family: "Roboto", sans-serif;
   font-size: 1.25rem;
   color: #333;
+}
+
+.faq-section-title.faq-active, .faq-section-title:hover {
+  background:#4c4c4c;
+  text-decoration:none;
+}
+
+.faq-section:last-child .faq-section-title {
+  border-bottom:none;
 }
 
 .faqs .faq-section {
@@ -335,25 +343,12 @@ div.navigation-item-right:hover {
   width: 100%;
 }
 
-.faqs .faq-section a {
-   font-family: "Roboto", sans-serif;
-   font-size: 1.5rem;
-   color: #333333;
-   border: 1px solid rgb(230, 230, 230);
-   width: 100%;
-   text-align: center;
-   text-decoration: none;
- }
-
-.faqs .faq-section:target a {
-  border: none;
-  border-bottom: 1px solid rgb(230, 230, 230);
-}
-
-.faqs .faq-section a h3{
+.faqs .faq-section-title {
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   color: #333333;
+  border: 1px solid rgb(230, 230, 230);
+  width: 100%;
   text-align: center;
   text-decoration: none;
 }

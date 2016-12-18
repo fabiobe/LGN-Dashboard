@@ -47,15 +47,17 @@
     </div>
     </br>
     <div class="faqs">
-        <div class="faq-section" id="Anmeldung">
-            <a href="#Anmeldung"><h3>Wie kann ich mich anmelden?</h3></a>
-            <p>
-                Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
-                WLAN-Nutzung
-                anmeldest. Sobald du dich angemeldet hast, erhälst du eine E-Mail mit deinem Benutzernamen
-                (E-Mail-Adresse)
-                und einem Passwort. Diese Daten verwendest du um dich in unserem Portal anzumelden.
-            </p>
+        <div class="faq-section">
+            <a href="#Anmeldung" class="faq-section-title">Wie kann ich mich anmelden?</a>
+            <div id="Anmeldung" class="faq-section-content">
+                <p>
+                    Um dich anmelden zu können benötigst du Benutzerdaten, welche du erhälst, wenn du dich für die
+                    WLAN-Nutzung
+                    anmeldest. Sobald du dich angemeldet hast, erhälst du eine E-Mail mit deinem Benutzernamen
+                    (E-Mail-Adresse)
+                    und einem Passwort. Diese Daten verwendest du um dich in unserem Portal anzumelden.
+                </p>
+            </div>
         </div>
     </div>
 </div>
@@ -69,4 +71,29 @@
 <script src="http://it.lg-n.de:8080/js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        function close_faq_section() {
+            $('.faqs .faq-section-title').removeClass('faq-active');
+            $('.faqs .faq-section-content').slideUp(300).removeClass('open');
+        }
+
+        $('.faq-section-title').click(function (e) {
+            var currentAttrValue = $(this).attr('href');
+
+            if ($(e.target).is('.faq-active')) {
+                close_faq_section();
+            } else {
+                close_faq_section();
+
+                $(this).addClass('faq-active');
+
+                $('.faqs ' + currentAttrValue).slideDown(300).addClass('open');
+            }
+
+            e.preventDefault();
+        });
+    });
+</script>
 </html>
