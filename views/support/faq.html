@@ -78,8 +78,10 @@
     $(document).ready(() => {
 
         $('.faq-question').click((e) => {
-            var answer = e.target.id;
-            alert(answer);
+            console.log(e.target);
+            console.log(e.target.id);
+            console.log(e);
+            console.log(this);
             $(e.target).addClass('faq-active');
             $('.faqs ' + answer).slideDown(300).css({'display': 'inherit'});
         });
