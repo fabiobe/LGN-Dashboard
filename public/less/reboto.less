@@ -326,9 +326,19 @@ div.navigation-item-right:hover {
 }
 
 .faq-section-title.faq-active, .faq-section-title:hover {
-  background: @background;
+  background: @upper-nav-color;
   text-decoration: none;
   color: @font-color;
+}
+
+.faq-section-title.faq-active, .faq-section-title:hover a{
+  text-decoration: none;
+  color: @font-color;
+}
+
+.faq-section-content .open{
+  color: @font-color;
+  background: @background;
 }
 
 .faqs .faq-section {
