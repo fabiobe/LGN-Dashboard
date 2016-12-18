@@ -223,6 +223,9 @@ div.navigation-item-right:hover {
   height: auto;
   position: relative;
 }
+.page-header {
+  border-bottom: 1px solid #eeeeee;
+}
 @media screen and (min-width: 980px) {
   html,
   body {
