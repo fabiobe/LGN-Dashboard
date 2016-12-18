@@ -76,7 +76,13 @@
     $(document).ready(() => {
 
         $('.faq-question').click(() => {
-            alert(this);
+
+            $.each(this.attributes, function() {
+                if(this.specified) {
+                    alert(this.name + ' : ' + this.value);
+                }
+            });
+
             var answer = $(this).attr('href');
             alert(answer);
             $('.faqs ' + answer).css({'display': 'inherit'});
