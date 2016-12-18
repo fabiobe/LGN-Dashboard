@@ -231,6 +231,7 @@ div.navigation-item-right:hover {
   border-bottom: 1px solid #eeeeee;
   top: 20px;
   bottom: 20px;
+  left: 20px;
 }
 .page-header h1 {
   font-family: "Roboto Thin";
