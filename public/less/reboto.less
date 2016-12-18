@@ -316,6 +316,7 @@ div.navigation-item-right:hover {
 }
 
 .faqs .faq-section:target p {
+  transition: all 0.5s ease-in;
   display: inherit;
   margin-left: 20px;
   margin-right: 20px;
@@ -331,11 +332,16 @@ div.navigation-item-right:hover {
 }
 
 .faqs .faq-section a {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
-  color: #333333;
-  text-align: center;
-  text-decoration: none;
+   font-family: "Roboto", sans-serif;
+   font-size: 1.5rem;
+   color: #333333;
+   width: 100%;
+   text-align: center;
+   text-decoration: none;
+ }
+
+.faqs .faq-section:target a {
+  border-bottom: 1px solid rgb(230, 230, 230);
 }
 
 .faqs .faq-section a h3{
