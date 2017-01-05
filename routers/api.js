@@ -50,6 +50,8 @@ router.post('/login', (req, res) => {
 
         });
 
+        console.log("\x1b[32m[Info] [Maintenance] " + maintenance);
+
         connection.query("SELECT * FROM dashboard_users WHERE email='" + email + "' LIMIT 1", (err, rows) => {
 
             if (err) {
