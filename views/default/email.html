@@ -124,10 +124,14 @@
 
 <script src="js/mobileNavigation.js"></script>
 <script src="editor/jquery.wysibb.min.js"></script>
+<script src="editor/lang/de.js"></script>
 
 <script>
     $(function() {
-        $("#editor").wysibb();
+        var wbbOpt = {
+            lang: "de"
+        }
+        $("#editor").wysibb(wbbOpt);
     })
 </script>
 
