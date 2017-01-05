@@ -86,6 +86,10 @@ body {
   color: #4CAF50;
   text-decoration: none;
 }
+.form-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
