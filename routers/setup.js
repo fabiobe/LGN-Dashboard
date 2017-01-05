@@ -21,7 +21,7 @@ connection.connect(function (err) {
     }
     console.log('\x1b[32m[Info] [MySQL] Connection established');
 });
-connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
+connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255), maintenance VARCHAR(255))");
 
 router.get('/', (req, res) => {
 
@@ -44,7 +44,7 @@ router.post('/createadmin', (req, res) => {
     hash.update(password);
     let value = hash.digest('Hex');
 
-    connection.query("INSERT INTO dashboard_users (firstname, lastname, email, password) VALUES ('" + firstname + "', '" + lastname + "', '" + email + "', '" + value + "')");
+    connection.query("INSERT INTO dashboard_users (firstname, lastname, email, password, maintenance) VALUES ('" + firstname + "', '" + lastname + "', '" + email + "', '" + value + "', 'true')");
     res.sendFile(path.join(__dirname, '../views/setup/success.html'));
     config.setup = true;
     fs.writeFileSync(path.join(__dirname, '../config/config.json'), JSON.stringify(config));

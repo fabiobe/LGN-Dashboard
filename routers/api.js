@@ -37,20 +37,50 @@ router.post('/login', (req, res) => {
     let value = hash.digest('Hex');
 
     pool.getConnection((err, connection) => {
+
+        let maintenance = true;
+
+        connection.query("SELECT value FROM status WHERE type='Maintenance'", (err, rows) => {
+
+            if (rows.length > 0) {
+                if (rows[0] == "false") {
+                    maintenance = false;
+                }
+            }
+
+        });
+
         connection.query("SELECT * FROM dashboard_users WHERE email='" + email + "' LIMIT 1", (err, rows) => {
 
             if (err) {
                 res.redirect('/');
             }
             if (rows.length > 0) {
-                if (value == rows[0].password) {
-                    let token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
-                    res.cookie('token', token);
-                    users.push(token);
-                    console.log('\x1b[32m[Info] [Users] ' + rows[0].firstname + ' ' + rows[0].lastname + ' has logged in!');
-                    res.redirect('/');
+
+                if (maintenance = true) {
+                    if (rows[0].maintenance = "true") {
+                        if (value == rows[0].password) {
+                            let token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+                            res.cookie('token', token);
+                            users.push(token);
+                            console.log('\x1b[32m[Info] [Users] ' + rows[0].firstname + ' ' + rows[0].lastname + ' has logged in!');
+                            res.redirect('/');
+                        } else {
+                            res.redirect('/');
+                        }
+                    } else {
+                        res.sendFile(path.join(__dirname + '/../views/api/login-maintenance.html'));
+                    }
                 } else {
-                    res.redirect('/');
+                    if (value == rows[0].password) {
+                        let token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+                        res.cookie('token', token);
+                        users.push(token);
+                        console.log('\x1b[32m[Info] [Users] ' + rows[0].firstname + ' ' + rows[0].lastname + ' has logged in!');
+                        res.redirect('/');
+                    } else {
+                        res.redirect('/');
+                    }
                 }
             } else {
                 res.sendFile(path.join(__dirname + '/../views/api/login-failed.html'));
