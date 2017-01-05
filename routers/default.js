@@ -5,15 +5,36 @@ let express = require('express');
 let router = express.Router();
 let path = require('path');
 let users = require('./api.js').users;
+let mysql_config = require('./../config/mysql.json');
+
+let pool = mysql.createPool(mysql_config);
 
 router.get('/', (req, res) => {
+
+    let maintenance = true;
+
+    pool.getConnection((err, connection) => {
+        connection.query("SELECT value FROM status WHERE type='Maintenance'", (err, rows) => {
+
+            if (rows.length > 0) {
+                if (rows[0] == "false") {
+                    maintenance = false;
+                }
+            }
+        });
+    });
+
     if (req.cookies.token != undefined) {
         if (users.indexOf(req.cookies.token) > -1) {
             res.sendFile(path.join(__dirname, '../views/default/dashboard.html'));
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    if (maintenance == false) {
+        res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    } else {
+        res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
+    }
 
 });
 
