@@ -4,6 +4,7 @@
 let express = require('express');
 let router = express.Router();
 let path = require('path');
+let mysql = require("mysql");
 let users = require('./api.js').users;
 let mysql_config = require('./../config/mysql.json');
 
