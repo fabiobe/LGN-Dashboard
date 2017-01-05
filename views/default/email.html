@@ -32,7 +32,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="http://it.lg-n.de:8080/images/favicon-16x16.png">
     <link rel="manifest" href="http://it.lg-n.de:8080/documents/manifest.json">
 
-    <link rel="stylesheet" href="http://it.lg-n.de:8080/editor/themes/default.min.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="http://it.lg-n.de:8080/editor/theme/default/wbbtheme.css" />
 
     <meta name="msapplication-TileColor" content="##733D9A">
     <meta name="msapplication-TileImage" content="http://it.lg-n.de:8080/images/ms-icon-144x144.png">
@@ -124,15 +124,12 @@
         crossorigin="anonymous"></script>
 
 <script src="js/mobileNavigation.js"></script>
-<script type="text/javascript" src="http://it.lg-n.de:8080/editor/jquery.sceditor.bbcode.min.js"></script>
+<script src="editor/jquery.wysibb.min.js"></script>
 
 <script>
     $(function() {
-        $("textarea").sceditor({
-            plugins: "bbcode",
-            style: "http://it.lg-n.de:8080/editor/jquery.sceditor.default.min.css"
-        });
-    });
+        $("textarea").wysibb();
+    })
 </script>
 
 </html>
