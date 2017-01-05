@@ -60,7 +60,7 @@ router.post('/login', (req, res) => {
             if (rows.length > 0) {
 
                 if (maintenance = true) {
-                    if (rows[0].maintenance = "true") {
+                    if (rows[0].maintenance == "true") {
                         if (value == rows[0].password) {
                             let token = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
                             res.cookie('token', token);
