@@ -61,13 +61,19 @@ router.get('/wifi-users/json/callback', (req, res) => {
                 res.status(500);
             }
 
-            if(rows.length > 0){
+            if (rows.length > 0) {
 
-                res.header("Content-Type", "application/json; charset=utf-8");
+                res.set({'Content-Type': 'application/json; charset=utf-8'});
                 let json = [];
                 for (let i = 0; i < rows.length; i++) {
                     let row = rows[i];
-                    json.push({"id": row.id, "firstname": row.firstname, "lastname": row.lastname, "form": row.form, "email": row.email});
+                    json.push({
+                        "id": row.id,
+                        "firstname": row.firstname,
+                        "lastname": row.lastname,
+                        "form": row.form,
+                        "email": row.email
+                    });
                 }
 
                 res.json(json);
