@@ -136,10 +136,10 @@
     $(document).ready(function () {
         $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback", (json) => {
 
-            for (i = 0; i <= json.length; i++) {
+            for (i = 0; i < json.length; i++) {
                 let row = $("<tr />");
                 $('#data').append(row);
-                row.append($("<td>" + i+1 + "</td>"));
+                row.append($("<td>" + (i + 1) + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
                 row.append($("<td>" + json[i].lastname + "</td>"));
                 row.append($("<td>" + json[i].form + "</td>"));
