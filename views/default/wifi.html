@@ -153,25 +153,25 @@
 
         $('.sort')
             .wrapInner('<span title="sortieren"/>')
-            .each(function(){
+            .each(function () {
 
                 var th = $(this),
                     thIndex = th.index(),
                     inverse = false;
 
-                th.click(function(){
+                th.click(function () {
 
-                    table.find('td').filter(function(){
+                    table.find('td').filter(function () {
 
                         return $(this).index() === thIndex;
 
-                    }).sortElements(function(a, b){
+                    }).sortElements(function (a, b) {
 
                         return $.text([a]) > $.text([b]) ?
                             inverse ? -1 : 1
                             : inverse ? 1 : -1;
 
-                    }, function(){
+                    }, function () {
 
                         return this.parentNode;
 
@@ -183,28 +183,28 @@
 
             });
 
+        $("#search").on("keyup", function () {
+            var value = $(this).val();
+
+            $("table tr").each(function (index) {
+                if (index != 0) {
+
+                    $row = $(this);
+
+                    var id = $row.find("td:first").text();
+
+                    if (id.indexOf(value) != 0) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                }
+            });
+        });​
 
     });
 
-    $("#search").on("keyup", function() {
-        var value = $(this).val();
-
-        $("table tr").each(function(index) {
-            if (index != 0) {
-
-                $row = $(this);
-
-                var id = $row.find("td:first").text();
-
-                if (id.indexOf(value) != 0) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            }
-        });
-    });​
 
 </script>
 <script src="js/mobileNavigation.js"></script>
