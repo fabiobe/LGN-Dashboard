@@ -144,7 +144,6 @@
                 row.append($("<td>" + json[i].lastname + "</td>"));
                 row.append($("<td>" + json[i].form + "</td>"));
                 row.append($("<td>" + json[i].email + "</td>"));
-                console.log(i);
             }
 
         });
@@ -183,25 +182,27 @@
 
             });
 
-        $("#search").on("keyup", function () {
-            var value = $(this).val();
 
-            $("table tr").each(function (index) {
-                if (index != 0) {
 
-                    $row = $(this);
+       $("#search").on("keyup", () => {
 
-                    var id = $row.find("td:first").text();
+           var value = $(this).val();
 
-                    if (id.indexOf(value) != 0) {
-                        $(this).hide();
-                    }
-                    else {
-                        $(this).show();
-                    }
-                }
-            });
-        });​
+           $("#data tr").each((index) => {
+              if (index != 0);
+
+              $crow = $(this);
+
+              var id = $crow.find("td:first").text();
+
+              if(id.indexOf(value) != 0){
+                  $(this).hide();
+              }else {
+                  $(this).show();
+              }
+           });
+
+       });
 
     });
 
