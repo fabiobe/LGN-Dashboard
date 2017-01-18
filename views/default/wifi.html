@@ -194,9 +194,9 @@
         table = document.getElementById("data");
         tr = table.getElementsByTagName("tr");
 
-        for (i = 0; i <= tr.length; i++) {
+        for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td");
-            for (t = 0; t <= td.length; t++) {
+            for (t = 0; t < td.length; t++) {
                 if (td[t]) {
                     if (td[t].innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
