@@ -63,7 +63,9 @@ router.get('/wifi-users/json/callback', (req, res) => {
 
             if(rows.length > 0){
 
-                res.json(JSON.stringify(rows, null, 4));
+                let data = JSON.stringify(rows);
+                data = data.substring(1, data.length - 1);
+                res.json(data);
 
 
             }
