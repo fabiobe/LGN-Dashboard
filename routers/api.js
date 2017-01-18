@@ -76,6 +76,7 @@ router.get('/wifi-users/json/callback', (req, res) => {
                     });
                 }
 
+                json = JSON.parse(JSON.stringify(json));
                 res.json(json);
 
 
