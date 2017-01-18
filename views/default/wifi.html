@@ -111,6 +111,13 @@
         console.log(data);
         socket.emit('my other event', {my: 'data'});
     });
+
+    $.getJson("http://it.lg-n.de:8080/api/wifi-users/json/callback", (json) => {
+
+        console.log(json[0].firstname);
+
+    });
+
 </script>
 <script src="js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
