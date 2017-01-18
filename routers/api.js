@@ -65,7 +65,8 @@ router.get('/wifi-users/json/callback', (req, res) => {
                 res.writeHead(200, {
                     'Content-Type' : 'x-application/json'
                 });
-                res.end(rows);
+
+                res.end(JSON.stringify(rows));
 
 
             }
