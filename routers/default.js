@@ -46,7 +46,7 @@ router.get('/profile', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/login', (req, res) => {
@@ -60,7 +60,7 @@ router.get('/dashboard', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/reports', (req, res) => {
@@ -70,7 +70,7 @@ router.get('/reports', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/users', (req, res) => {
@@ -80,7 +80,7 @@ router.get('/users', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/wifi', (req, res) => {
@@ -90,7 +90,7 @@ router.get('/wifi', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/email', (req, res) => {
@@ -100,7 +100,7 @@ router.get('/email', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/tasks', (req, res) => {
@@ -110,7 +110,7 @@ router.get('/tasks', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/servers', (req, res) => {
@@ -120,7 +120,7 @@ router.get('/servers', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/printers', (req, res) => {
@@ -130,7 +130,7 @@ router.get('/printers', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 router.get('/settings', (req, res) => {
@@ -140,7 +140,7 @@ router.get('/settings', (req, res) => {
             return;
         }
     }
-    res.sendFile(path.join(__dirname, '../views/default/login.html'));
+    res.redirect('/');
 });
 
 module.exports = router;
