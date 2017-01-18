@@ -58,15 +58,12 @@ router.get('/wifi-users/json/callback', (req, res) => {
 
             if (err) {
                 res.json({"status": "500"});
+                res.status(500);
             }
 
             if(rows.length > 0){
 
-                res.writeHead(200, {
-                    'Content-Type' : 'x-application/json'
-                });
-
-                res.end(JSON.stringify(rows));
+                res.json(JSON.stringify(rows));
 
 
             }
