@@ -53,16 +53,6 @@ router.get('/login', (req, res) => {
 
 router.get('/wifi-users/json/callback', (req, res) => {
 
-    function unpack(str) {
-        var bytes = [];
-        for (var i = 0; i < str.length; i++) {
-            var char = str.charCodeAt(i);
-            bytes.push(char >>> 8);
-            bytes.push(char & 0xFF);
-        }
-        return bytes;
-    }
-
     pool.getConnection((err, connection) => {
 
         connection.query("SELECT * FROM accounts", (err, rows) => {
@@ -80,10 +70,10 @@ router.get('/wifi-users/json/callback', (req, res) => {
                     let row = rows[i];
                     json.push({
                         "id": row.id,
-                        "firstname": utf8.decode(unpack(row.firstname)),
-                        "lastname": utf8.decode(unpack(row.lastname)),
-                        "form": utf8.decode(unpack(row.form)),
-                        "email": utf8.decode(unpack(row.email))
+                        "firstname": utf8.decode(row.firstname),
+                        "lastname": utf8.decode(row.lastname),
+                        "form": utf8.decode(row.form),
+                        "email": utf8.decode(row.email)
                     });
                 }
 
