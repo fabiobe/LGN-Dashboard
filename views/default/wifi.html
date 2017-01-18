@@ -98,7 +98,17 @@
 <div class="content">
     <div class="page-header"><h1>Wi-Fi</h1></div>
     <div class="page-content">
-
+        <table id="data">
+            <tbody>
+            <tr>
+                <th>ID</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Klasse</th>
+                <th>E-Mail</th>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -121,7 +131,15 @@
     $(document).ready(function () {
         $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback", (json) => {
 
-            console.log(json[0].firstname);
+            for (i = 0; i <= json.length; i++) {
+                let row = $("<tr />");
+                $('#data').append(row);
+                row.append($("<td>" + json[i].id + "</td>"));
+                row.append($("<td>" + json[i].firstname + "</td>"));
+                row.append($("<td>" + json[i].lastname + "</td>"));
+                row.append($("<td>" + json[i].form + "</td>"));
+                row.append($("<td>" + json[i].email + "</td>"));
+            }
 
         });
     });
