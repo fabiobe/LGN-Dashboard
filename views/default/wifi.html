@@ -99,7 +99,7 @@
     <div class="page-header"><h1>Wi-Fi</h1></div>
     <div class="page-content">
 
-        <input type="text" id="search" onkeydown="searchTable()" placeholder="Suche">
+        <input type="text" id="search" placeholder="Suche">
         </br>
 
         <table id="data">
@@ -136,10 +136,10 @@
     $(document).ready(function () {
         $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback", (json) => {
 
-            for (i = 0; i < json.length; i++) {
+            for (i = 0; i <= json.length; i++) {
                 let row = $("<tr />");
                 $('#data').append(row);
-                row.append($("<td>" + (i + 1) + "</td>"));
+                row.append($("<td>" + i+1 + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
                 row.append($("<td>" + json[i].lastname + "</td>"));
                 row.append($("<td>" + json[i].form + "</td>"));
@@ -183,29 +183,28 @@
             });
 
 
+
+       $("#search").on("keyup", () => {
+
+           var value = $(this).val();
+
+           $("#data tr").each((index) => {
+              if (index != 0);
+
+              $crow = $(this);
+
+              var id = $crow.find("td:first").text();
+
+              if(id.indexOf(value) != 0){
+                  $(this).hide();
+              }else {
+                  $(this).show();
+              }
+           });
+
+       });
+
     });
-
-    function searchTable() {
-
-        var value = $(this).val();
-
-        console.log(value);
-
-        $("#data tr").each((index) => {
-            if (index != 0);
-
-            $crow = $(this);
-
-            var id = $crow.find("td:first").text();
-
-            if (id.indexOf(value) != 0) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-        });
-
-    }
 
 
 </script>
