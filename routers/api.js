@@ -50,6 +50,32 @@ router.get('/login', (req, res) => {
 
 });
 
+router.get('/wifi-users/json/callback', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("SELECT * FROM accounts", (err, rows) => {
+
+            if (err) {
+                res.json({"status": "500"});
+            }
+
+            if(rows.length > 0){
+
+                res.writeHead(200, {
+                    'Content-Type' : 'x-application/json'
+                });
+                res.end(rows);
+
+
+            }
+
+        });
+
+    });
+
+});
+
 router.post('/login', (req, res) => {
 
     let email = req.body.email;
