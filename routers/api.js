@@ -63,7 +63,7 @@ router.get('/wifi-users/json/callback', (req, res) => {
 
             if (rows.length > 0) {
 
-                res.set({'Content-Type': 'application/json; charset=utf-8'});
+                res.charset = "utf8";
                 let json = [];
                 for (let i = 0; i < rows.length; i++) {
                     let row = rows[i];
