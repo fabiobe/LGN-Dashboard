@@ -11,7 +11,6 @@ let users = [];
 let authenticatedUsers = new Hashmap();
 let io = require('./../server.js').io;
 let mysql_config = require('./../config/mysql.json');
-let utf8 = require('utf8');
 
 let pool = mysql.createPool(mysql_config);
 
@@ -70,10 +69,10 @@ router.get('/wifi-users/json/callback', (req, res) => {
                     let row = rows[i];
                     json.push({
                         "id": row.id,
-                        "firstname": utf8.decode(row.firstname),
-                        "lastname": utf8.decode(row.lastname),
-                        "form": utf8.decode(row.form),
-                        "email": utf8.decode(row.email)
+                        "firstname": row.firstname,
+                        "lastname": row.lastname,
+                        "form": row.form,
+                        "email": row.email
                     });
                 }
 
