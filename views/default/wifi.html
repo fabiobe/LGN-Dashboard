@@ -99,7 +99,7 @@
     <div class="page-header"><h1>Wi-Fi</h1></div>
     <div class="page-content">
 
-        <input type="text" id="search" onkeyup="searchTable()" placeholder="Suche">
+        <input type="text" id="search" onkeydown="searchTable()" placeholder="Suche">
         </br>
 
         <table id="data">
@@ -139,7 +139,7 @@
             for (i = 0; i <= json.length; i++) {
                 let row = $("<tr />");
                 $('#data').append(row);
-                row.append($("<td>" + i + 1 + "</td>"));
+                row.append($("<td>" + (i + 1) + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
                 row.append($("<td>" + json[i].lastname + "</td>"));
                 row.append($("<td>" + json[i].form + "</td>"));
