@@ -34,6 +34,8 @@ router.get('/login', (req, res) => {
                 }
             }
         });
+
+        connection.release();
     });
 
     if (req.cookies.token != undefined) {
@@ -82,6 +84,8 @@ router.get('/wifi-users/json/callback', (req, res) => {
             }
 
         });
+
+        connection.release();
 
     });
 
