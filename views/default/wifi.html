@@ -127,6 +127,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
 <script src="/js/jquery.sortElements.js"></script>
+<script src="/footable/js/footable.core.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -144,9 +145,9 @@
 
         });
 
-        var table = $('#data');
+        var table = $('#data').footable();
 
-        $('.sort')
+        /*$('.sort')
             .wrapInner('<span title="sortieren"/>')
             .each(function () {
 
@@ -202,7 +203,7 @@
                }
            }
 
-       });
+       });*/
 
     });
 
