@@ -108,8 +108,7 @@
                 <th class="sort">ID</th>
                 <th class="sort">Vorname</th>
                 <th class="sort">Nachname</th>
-                <th class="sort">Klasse</th>
-                <th class="sort">E-Mail</th>
+                <th class="sort">Status</th>
             </tr>
             </tbody>
         </table>
@@ -139,8 +138,7 @@
                 row.append($("<td>" + (i + 1) + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
                 row.append($("<td>" + json[i].lastname + "</td>"));
-                row.append($("<td>" + json[i].form + "</td>"));
-                row.append($("<td>" + json[i].email + "</td>"));
+                row.append($("<td><span class='label label-green'>✔</span></td>"));
             }
 
         });

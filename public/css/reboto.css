@@ -104,6 +104,20 @@ body {
   text-align: center;
   padding: 10px 10px 10px;
 }
+.label {
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 2;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.label .label-green {
+  background-color: #5cb85c !important;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
