@@ -115,7 +115,7 @@ body {
   vertical-align: baseline;
   white-space: nowrap;
 }
-.label .label-green {
+.label-green {
   background-color: #5cb85c !important;
 }
 .setup-page {
