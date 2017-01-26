@@ -184,21 +184,7 @@
 
            var value = document.getElementById("search").value;
 
-           console.log(value);
 
-           $("#data tr").each((index) => {
-              if (index != 0);
-
-              $crow = $(this);
-
-              var id = $crow.find("td:first").text();
-
-              if(id.indexOf(value) != 0){
-                  $(this).hide();
-              }else {
-                  $(this).show();
-              }
-           });
 
        });
 
