@@ -185,6 +185,7 @@
            var filter = document.getElementById("search").value.toUpperCase();
 
            table = document.getElementById("data");
+           var found, i, td, j, tr;
            tr = table.getElementsByTagName("tr");
            for (i = 0; i < tr.length; i++) {
                td = tr[i].getElementsByTagName("td");
