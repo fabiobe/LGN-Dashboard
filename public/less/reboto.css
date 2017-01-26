@@ -98,6 +98,10 @@ body {
   font-family: "Roboto", sans-serif;
   margin-bottom: 20px;
 }
+#data {
+  width: 100%;
+  text-align: center;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
