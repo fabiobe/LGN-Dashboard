@@ -162,6 +162,10 @@ body {
   display: block;
   transition: 0.3s;
 }
+input[type=text] {
+  border-radius: 40px;
+  width: 20%;
+}
 .navigation-content a i {
   color: #818181;
 }
