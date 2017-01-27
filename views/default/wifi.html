@@ -147,7 +147,10 @@
 
         });
 
-        var table = $('#data').footable();
+        $("#data td").click(function() {
+            alert("You clicked my <td>!" + $(this).html() +
+                "My TR is:" + $(this).parent("tr").html());
+        });
 
         /*$('.sort')
          .wrapInner('<span title="sortieren"/>')
