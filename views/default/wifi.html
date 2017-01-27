@@ -125,7 +125,6 @@
 <script src="js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
-<script src="/js/jquery.sortElements.js"></script>
 <script src="/js/sorttable.js"></script>
 <script>
 
@@ -152,40 +151,6 @@
                 window.location.href = 'http://it.lg-n.de:8080/accounts/id/' + $(this).attr('id');
             }
         });
-
-        /*var table = $('#data');
-
-        $('.sort')
-            .wrapInner('<span title="sortieren"/>')
-            .each(function () {
-
-                var th = $(this),
-                    thIndex = th.index(),
-                    inverse = false;
-
-                th.click(function () {
-
-                    table.find('td').filter(function () {
-
-                        return $(this).index() === thIndex;
-
-                    }).sortElements(function (a, b) {
-
-                        return $.text([a]) > $.text([b]) ?
-                            inverse ? -1 : 1
-                            : inverse ? 1 : -1;
-
-                    }, function () {
-
-                        return this.parentNode;
-
-                    });
-
-                    inverse = !inverse;
-
-                });
-
-            });*/
 
 
         $("#search").on("keydown", () => {
