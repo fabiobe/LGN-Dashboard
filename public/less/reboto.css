@@ -118,6 +118,9 @@ body {
 .label-green {
   background-color: #5cb85c !important;
 }
+.label-red {
+  background-color: #d9534f !important;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;

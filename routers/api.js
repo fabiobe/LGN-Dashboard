@@ -74,7 +74,8 @@ router.get('/wifi-users/json/callback', (req, res) => {
                         "firstname": row.firstname,
                         "lastname": row.lastname,
                         "form": row.form,
-                        "email": row.email
+                        "email": row.email,
+                        "status": row.status
                     });
                 }
 

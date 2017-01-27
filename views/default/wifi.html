@@ -138,7 +138,11 @@
                 row.append($("<td>" + (i + 1) + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
                 row.append($("<td>" + json[i].lastname + "</td>"));
-                row.append($("<td><span class='label label-green'>✔</span></td>"));
+                if (json[i].status == "ok") {
+                    row.append($("<td><span class='label label-green'>✔</span></td>"));
+                } else {
+                    row.append($("<td><span class='label label-red'>✘</span></td>"));
+                }
             }
 
         });
@@ -146,62 +150,62 @@
         var table = $('#data').footable();
 
         /*$('.sort')
-            .wrapInner('<span title="sortieren"/>')
-            .each(function () {
+         .wrapInner('<span title="sortieren"/>')
+         .each(function () {
 
-                var th = $(this),
-                    thIndex = th.index(),
-                    inverse = false;
+         var th = $(this),
+         thIndex = th.index(),
+         inverse = false;
 
-                th.click(function () {
+         th.click(function () {
 
-                    table.find('td').filter(function () {
+         table.find('td').filter(function () {
 
-                        return $(this).index() === thIndex;
+         return $(this).index() === thIndex;
 
-                    }).sortElements(function (a, b) {
+         }).sortElements(function (a, b) {
 
-                        return $.text([a]) > $.text([b]) ?
-                            inverse ? -1 : 1
-                            : inverse ? 1 : -1;
+         return $.text([a]) > $.text([b]) ?
+         inverse ? -1 : 1
+         : inverse ? 1 : -1;
 
-                    }, function () {
+         }, function () {
 
-                        return this.parentNode;
+         return this.parentNode;
 
-                    });
+         });
 
-                    inverse = !inverse;
+         inverse = !inverse;
 
-                });
+         });
 
-            });
+         });
 
 
 
-       $("#search").on("keydown", () => {
+         $("#search").on("keydown", () => {
 
-           var filter = document.getElementById("search").value.toUpperCase();
+         var filter = document.getElementById("search").value.toUpperCase();
 
-           table = document.getElementById("data");
-           var found, i, td, j, tr;
-           tr = table.getElementsByTagName("tr");
-           for (i = 0; i < tr.length; i++) {
-               td = tr[i].getElementsByTagName("td");
-               for (j = 0; j < td.length; j++) {
-                   if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                       found = true;
-                   }
-               }
-               if (found) {
-                   tr[i].style.display = "";
-                   found = false;
-               } else {
-                   tr[i].style.display = "none";
-               }
-           }
+         table = document.getElementById("data");
+         var found, i, td, j, tr;
+         tr = table.getElementsByTagName("tr");
+         for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td");
+         for (j = 0; j < td.length; j++) {
+         if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+         found = true;
+         }
+         }
+         if (found) {
+         tr[i].style.display = "";
+         found = false;
+         } else {
+         tr[i].style.display = "none";
+         }
+         }
 
-       });*/
+         });*/
 
     });
 
