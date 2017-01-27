@@ -9,7 +9,7 @@
 			return;
 		}
 		var tableObj = $(this),
-			searchText = (options.searchText)?options.searchText:'Search: ',
+			searchText = (options.searchText)?options.searchText:'',
 			searchPlaceHolder = (options.searchPlaceHolder)?options.searchPlaceHolder:'',
 			divObj = $('<div style="float:right;">'+searchText+'</div><br /><br />'),
 			inputObj = $('<input type="text" placeholder="'+searchPlaceHolder+'" />'),
