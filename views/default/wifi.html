@@ -147,7 +147,9 @@
         });
 
         $("body").on("click", "#data tr", function () {
-            window.location.href = 'http://it.lg-n.de:8080/accounts/id/' + $(this).attr('id');
+            if ($(this).attr('id') != undefined) {
+                window.location.href = 'http://it.lg-n.de:8080/accounts/id/' + $(this).attr('id');
+            }
         });
 
 
