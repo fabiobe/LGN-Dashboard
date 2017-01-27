@@ -102,7 +102,7 @@
         <input type="text" id="search" placeholder="Suche">
         </br>
 
-        <table id="data" class="sortable">
+        <table id="data" class="sortable search-table">
             <tbody>
             <tr>
                 <th>Vorname</th>
@@ -151,7 +151,10 @@
             }
         });
 
-        $('table #data').tableSearch();
+        $('table.search-table').tableSearch({
+            searchText:'Suche',
+            searchPlaceHolder:'Suche'
+        });
 
     });
 
