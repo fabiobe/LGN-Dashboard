@@ -152,7 +152,7 @@
 
 
         var $rows = $('#table tbody');
-        $('#search').keyup(function () {
+        $('#search').on('keydown', function () {
 
             var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
                 reg = RegExp(val, 'i'),
