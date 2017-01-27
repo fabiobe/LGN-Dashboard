@@ -121,14 +121,6 @@ body {
 .label-red {
   background-color: #d9534f !important;
 }
-table.sortable tbody tr:nth-child(2n) td {
-  background: #ecf0f1;
-  color: white;
-}
-table.sortable tbody tr:nth-child(2n+1) td {
-  background: #bdc3c7;
-  color: white;
-}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
