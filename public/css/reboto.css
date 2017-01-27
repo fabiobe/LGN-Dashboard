@@ -121,6 +121,18 @@ body {
 .label-red {
   background-color: #d9534f !important;
 }
+table.sortable tbody {
+  counter-reset: sortabletablescope;
+}
+table.sortable thead tr::before {
+  content: "";
+  display: table-cell;
+}
+table.sortable tbody tr::before {
+  content: counter(sortabletablescope);
+  counter-increment: sortabletablescope;
+  display: table-cell;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
