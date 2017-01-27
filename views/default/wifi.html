@@ -150,19 +150,30 @@
             }
         });
 
-
-        var $rows = $('#table tbody');
-        $('#search').on('keydown', function () {
-
-            var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
-                reg = RegExp(val, 'i'),
-                text;
-
-            $rows.show().filter(function () {
-                text = $(this).text().replace(/\s+/g, ' ');
-                return !reg.test(text);
-            }).hide();
-        });
+        function doSearch() {
+            var q = document.getElementById("search");
+            var v = q.value.toLowerCase();
+            var rows = document.getElementsByTagName("tr");
+            var on = 0;
+            for ( var i = 0; i < rows.length; i++ ) {
+                var fullname = rows[i].getElementsByTagName("td");
+                fullname = fullname[0].innerHTML.toLowerCase();
+                if ( fullname ) {
+                    if ( v.length == 0 || (v.length < 3 && fullname.indexOf(v) == 0) || (v.length >= 3 && fullname.indexOf(v) > -1 ) ) {
+                        rows[i].style.display = "";
+                        on++;
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+            var n = document.getElementById("noresults");
+            if ( on == 0 && n ) {
+                n.style.display = "";
+            } else {
+                n.style.display = "none";
+            }
+        }
 
     });
 
