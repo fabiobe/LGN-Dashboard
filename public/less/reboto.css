@@ -122,11 +122,11 @@ body {
   background-color: #d9534f !important;
 }
 table.sortable tbody tr:nth-child(2n) td {
-  background: #8245AD;
+  background: #ecf0f1;
   color: white;
 }
 table.sortable tbody tr:nth-child(2n+1) td {
-  background: #733D9A;
+  background: #bdc3c7;
   color: white;
 }
 .setup-page {
