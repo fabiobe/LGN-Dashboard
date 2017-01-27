@@ -105,10 +105,9 @@
         <table id="data" class="sortable">
             <tbody>
             <tr>
-                <th class="sort">ID</th>
-                <th class="sort">Vorname</th>
-                <th class="sort">Nachname</th>
-                <th class="sort">Status</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Status</th>
             </tr>
             </tbody>
         </table>
@@ -134,7 +133,6 @@
             for (i = 0; i < json.length; i++) {
                 let row = $("<tr id='" + json[i].id + "' />");
                 $('#data').append(row);
-                row.append($("<td>" + (i + 1) + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
                 row.append($("<td>" + json[i].lastname + "</td>"));
                 if (json[i].status == "ok") {
