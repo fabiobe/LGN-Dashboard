@@ -133,6 +133,14 @@ table.sortable tbody tr::before {
   counter-increment: sortabletablescope;
   display: table-cell;
 }
+table.sortable tbody tr:nth-child(2n) td {
+  background: #8245AD;
+  color: white;
+}
+table.sortable tbody tr:nth-child(2n+1) td {
+  background: #733D9A;
+  color: white;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
