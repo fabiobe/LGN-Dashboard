@@ -151,28 +151,17 @@
         });
 
 
-        $("#search").on("keydown", () => {
+        var $rows = $('#table tbody');
+        $('#search').keyup(function () {
 
-            var filter = document.getElementById("search").value.toUpperCase();
+            var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                reg = RegExp(val, 'i'),
+                text;
 
-            table = document.getElementById("data");
-            var found, i, td, j, tr;
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
-                }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-
+            $rows.show().filter(function () {
+                text = $(this).text().replace(/\s+/g, ' ');
+                return !reg.test(text);
+            }).hide();
         });
 
     });
