@@ -133,7 +133,7 @@
         $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback", (json) => {
 
             for (i = 0; i < json.length; i++) {
-                let row = $("<tr />");
+                let row = $("<tr id='" + json[i].id + "' />");
                 $('#data').append(row);
                 row.append($("<td>" + (i + 1) + "</td>"));
                 row.append($("<td>" + json[i].firstname + "</td>"));
@@ -148,7 +148,7 @@
         });
 
         $("body").on("click", "#data tr", function () {
-            alert($(this).text());
+            alert($(this).id);
         });
 
 
