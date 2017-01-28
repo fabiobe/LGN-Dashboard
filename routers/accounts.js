@@ -13,7 +13,7 @@ let pool = mysql.createPool(mysql_config);
 
 console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");
 
-router.get('/accounts/id/:id', (req, res) => {
+router.get('/id/:id', (req, res) => {
 
     res.json({'id': req.params.id});
 
