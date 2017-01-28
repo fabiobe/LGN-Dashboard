@@ -165,7 +165,7 @@ body {
 input[type=text] {
   width: 100%;
   height: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
 }
@@ -268,6 +268,7 @@ div.navigation-item-right:hover {
   position: relative;
   border: 1px solid #ddd;
   padding: 45px;
+  margin-bottom: 30px;
 }
 .page-header {
   border-bottom: 1px solid #e2e2e2;
