@@ -268,6 +268,7 @@ div.navigation-item-right:hover {
   position: relative;
   border: 1px solid #ddd;
   padding: 45px;
+  margin-bottom: 30px;
 }
 .page-header {
   border-bottom: 1px solid #e2e2e2;
