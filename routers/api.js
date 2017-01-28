@@ -52,7 +52,7 @@ router.get('/login', (req, res) => {
 
 });
 
-router.get('/wifi-users/json/callback', (req, res) => {
+router.get('/wifi-users/json/callback/list', (req, res) => {
 
     pool.getConnection((err, connection) => {
 

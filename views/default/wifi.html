@@ -126,7 +126,7 @@
 <script>
 
     $(document).ready(function () {
-        $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback", (json) => {
+        $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback/list", (json) => {
 
             for (i = 0; i < json.length; i++) {
                 let row = $("<tr id='" + json[i].id + "' />");
