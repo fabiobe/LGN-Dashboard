@@ -15,7 +15,7 @@ console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");
 
 router.get('/id/:id', (req, res) => {
 
-    res.sendFile(path.join(__dirname, '/views/accounts/user.html'));
+    res.sendFile(path.join(__dirname, '../views/accounts/user.html'));
 
 });
 
