@@ -3,9 +3,20 @@
  */
 let express = require('express');
 let router = express.Router();
+let mysql = require('mysql');
 let path = require('path');
 let Hashmap = require('hashmap');
 let authenticatedUsers = new Hashmap();
 let users = require('./api.js').users;
+let mysql_config = require('./../config/mysql.json');
+let pool = mysql.createPool(mysql_config);
+
+console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");
+
+router.get('/accounts/id/:id', (req, res) => {
+
+    res.json({'id': req.params.id});
+
+});
 
 module.exports = router;
