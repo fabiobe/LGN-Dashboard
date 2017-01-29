@@ -148,6 +148,9 @@ body {
 .label-red {
   background-color: #d9534f !important;
 }
+.button-danger {
+  background-color: #d9534f !important;
+}
 .button-danger:hover,
 .button-danger:active,
 .button-danger:focus {
