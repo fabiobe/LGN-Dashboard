@@ -102,19 +102,19 @@
         </br>
         <form onsubmit="setFormSubmitting();" action="http://it.lg-n.de:8080/api/change/wifi/user" method="post">
             <label class="form-label">Vorname: </label>
-            <input class="form-input" type="text" id="firstname">
+            <input class="form-input" type="text" id="firstname" name="firstname">
             <label class="form-label">Nachname: </label>
-            <input class="form-input" type="text" id="lastname">
+            <input class="form-input" type="text" id="lastname" name="lastname">
             <label class="form-label">Klasse: </label>
-            <input class="form-input" type="text" id="form">
+            <input class="form-input" type="text" id="form" name="form">
             <label class="form-label">E-Mail: </label>
-            <input class="form-input" type="email" id="email">
+            <input class="form-input" type="email" id="email" name="email">
             <label class="form-label">Status: </label>
-            <select class="form-input" id="status">
+            <select class="form-input" id="status" name="status">
                 <option value="ok">Aktiviert</option>
                 <option value="">Deaktiviert</option>
             </select>
-            <input type="hidden" id="user" value="0">
+            <input type="hidden" id="user" name="user" value="0">
             <input type="submit" value="Speichern" class="form-input-button" disabled id="save">
         </form>
     </div>
@@ -129,7 +129,9 @@
 <script>
 
     var formSubmitting = false;
-    var setFormSubmitting = function() { formSubmitting = true; };
+    var setFormSubmitting = function () {
+        formSubmitting = true;
+    };
 
     $(document).ready(function () {
 
@@ -161,7 +163,6 @@
         });
 
         var changes = false;
-
 
 
         $(".form-input").on("change keyup paste", function () {
