@@ -102,17 +102,17 @@
         </br>
         <form>
             <label class="form-label">Vorname: </label>
-            <input class="form-input" type="text">
+            <input class="form-input" type="text" id="firstname">
             <label class="form-label">Nachname: </label>
-            <input class="form-input" type="text">
+            <input class="form-input" type="text" id="lastname">
             <label class="form-label">Klasse: </label>
-            <input class="form-input" type="text">
+            <input class="form-input" type="text" id="form">
             <label class="form-label">E-Mail: </label>
-            <input class="form-input" type="email">
+            <input class="form-input" type="email" id="email">
             <label class="form-label">Status: </label>
-            <select class="form-input">
-                <option>Aktiviert</option>
-                <option>Deaktiviert</option>
+            <select class="form-input" id="status">
+                <option value="ok">Aktiviert</option>
+                <option value="">Deaktiviert</option>
             </select>
         </form>
     </div>
@@ -120,12 +120,32 @@
 
 </body>
 
-<script>
-
-
-</script>
 <script src="http://it.lg-n.de:8080/js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+
+        $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback/user/" + id, (json) => {
+
+            var firstname = document.getElementById("firstname");
+            var lastname = document.getElementById("lastname");
+            var form = document.getElementById("form");
+            var email = document.getElementById("email");
+            var status = document.getElementById("status");
+
+            firstname.value = json[0].firstname;
+
+
+        });
+    });
+
+
+</script>
 <script src="js/mobileNavigation.js"></script>
 </html>
