@@ -150,7 +150,7 @@ router.post('/change/wifi/user/', (req, res) => {
 
     });
 
-    res.redirect(req.uri.href);
+    res.redirect(req.url);
 
 });
 
