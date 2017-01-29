@@ -112,6 +112,9 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+.form-input-button:disabled {
+  background: #888888;
+}
 .form-input-button:hover,
 .form-input-button:active,
 .form-input-button:focus {
