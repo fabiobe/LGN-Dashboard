@@ -136,7 +136,7 @@ router.get('/wifi-users/json/callback/user/:id', (req, res) => {
 
 router.post('/change/wifi/user', (req, res) => {
 
-    let id = req.body.id;
+    let id = req.body.userid;
     let firstname = req.body.firstname;
     let lastname = req.body.lastname;
     let form = req.body.form;
