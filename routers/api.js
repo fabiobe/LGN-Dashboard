@@ -201,7 +201,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                     to: email,
                     subject: "Dein Passwort wurde zurückgesetzt!",
                     attachment: [
-                        {data: html, alternative: true}
+                        {data: html}
                     ]
                 };
 
