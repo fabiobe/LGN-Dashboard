@@ -167,6 +167,12 @@
 
         var changes = false;
 
+        $('#reset').on("click", () => {
+
+            window.location.href("http://it.lg-n.de/api/wifi-users/reset/password/" + id);
+
+        });
+
 
         $(".form-input").on("change keyup paste", function () {
             changes = true;

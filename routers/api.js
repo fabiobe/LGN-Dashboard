@@ -154,6 +154,16 @@ router.post('/change/wifi/user', (req, res) => {
 
 });
 
+router.get("/wifi-users/reset/password/:id", (req, res) => {
+
+    let id = req.params.id;
+    let token = crypto.randomBytes(64).toString('hex');
+
+    console.log("Changing password for " + id + " to " + token);
+    res.json({"status": 'bad'});
+
+});
+
 router.post('/login', (req, res) => {
 
     let email = req.body.email;
