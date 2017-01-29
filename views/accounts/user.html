@@ -114,7 +114,7 @@
                 <option value="ok">Aktiviert</option>
                 <option value="">Deaktiviert</option>
             </select>
-            <input type="submit" value="Speichern" class="form-input-button" disabled>
+            <input type="submit" value="Speichern" class="form-input-button" disabled id="save">
         </form>
     </div>
 </div>
@@ -153,6 +153,10 @@
 
 
         });
+
+        $(".form-input").on("change keyup paste", function(){
+            document.getElementById('save').removeAttribute("disabled");
+        })
     });
 
 
