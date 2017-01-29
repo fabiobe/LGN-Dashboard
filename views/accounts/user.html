@@ -100,7 +100,7 @@
     <div class="page-header"><h1>Wi-Fi Benutzer</h1></div>
     <div class="page-content">
         </br>
-        <form onsubmit="setFormSubmitting();">
+        <form onsubmit="setFormSubmitting();" action="http://it.lg-n.de:8080/api/change/wifi/user" method="post">
             <label class="form-label">Vorname: </label>
             <input class="form-input" type="text" id="firstname">
             <label class="form-label">Nachname: </label>
@@ -114,6 +114,7 @@
                 <option value="ok">Aktiviert</option>
                 <option value="">Deaktiviert</option>
             </select>
+            <input type="hidden" id="id" value="0">
             <input type="submit" value="Speichern" class="form-input-button" disabled id="save">
         </form>
     </div>
@@ -134,6 +135,8 @@
 
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1);
+
+        document.getElementById("id").value = id;
 
         $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback/user/" + id, (json) => {
 

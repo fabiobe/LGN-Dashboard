@@ -134,6 +134,24 @@ router.get('/wifi-users/json/callback/user/:id', (req, res) => {
 
 });
 
+router.post('/change/wifi/user/', (req, res) => {
+
+    let id = req.body.id;
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let form = req.body.form;
+    let email = req.body.email;
+    let status = req.body.status;
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("UPDATE accounts SET firstname='" + firstname + "' AND lastname='" + lastname + "' AND form='" + form + "' AND email='" + email + "' AND status='" + status + "' WHERE id='" + id + "'");
+        connection.release();
+
+    });
+
+});
+
 router.post('/login', (req, res) => {
 
     let email = req.body.email;
