@@ -171,7 +171,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 
     let html = "";
 
-    fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), function (err, data) {
+    fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), 'utf8', function (err, data) {
         if (err) throw err;
         html = data;
         console.log(data);
