@@ -136,7 +136,7 @@
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1);
 
-        document.getElementById("id").value = id;
+        document.getElementById("userid").value = id;
 
         $.getJSON("http://it.lg-n.de:8080/api/wifi-users/json/callback/user/" + id, (json) => {
 
