@@ -11,15 +11,10 @@ let users = [];
 let authenticatedUsers = new Hashmap();
 let io = require('./../server.js').io;
 let mysql_config = require('./../config/mysql.json');
-let emailjs = require('emailjs');
+var nodemailer = require("nodemailer");
 let fs = require('fs');
 
-var server = emailjs.server.connect({
-    user: "it@lg-n.de",
-    password: "itaglgn",
-    host: "smtp.variomedia.de",
-    ssl: true
-});
+var transporter = nodemailer.createTransport('smtps://it@lg-n.de:itaglgn@smtp.variomedia.de');
 
 let pool = mysql.createPool(mysql_config);
 
@@ -195,7 +190,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 
                 connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
 
-                var message = {
+                var mailOptions = {
                     text: "Ein Administrator hat dein Passwort für dich zurückgesetzt. Klick auf folgenden Link um dein Passwort zurückzusetzen: http://it.lg-n.de:8080/accounts/change/password/token/" + token + " Diese E-Mail wurde automatisch generiert! Solltest du Fragen oder Probleme haben schreibe uns doch eine E-Mail an: it@lg-n.de.",
                     from: "Netzwerk AG IT-Administration <it@lg-n.de>",
                     to: email,
@@ -204,8 +199,11 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                 };
 
 
-                server.send(message, function (err, message) {
-                    if (err) console.log(err);
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log('Message sent: ' + info.response);
                 });
 
 
