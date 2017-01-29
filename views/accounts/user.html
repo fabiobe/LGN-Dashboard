@@ -100,7 +100,7 @@
     <div class="page-header"><h1>Wi-Fi Benutzer</h1></div>
     <div class="page-content">
         </br>
-        <form>
+        <form onsubmit="setFormSubmitting();">
             <label class="form-label">Vorname: </label>
             <input class="form-input" type="text" id="firstname">
             <label class="form-label">Nachname: </label>
@@ -126,6 +126,9 @@
         crossorigin="anonymous"></script>
 
 <script>
+
+    var formSubmitting = false;
+    var setFormSubmitting = function() { formSubmitting = true; };
 
     $(document).ready(function () {
 
@@ -156,13 +159,15 @@
 
         var changes = false;
 
+
+
         $(".form-input").on("change keyup paste", function () {
             changes = true;
             document.getElementById('save').removeAttribute("disabled");
         });
 
         $(window).bind('beforeunload', function () {
-            if (changes) {
+            if (changes && !formSubmitting) {
                 return 'Es sind ungespeicherte Änderungen vorgenommen worden. Willst du wirklich die Seite verlassen?';
             }
         });
