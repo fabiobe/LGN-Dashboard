@@ -505,7 +505,6 @@ div.navigation-item-right:hover {
     position: relative;
     border: 1px solid #ddd;
     padding: 45px;
-    box-shadow: 1px 1px 50px #000000;
   }
   .faq-content {
     top: 116px;
