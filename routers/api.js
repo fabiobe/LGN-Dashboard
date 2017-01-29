@@ -134,7 +134,7 @@ router.get('/wifi-users/json/callback/user/:id', (req, res) => {
 
 });
 
-router.post('/change/wifi/user/', (req, res) => {
+router.post('/change/wifi/user', (req, res) => {
 
     let id = req.body.id;
     let firstname = req.body.firstname;
@@ -150,7 +150,7 @@ router.post('/change/wifi/user/', (req, res) => {
 
     });
 
-    res.redirect(req.url);
+    res.redirect(req.headers.host);
 
 });
 
