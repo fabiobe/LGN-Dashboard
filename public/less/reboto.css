@@ -115,6 +115,11 @@ body {
 .form-input-button:disabled {
   background: #888888;
 }
+.form-input-button:hover:disabled,
+.form-input-button:active:disabled,
+.form-input-button:focus:disabled {
+  background: #888888;
+}
 .form-input-button:hover,
 .form-input-button:active,
 .form-input-button:focus {
