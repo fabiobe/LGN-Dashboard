@@ -11,6 +11,15 @@ let users = [];
 let authenticatedUsers = new Hashmap();
 let io = require('./../server.js').io;
 let mysql_config = require('./../config/mysql.json');
+let emailjs = require('emailjs');
+let fs = require('fs');
+
+var server = emailjs.server.connect({
+    user: "it@lg-n.de",
+    password: "itaglgn",
+    host: "smtp.variomedia.de",
+    ssl: true
+});
 
 let pool = mysql.createPool(mysql_config);
 
@@ -18,6 +27,7 @@ console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
     connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
+    connection.query("CREATE TABLE IF NOT EXISTS activation (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), token VARCHAR(255))");
     connection.release();
 });
 
@@ -157,10 +167,59 @@ router.post('/change/wifi/user', (req, res) => {
 router.get("/wifi-users/reset/password/:id", (req, res) => {
 
     let id = req.params.id;
-    let token = crypto.randomBytes(64).toString('hex').substring(0, 16);
+    let token = crypto.randomBytes(64).toString('hex');
 
-    console.log("Changing password for " + id + " to " + token);
-    res.json({"status": 'bad'});
+    let html = "";
+
+    fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), function (err, data) {
+        if (err) throw err;
+        html = data;
+    });
+
+    html.replace('mZnEcmsAlOlfI5IZecfQ06qWtOowvKgekWSBKW7HylbBfAaOHO7ok6gU6Cg1nLmJyTjO6ziSovN4QxetBeyV6CpeR96i0D9oBI3c3XC4QipJa4DUECeEit2Re5q0nK16YXWj4hGMy57QTGzSTAreGAfmiGNrz9vbNhL7lxhD6zzigJn7aeb0O7nxd4TCfegw9PI9Rfqx', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
+    html.replace('mZnEcmsAlOlfI5IZecfQ06qWtOowvKgekWSBKW7HylbBfAaOHO7ok6gU6Cg1nLmJyTjO6ziSovN4QxetBeyV6CpeR96i0D9oBI3c3XC4QipJa4DUECeEit2Re5q0nK16YXWj4hGMy57QTGzSTAreGAfmiGNrz9vbNhL7lxhD6zzigJn7aeb0O7nxd4TCfegw9PI9Rfqx', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("SELECT * FROM accounts WHERE id='" + id + "'", (err, rows) => {
+
+            if (rows.length > 0) {
+                let row = rows[0];
+                let email = row.email;
+
+                connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
+                    if (rows.length > 0) {
+                        connection.query("DELETE FROM activation WHERE email='" + email + "'");
+                    }
+                });
+
+                connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+
+                var message = {
+                    text: "Ein Administrator hat dein Passwort für dich zurückgesetzt. Klick auf folgenden Link um dein Passwort zurückzusetzen: http://it.lg-n.de:8080/accounts/change/password/token/" + token + " Diese E-Mail wurde automatisch generiert! Solltest du Fragen oder Probleme haben schreibe uns doch eine E-Mail an: it@lg-n.de.",
+                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                    to: email,
+                    subject: "Dein Passwort wurde zurückgesetzt!",
+                    attachment: [
+                        {data: html, alternative: true}
+                    ]
+                };
+
+                server.send(message, function (err, message) {
+                    console.log(err || message);
+                });
+
+
+            }
+
+        });
+
+        connection.release();
+
+    });
+
+    res.redirect('http://it.lg-n.de:8080/accounts/id/' + id);
+
 
 });
 
