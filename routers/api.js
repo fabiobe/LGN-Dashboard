@@ -174,6 +174,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
     fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), function (err, data) {
         if (err) throw err;
         html = data;
+        console.log(data);
     });
 
     html.replace('mZnEcmsAlOlfI5IZecfQ06qWtOowvKgekWSBKW7HylbBfAaOHO7ok6gU6Cg1nLmJyTjO6ziSovN4QxetBeyV6CpeR96i0D9oBI3c3XC4QipJa4DUECeEit2Re5q0nK16YXWj4hGMy57QTGzSTAreGAfmiGNrz9vbNhL7lxhD6zzigJn7aeb0O7nxd4TCfegw9PI9Rfqx', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
@@ -208,8 +209,8 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                 console.log(html);
 
                 /*server.send(message, function (err, message) {
-                    if (err) console.log(err);
-                });*/
+                 if (err) console.log(err);
+                 });*/
 
 
             }
