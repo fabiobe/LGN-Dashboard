@@ -140,6 +140,15 @@
             var status = document.getElementById("status");
 
             firstname.value = json[0].firstname;
+            lastname.value = json[0].lastname;
+            form.value = json[0].form;
+            email.value = json[0].email;
+
+            if(json[0].status == "ok"){
+                status.selectedIndex = 0;
+            }else {
+                status.selectedIndex = 1;
+            }
 
 
         });
