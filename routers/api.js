@@ -206,7 +206,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                 };
 
                 server.send(message, function (err, message) {
-                    console.log(err || message);
+                    if (err) console.log(err);
                 });
 
 
