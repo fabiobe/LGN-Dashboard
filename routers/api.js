@@ -200,9 +200,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                     from: "Netzwerk AG IT-Administration <it@lg-n.de>",
                     to: email,
                     subject: "Dein Passwort wurde zurückgesetzt!",
-                    attachment: [
-                        {data: html, alternative: true}
-                    ]
+                    html: html
                 };
 
 
