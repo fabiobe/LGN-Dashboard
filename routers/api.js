@@ -145,12 +145,12 @@ router.post('/change/wifi/user', (req, res) => {
 
     pool.getConnection((err, connection) => {
 
-        connection.query("UPDATE accounts SET firstname='" + firstname + "' AND lastname='" + lastname + "' AND form='" + form + "' AND email='" + email + "' AND status='" + status + "' WHERE id='" + id + "'");
+        connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "', status='" + status + "' WHERE id='" + id + "'");
         connection.release();
 
     });
 
-    res.redirect(req.headers.host);
+    res.redirect('http://it.lg-n.de:8080/accounts/id/' + id);
 
 });
 
