@@ -148,6 +148,9 @@ body {
 .label-red {
   background-color: #d9534f !important;
 }
+.button-danger {
+  background-color: #d9534f !important;
+}
 .setup-page {
   width: 360px;
   padding: 154px 0 0;
