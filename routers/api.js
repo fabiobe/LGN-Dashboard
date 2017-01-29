@@ -150,6 +150,8 @@ router.post('/change/wifi/user/', (req, res) => {
 
     });
 
+    res.redirect(req.uri.href);
+
 });
 
 router.post('/login', (req, res) => {
