@@ -171,9 +171,14 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
     let id = req.params.id;
     let token = crypto.randomBytes(64).toString('hex');
 
+    htmlmail.replace('mZnEcmsAlOlfI5IZecfQ06qWtOowvKgekWSBKW7HylbBfAaOHO7ok6gU6Cg1nLmJyTjO6ziSovN4QxetBeyV6CpeR96i0D9oBI3c3XC4QipJa4DUECeEit2Re5q0nK16YXWj4hGMy57QTGzSTAreGAfmiGNrz9vbNhL7lxhD6zzigJn7aeb0O7nxd4TCfegw9PI9Rfqx', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
+    htmlmail.replace('mZnEcmsAlOlfI5IZecfQ06qWtOowvKgekWSBKW7HylbBfAaOHO7ok6gU6Cg1nLmJyTjO6ziSovN4QxetBeyV6CpeR96i0D9oBI3c3XC4QipJa4DUECeEit2Re5q0nK16YXWj4hGMy57QTGzSTAreGAfmiGNrz9vbNhL7lxhD6zzigJn7aeb0O7nxd4TCfegw9PI9Rfqx', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
 
 
-    pool.getConnection((err, connection) => {
+
+
+
+        pool.getConnection((err, connection) => {
 
         connection.query("SELECT * FROM accounts WHERE id='" + id + "'", (err, rows) => {
 
