@@ -36,7 +36,7 @@ router.get('/change/password/token/:token', (req, res) => {
             if (rows.length > 0) {
                 let row = rows[0];
                 let email = row.email;
-                let id = "0";
+                let user = "0";
                 let firstname = "";
                 let lastname = "";
 
@@ -44,15 +44,15 @@ router.get('/change/password/token/:token', (req, res) => {
 
                     firstname = rows[0].firstname;
                     lastname = rows[0].lastname;
-                    id = rows[0].id;
+                    user = rows[0].id;
 
                     console.log(rows[0]);
 
                 });
 
-                console.log(email + " " + id);
+                console.log(email + " " + user);
 
-                let html = change.replace("CHANGETHIS", id);
+                let html = change.replace("CHANGETHIS", user);
 
                 res.send(html);
             }
