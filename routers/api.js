@@ -214,7 +214,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 
 });
 
-router.get("/wifi-users/reset/password/email/", (req, res) => {
+router.post("/wifi-users/reset/password/email/", (req, res) => {
 
     let email = req.body.email;
     let token = crypto.randomBytes(64).toString('hex');
