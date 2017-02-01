@@ -34,7 +34,7 @@ router.post('/proceed/change/password', (req, res) => {
     let confirmpassword = req.body.confirmpassword;
 
     if (password != confirmpassword) {
-        res.send(path.join(__dirname, '../views/accounts/change_error.html'));
+        res.sendFile(path.join(__dirname, '../views/accounts/change_error.html'));
     } else {
 
         //TODO ADD PASSWORD CHANGE MECHANISM
@@ -71,7 +71,7 @@ router.get('/change/password/token/:token', (req, res) => {
 
 
             } else {
-                res.send(path.join(__dirname, '../views/accounts/change_error.html'));
+                res.sendFile(path.join(__dirname, '../views/accounts/change_error.html'));
             }
 
         });
