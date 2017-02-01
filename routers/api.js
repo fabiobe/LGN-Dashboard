@@ -188,11 +188,10 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                 connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
 
                 var mailOptions = {
-                    headers: {"Content-Type": 'text/html'},
                     from: "Netzwerk AG IT-Administration <it@lg-n.de>",
                     to: email,
                     subject: "Dein Passwort wurde zurückgesetzt!",
-                    text: htmlmail
+                    html: htmlmail
                 };
 
 
