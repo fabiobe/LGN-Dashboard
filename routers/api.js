@@ -232,7 +232,8 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
 
                 connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
                     if (rows.length > 0) {
-                        connection.query("DELETE FROM activation WHERE email='" + email + "'");
+                        connection.query("UPDATE FROM activation SET token='" + token + "' WHERE email='" + email + "'");
+                    } else {
                         connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
                     }
                 });
@@ -243,7 +244,6 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
                     subject: "Dein Passwort wurde zurückgesetzt!",
                     html: body
                 };
-
 
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
