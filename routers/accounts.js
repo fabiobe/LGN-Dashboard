@@ -44,8 +44,9 @@ router.get('/change/password/token/:token', (req, res) => {
                     let lastname = rows[0].lastname;
                     let user = rows[0].id;
 
-                    let html = change.replace("CHANGETHIS", user + "");
-                    html = html.replace("CHANGETHISTOO", firstname + " " + lastname);
+
+                    let html = change.replace("CHANGETHISTOO", firstname + " " + lastname);
+                    html = html.replace("CHANGETHIS", user + "");
 
                     res.send(html);
 
