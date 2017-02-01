@@ -18,6 +18,13 @@ var transporter = nodemailer.createTransport('smtps://it@lg-n.de:itaglgn@smtp.va
 
 let pool = mysql.createPool(mysql_config);
 
+let htmlmail = "";
+
+fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    htmlmail = data;
+});
+
 console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
@@ -164,12 +171,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
     let id = req.params.id;
     let token = crypto.randomBytes(64).toString('hex');
 
-    let htmlmail = "";
 
-    fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), 'utf8', function (err, data) {
-        if (err) throw err;
-        htmlmail = data;
-    });
 
     pool.getConnection((err, connection) => {
 
