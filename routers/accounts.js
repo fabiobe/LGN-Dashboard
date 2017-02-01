@@ -36,23 +36,21 @@ router.get('/change/password/token/:token', (req, res) => {
             if (rows.length > 0) {
                 let row = rows[0];
                 let email = row.email;
-                let user;
-                let firstname;
-                let lastname;
+
 
                 connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
 
-                    firstname = rows[0].firstname;
-                    lastname = rows[0].lastname;
-                    user = rows[0].id;
+                    let firstname = rows[0].firstname;
+                    let lastname = rows[0].lastname;
+                    let user = rows[0].id;
+
+                    let html = change.replace("CHANGETHIS", user + "");
+
+                    res.send(html);
 
                 });
 
-                console.log(email + " " + user + " " + firstname);
 
-                let html = change.replace("CHANGETHIS", user + "");
-
-                res.send(html);
             }
 
         });
