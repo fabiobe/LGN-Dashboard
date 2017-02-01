@@ -27,6 +27,23 @@ router.get('/id/:id', (req, res) => {
 
 });
 
+router.post('/proceed/change/password', (req, res) => {
+
+    let user = req.body.user;
+    let password = req.body.password;
+    let confirmpassword = req.body.confirmpassword;
+
+    if (password != confirmpassword) {
+        res.send(path.join(__dirname, '../views/accounts/change_error.html'));
+    } else {
+
+        //TODO ADD PASSWORD CHANGE MECHANISM
+
+    }
+
+
+});
+
 router.get('/change/password/token/:token', (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -53,6 +70,8 @@ router.get('/change/password/token/:token', (req, res) => {
                 });
 
 
+            } else {
+                res.send(path.join(__dirname, '../views/accounts/change_error.html'));
             }
 
         });

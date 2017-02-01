@@ -214,6 +214,52 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 
 });
 
+router.get("/wifi-users/reset/password/email/", (req, res) => {
+
+    let email = req.body.email;
+    let token = crypto.randomBytes(64).toString('hex');
+
+    let body = htmlmail;
+
+    body = body.replace('replacethis1', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
+    body = body.replace('replacethis2', "http://it.lg-n.de:8080/accounts/change/password/token/" + token);
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
+
+            if (rows.length > 0) {
+
+                connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
+                    if (rows.length > 0) {
+                        connection.query("DELETE FROM activation WHERE email='" + email + "'");
+                    }
+                });
+
+                connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+
+                var mailOptions = {
+                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                    to: email,
+                    subject: "Dein Passwort wurde zurückgesetzt!",
+                    html: body
+                };
+
+
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                });
+            }
+        });
+        connection.release();
+    });
+
+    res.redirect('http://it.lg-n.de:8080/');
+
+});
+
 router.post('/login', (req, res) => {
 
     let email = req.body.email;

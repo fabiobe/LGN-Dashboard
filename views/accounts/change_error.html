@@ -43,13 +43,11 @@
 </div>
 <div class="login-page">
     <div class="form">
-        <form class="login-form" method="post" action="/accounts/proceed/change/password">
-            <label class="form-label">CHANGETHISTOO</label>
+        <form class="login-form" method="post" action="/api/wifi-users/reset/password/email/">
+            <label class="form-label">Zurücksetzungstoken konnte nicht gefunden werden!</label>
             <br>
-            <input type="password" placeholder="Passwort" name="password" id="password"/>
-            <input type="password" placeholder="Passwort bestätigen" name="confirmpassword" id="confirmpassword"/>
-            <input type="hidden" value="CHANGETHIS" name="user" id="user">
-            <button>Passwort Ändern</button>
+            <input type="email" placeholder="E-Mail" name="email" id="email"/>
+            <button>Passwort Zurücksetzen</button>
         </form>
     </div>
 </div>
