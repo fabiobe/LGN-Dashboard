@@ -204,20 +204,13 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                     if (error) {
                         return console.log(error);
                     }
-                    console.log('Message sent: ' + info.response);
                 });
-
-
             }
-
         });
-
         connection.release();
-
     });
 
     res.redirect('http://it.lg-n.de:8080/accounts/id/' + id);
-
 
 });
 

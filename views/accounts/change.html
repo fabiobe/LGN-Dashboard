@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=0.75, maximum-scale=1.0, user-scalable=0">
+    <meta lang="de">
+    <meta name="content-language" content="de"/>
+    <meta name="author" content="Fabio Bertuzzi"/>
+    <meta name="publisher" content="Netzwerk AG Lessing-Gymnasium Norderstedt"/>
+    <meta name="copyright" content="Netzwerk AG Lessing-Gymnasium Norderstedt"/>
+    <meta name="keywords"
+          content="IT-Dashboard, WLAN-Verwaltung, WLAN, Lessing-Gymnasium Norderstedt, Norderstedt, Lessing-Gymnasium, WLAN, WIFI, LOGIN, IT, Netzwerk, AG, Netzwerk, Verwaltung"/>
+    <meta name="description" content="Hier können Lehrer und Schüler ihren WLAN-Zugang verwalten."/>
+    <meta name="language" content="Deutsch"/>
+    <meta name="revisit" content="After 1 days"/>
+    <title>Lessing-Gymnasium Norderstedt | IT-Dashboard</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reboto.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://it.lg-n.de:8080/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://it.lg-n.de:8080/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://it.lg-n.de:8080/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://it.lg-n.de:8080/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://it.lg-n.de:8080/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://it.lg-n.de:8080/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="http://it.lg-n.de:8080/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://it.lg-n.de:8080/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://it.lg-n.de:8080/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="http://it.lg-n.de:8080/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://it.lg-n.de:8080/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="http://it.lg-n.de:8080/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://it.lg-n.de:8080/images/favicon-16x16.png">
+    <link rel="manifest" href="http://it.lg-n.de:8080/documents/manifest.json">
+    <meta name="msapplication-TileColor" content="##733D9A">
+    <meta name="msapplication-TileImage" content="http://it.lg-n.de:8080/images/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="http://it.lg-n.de:8080/documents/browserconfig.xml">
+    <meta name="theme-color" content="#733D9A">
+</head>
+<body style="background: #913D88;">
+<div id="upper-nav">
+    <img id="logo" src="/images/logo.png" alt="Logo" onclick="redirect('/')">
+    <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
+</div>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" method="post" action="/api/change/password/user">
+            <input type="password" placeholder="Passwort" name="password" id="password"/>
+            <input type="password" placeholder="Passwort bestätigen" name="confirmpassword" id="confirmpassword"/>
+            <input type="hidden" value="CHANGETHIS">
+            <button>Passwort Ändern</button>
+        </form>
+    </div>
+</div>
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io('http://localhost:8080');
+</script>
+<script src="/js/redirect.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+
+<script src="/js/mobileNavigation.js"></script>
+</html>
