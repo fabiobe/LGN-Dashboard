@@ -5,16 +5,6 @@ let express = require('express');
 let router = express.Router();
 let path = require('path');
 
-router.get('/', (req, res) => {
-
-    res.send('OK');
-
-});
-
-router.get('/faq', (req, res) => {
-
-    res.sendFile(path.join(__dirname, '../views/support/faq.html'));
-
-});
+//TODO ADD LATER
 
 module.exports = router;

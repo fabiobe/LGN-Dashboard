@@ -44,6 +44,12 @@ router.post('/proceed/change/password', (req, res) => {
 
 });
 
+router.get('/password/reset', (req, res) => {
+
+    res.sendFile(path.join(__dirname, '../views/accounts/forget.html'));
+
+});
+
 router.get('/change/password/token/:token', (req, res) => {
 
     pool.getConnection((err, connection) => {

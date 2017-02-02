@@ -36,82 +36,31 @@
     <meta name="msapplication-config" content="http://it.lg-n.de:8080/documents/browserconfig.xml">
     <meta name="theme-color" content="#733D9A">
 </head>
-<body>
+<body style="background: #913D88;">
 <div id="upper-nav">
     <img id="logo" src="/images/logo.png" alt="Logo" onclick="redirect('/')">
     <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
 </div>
-<div class="faq-content">
-    <div class="faq-page-header">
-        <h1>FAQ</h1>
-    </div>
-    </br>
-    <div class="faqs">
-        <div class="faq-section">
-            <a href="#Anmeldung" class="faq-section-title">Wie kann ich mich anmelden?</a>
-            <div id="Anmeldung" class="faq-section-content">
-                <p>
-                    Um Dich anmelden zu können, benötigst Du Benutzerdaten, welche Du erhältst, wenn Du Dich für die
-                    WLAN-Nutzung
-                    anmeldest. Sobald Du Dich angemeldet hast, erhältst Du eine E-Mail mit Deinem Benutzernamen.
-                    (E-Mail-Adresse)
-                    und einem Passwort. Diese Daten verwendest Du um dich anzumelden.
-                    </br>
-                </p>
-            </div>
-        </div>
-        <div class="faq-section">
-            <a href="#Kennwort-vergessen" class="faq-section-title">Wie kann ich mein Passwort zurücksetzen, wenn ich es
-                vergessen habe?</a>
-            <div id="Kennwort-vergessen" class="faq-section-content">
-                <p>
-                    Das Zurücksetzen Deines Passworts ist derzeit leider nicht möglich!
-                    </br>
-                </p>
-            </div>
-        </div>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" method="post" action="/api/wifi-users/reset/password/email/">
+            <label class="form-label">Passwort zurücksetzen</label>
+            <br>
+            <input type="email" placeholder="E-Mail" name="email" id="email"/>
+            <button>Passwort zurücksetzen</button>
+        </form>
     </div>
 </div>
 
 </body>
 
-<script src="http://it.lg-n.de:8080/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script>
-    var socket = io('http://it.lg-n.de:8080');
+    var socket = io('http://localhost:8080');
 </script>
-<script src="http://it.lg-n.de:8080/js/redirect.js"></script>
+<script src="/js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
 
-<script>
-    $(document).ready(function () {
-        function close_faq_section() {
-            $('.faqs .faq-section-title').removeClass('faq-active');
-            $('.faqs .faq-section-title').css({'border-bottom': '1px solid rgb(230, 230, 230)', 'color': '#333'});
-            $('.faqs .faq-section-content').slideUp(300).removeClass('open');
-            $('.faqs .faq-section').css({'border': 'none'});
-        }
-
-        $('.faq-section-title').click(function (e) {
-            var currentAttrValue = $(this).attr('href');
-
-            if ($(e.target).is('.faq-active')) {
-                close_faq_section();
-            } else {
-                close_faq_section();
-
-                $(this).addClass('faq-active');
-
-                $(this).css({'border-bottom': 'none', 'color': 'white'});
-
-                $('.faqs ' + currentAttrValue).slideDown(300).addClass('open').parent().css({
-                    'border': '1px solid rgb(230, 230, 230)'
-                });
-
-            }
-
-            e.preventDefault();
-        });
-    });
-</script>
+<script src="/js/mobileNavigation.js"></script>
 </html>

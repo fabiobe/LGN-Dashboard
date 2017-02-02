@@ -320,69 +320,6 @@ div.navigation-item-right:hover {
   font-size: 36px;
   color: #333333;
 }
-.faq-content {
-  top: 76px;
-  background-color: #FFF;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-  position: relative;
-  border: 1px solid #ddd;
-  padding: 45px;
-}
-.faq-page-header {
-  border-bottom: 1px solid #eeeeee;
-}
-.faq-page-header h1 {
-  font-family: "Roboto Thin", sans-serif;
-  font-size: 36px;
-  color: #333333;
-}
-.faq-section-content {
-  display: none;
-}
-.faqs .faq-section-content p {
-  display: inherit;
-  margin-left: 20px;
-  margin-right: 20px;
-  text-align: justify;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.25rem;
-  color: #333;
-}
-.faq-section-title.faq-active,
-.faq-section-title:hover {
-  background: #733D9A;
-  border: 1px solid #e6e6e6;
-  text-decoration: none;
-  color: #FFF;
-}
-.faq-section-content .open {
-  color: #FFF;
-  background: #913D88;
-}
-.faqs .faq-section {
-  width: 100%;
-}
-.faqs .faq-section-title {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
-  color: #333333;
-  border: 1px solid #e6e6e6;
-  width: 98%;
-  text-align: center;
-  text-decoration: none;
-  padding: 15px;
-}
-.faqs .faq-section-title a {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
-  color: #333333;
-  border: 1px solid #e6e6e6;
-  width: 100%;
-  text-align: center;
-  text-decoration: none;
-}
 @media screen and (min-width: 980px) {
   html,
   body {
@@ -495,17 +432,6 @@ div.navigation-item-right:hover {
   }
   .content {
     top: 220px;
-    background-color: #FFF;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    position: relative;
-    border: 1px solid #ddd;
-    padding: 45px;
-  }
-  .faq-content {
-    top: 116px;
     background-color: #FFF;
     width: 80%;
     margin-left: auto;
