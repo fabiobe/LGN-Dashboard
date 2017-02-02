@@ -204,6 +204,13 @@ input[type=text] {
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
 }
+input[type=password] {
+  width: 100%;
+  height: 42px;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+}
 .navigation-content a i {
   color: #818181;
 }
