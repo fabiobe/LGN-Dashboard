@@ -25,6 +25,13 @@ fs.readFile(path.join(__dirname, '../views/accounts/reset.html'), 'utf8', functi
     htmlmail = data;
 });
 
+let deactivated = "";
+
+fs.readFile(path.join(__dirname, '../views/accounts/deactivated.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    deactivated = data;
+});
+
 console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
@@ -161,6 +168,26 @@ router.post('/change/wifi/user', (req, res) => {
         connection.release();
 
     });
+
+    if (status == ''){
+
+        //TODO MOVE TO DEACTIVED
+
+        var mailOptions = {
+            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+            to: email,
+            subject: "Dein Account wurde deaktiviert!",
+            html: deactivated
+        };
+
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+        });
+
+    }
 
     res.redirect('http://it.lg-n.de:8080/accounts/id/' + id);
 
