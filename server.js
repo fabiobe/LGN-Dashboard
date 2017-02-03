@@ -56,8 +56,8 @@ if (config.setup) {
 }
 
 
-server.listen(8080);
+server.listen(80);
 
-console.log('\x1b[32m[Info] [WEB] Listening on port: 8080');
+console.log('\x1b[32m[Info] [WEB] Listening on port: 80');
 
 module.exports.io = io;

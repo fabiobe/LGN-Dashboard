@@ -97,7 +97,7 @@ router.post('/proceed/activate', (req, res) => {
 
         });
 
-        res.redirect("http://it.lg-n.de:8080");
+        res.redirect("http://it.lg-n.de");
     }
 
 });
@@ -125,7 +125,7 @@ router.post('/proceed/change/password', (req, res) => {
 
         });
 
-        res.redirect("http://it.lg-n.de:8080");
+        res.redirect("http://it.lg-n.de");
     }
 
 
