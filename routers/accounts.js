@@ -74,7 +74,7 @@ router.post('/proceed/activate', (req, res) => {
     } else {
 
         let hash = crypto.createHash('md4');
-        hash.update(decodeURIComponent(password));
+        hash.update(toUnicode(password));
         let value = hash.digest('hex');
         res.send(value);
 
@@ -84,6 +84,19 @@ router.post('/proceed/activate', (req, res) => {
     }
 
 });
+
+function toUnicode(theString) {
+    var unicodeString = '';
+    for (var i=0; i < theString.length; i++) {
+        var theUnicode = theString.charCodeAt(i).toString(16).toUpperCase();
+        while (theUnicode.length < 4) {
+            theUnicode = '0' + theUnicode;
+        }
+        theUnicode = '\\u' + theUnicode;
+        unicodeString += theUnicode;
+    }
+    return unicodeString;
+}
 
 router.post('/proceed/change/password', (req, res) => {
 
