@@ -9,7 +9,8 @@ let server = require('http').Server(app);
 let io = require('socket.io')(server);
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-
+let https = require('https');
+let fs = require('fs');
 
 /* CONFIGURATION */
 
@@ -54,6 +55,11 @@ if (config.setup) {
     });
 
 }
+
+https.createServer({
+    key: fs.readFileSync('certs/dashboard-key.pem'),
+    cert: fs.readFileSync('certs/dashboard-pub.pem')
+}, app).listen(443);
 
 
 server.listen(80);
