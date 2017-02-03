@@ -56,7 +56,7 @@ router.get('/activate/token/:token', (req, res) => {
                 html = html.replace("CHANGETHIS", email + "");
 
                 res.send(html);
-            } else{
+            } else {
                 res.sendFile(path.join(__dirname, '../views/accounts/choose_error.html'));
             }
         });
@@ -75,11 +75,28 @@ router.post('/proceed/activate', (req, res) => {
     } else {
 
         let nt = nthash(password);
-        res.send(nt);
+        let hash = crypto.createHash('sha512').update(password).digest('hex');
 
-        //TODO ADD PASSWORD CHANGE MECHANISM
+        pool.getConnection((err, connection) => {
 
+            connection.query("SELECT * FROM activate WHERE token='" + token + "'", (err, rows) => {
+                if (rows.length > 0) {
+                    let row = rows[0];
+                    let firstname = row.firstname;
+                    let lastname = row.lastname;
+                    let form = row.form;
+                    let email = row.email;
+                    connection.query("INSERT INTO accounts (firstname, lastname, form, email, hashed_password, status) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + hash + "', 'ok')");
+                    connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + nt + "')");
+                    connection.query("DELETE FROM activate WHERE token='" + token + "'");
+                }
+            });
 
+            connection.release();
+
+        });
+
+        res.redirect("http://it.lg-n.de:8080");
     }
 
 });
