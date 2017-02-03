@@ -257,7 +257,7 @@ router.post('/change/wifi/user', (req, res) => {
 
     }
 
-    res.redirect('http://it.lg-n.de/accounts/id/' + id);
+    res.redirect('https://it.lg-n.de/accounts/id/' + id);
 
 });
 
@@ -274,8 +274,8 @@ router.post('/add/wifi/user', (req, res) => {
 
     let body = activate;
 
-    body = body.replace('replacethis1', "http://it.lg-n.de/accounts/activate/token/" + token);
-    body = body.replace('replacethis2', "http://it.lg-n.de/accounts/activate/token/" + token);
+    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/activate/token/" + token);
+    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/activate/token/" + token);
 
     pool.getConnection((err, connection) => {
 
@@ -305,7 +305,7 @@ router.post('/add/wifi/user', (req, res) => {
 
     });
 
-    res.redirect('http://it.lg-n.de/accounts/add');
+    res.redirect('https://it.lg-n.de/accounts/add');
 
 
 });
@@ -317,8 +317,8 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 
     let body = htmlmail;
 
-    body = body.replace('replacethis1', "http://it.lg-n.de/accounts/change/password/token/" + token);
-    body = body.replace('replacethis2', "http://it.lg-n.de/accounts/change/password/token/" + token);
+    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
+    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
 
     pool.getConnection((err, connection) => {
 
@@ -354,7 +354,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
         connection.release();
     });
 
-    res.redirect('http://it.lg-n.de/accounts/id/' + id);
+    res.redirect('https://it.lg-n.de/accounts/id/' + id);
 
 });
 
@@ -365,8 +365,8 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
 
     let body = htmlmail;
 
-    body = body.replace('replacethis1', "http://it.lg-n.de/accounts/change/password/token/" + token);
-    body = body.replace('replacethis2', "http://it.lg-n.de/accounts/change/password/token/" + token);
+    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
+    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
 
     pool.getConnection((err, connection) => {
 
@@ -401,7 +401,7 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
         connection.release();
     });
 
-    res.redirect('http://it.lg-n.de/');
+    res.redirect('https://it.lg-n.de/');
 
 });
 
