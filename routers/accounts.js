@@ -66,7 +66,7 @@ router.get('/activate/token/:token', (req, res) => {
 
 router.post('/proceed/activate', (req, res) => {
 
-    let token = req.body.user;
+    let email = req.body.user;
     let password = req.body.password;
     let confirmpassword = req.body.confirmpassword;
 
@@ -77,21 +77,18 @@ router.post('/proceed/activate', (req, res) => {
         let nt = nthash(password);
         let hash = crypto.createHash('sha512').update(password).digest('hex');
 
-        console.log(token);
-
         pool.getConnection((err, connection) => {
 
-            connection.query("SELECT * FROM activate WHERE token='" + token + "'", (err, rows) => {
+            connection.query("SELECT * FROM activate WHERE email='" + email + "'", (err, rows) => {
                 if (rows.length > 0) {
                     let row = rows[0];
                     let firstname = row.firstname;
                     let lastname = row.lastname;
                     let form = row.form;
-                    let email = row.email;
 
                     connection.query("INSERT INTO accounts (firstname, lastname, form, email, hashed_password, status) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + hash + "', 'ok')");
                     connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + nt + "')");
-                    connection.query("DELETE FROM activate WHERE token='" + token + "'");
+                    connection.query("DELETE FROM activate WHERE email='" + email + "'");
 
                 }
             });
