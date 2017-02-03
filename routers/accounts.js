@@ -21,6 +21,13 @@ fs.readFile(path.join(__dirname, '../views/accounts/change.html'), 'utf8', funct
     change = data;
 });
 
+let choose = "";
+
+fs.readFile(path.join(__dirname, '../views/accounts/choose.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    choose = data;
+});
+
 router.get('/id/:id', (req, res) => {
 
     res.sendFile(path.join(__dirname, '../views/accounts/user.html'));
@@ -30,6 +37,28 @@ router.get('/id/:id', (req, res) => {
 router.get('/add', (req, res) => {
 
     res.sendFile(path.join(__dirname, '../views/accounts/add.html'));
+
+});
+
+router.get('/activate/token/:token', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        connection.query("SELECT * FROM activate WHERE token='" + req.params.token + "'", (err, rows) => {
+            if (rows.length > 0) {
+                let row = rows[0];
+                let firstname = row.firstname;
+                let lastname = row.lastname;
+                let email = row.email;
+
+                let html = choose.replace("CHANGETHISTOO", firstname + " " + lastname);
+                html = html.replace("CHANGETHIS", email + "");
+
+                res.send(html);
+            } else{
+                res.sendFile(path.join(__dirname, '../views/accounts/choose_error.html'));
+            }
+        });
+    });
 
 });
 
@@ -65,7 +94,6 @@ router.get('/change/password/token/:token', (req, res) => {
             if (rows.length > 0) {
                 let row = rows[0];
                 let email = row.email;
-
 
                 connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
 
