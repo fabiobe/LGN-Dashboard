@@ -9,7 +9,6 @@ let server = require('http').Server(app);
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let https = require('https');
-let io = require('socket.io')(https);
 let fs = require('fs');
 
 /* CONFIGURATION */
@@ -41,10 +40,6 @@ if (config.setup) {
         res.status(404).sendFile(path.join(__dirname, '/views/default/404.html'));
     });
 
-    io.on('connection', (socket) => {
-
-
-    });
 
 } else {
     let setupRouter = require('./routers/setup.js');
@@ -56,10 +51,18 @@ if (config.setup) {
 
 }
 
-https.createServer({
+let sserver = https.createServer({
     key: fs.readFileSync('certs/key.pem'),
     cert: fs.readFileSync('certs/pub.pem')
 }, app).listen(443);
+
+
+let io = require('socket.io')(sserver);
+
+io.on('connection', (socket) => {
+
+
+});
 
 
 server.listen(80);
