@@ -57,8 +57,8 @@ if (config.setup) {
 }
 
 https.createServer({
-    key: fs.readFileSync('certs/dashboard-key.pem'),
-    cert: fs.readFileSync('certs/dashboard-pub.pem')
+    key: fs.readFileSync('certs/key.pem'),
+    cert: fs.readFileSync('certs/pub.pem')
 }, app).listen(443);
 
 
