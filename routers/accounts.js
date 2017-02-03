@@ -12,6 +12,7 @@ let users = require('./api.js').users;
 let mysql_config = require('./../config/mysql.json');
 let pool = mysql.createPool(mysql_config);
 let fs = require('fs');
+let utf8 = require('utf8');
 
 console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");
 
@@ -74,7 +75,7 @@ router.post('/proceed/activate', (req, res) => {
     } else {
 
         let hash = crypto.createHash('md4');
-        hash.update(toUnicode(password));
+        hash.update(utf8.encode(password));
         let value = hash.digest('hex');
         res.send(value);
 
@@ -84,19 +85,6 @@ router.post('/proceed/activate', (req, res) => {
     }
 
 });
-
-function toUnicode(theString) {
-    var unicodeString = '';
-    for (var i=0; i < theString.length; i++) {
-        var theUnicode = theString.charCodeAt(i).toString(16).toUpperCase();
-        while (theUnicode.length < 4) {
-            theUnicode = '0' + theUnicode;
-        }
-        theUnicode = '\\u' + theUnicode;
-        unicodeString += theUnicode;
-    }
-    return unicodeString;
-}
 
 router.post('/proceed/change/password', (req, res) => {
 
