@@ -12,7 +12,7 @@ let users = require('./api.js').users;
 let mysql_config = require('./../config/mysql.json');
 let pool = mysql.createPool(mysql_config);
 let fs = require('fs');
-let utf8 = require('utf8');
+var nthash = require('smbhash').nthash;
 
 console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");
 
@@ -74,10 +74,8 @@ router.post('/proceed/activate', (req, res) => {
         res.sendFile(path.join(__dirname, '../views/accounts/choose_error_password.html'));
     } else {
 
-        let hash = crypto.createHash('md4');
-        hash.update(utf8.encode(password));
-        let value = hash.digest('hex');
-        res.send(value);
+        let nt = nthash(password);
+        res.send(nt);
 
         //TODO ADD PASSWORD CHANGE MECHANISM
 
