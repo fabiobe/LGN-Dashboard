@@ -32,6 +32,13 @@ fs.readFile(path.join(__dirname, '../views/accounts/deactivated.html'), 'utf8', 
     deactivated = data;
 });
 
+let activated = "";
+
+fs.readFile(path.join(__dirname, '../views/accounts/activated.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    activated = data;
+});
+
 console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
@@ -196,6 +203,41 @@ router.post('/change/wifi/user', (req, res) => {
             to: email,
             subject: "Dein Account wurde deaktiviert!",
             html: deactivated
+        };
+
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+        });
+
+    } else {
+
+        pool.getConnection((err, connection) => {
+
+            connection.query("SELECT * FROM deactivated WHERE email='" + email + "'", (err, rows) => {
+
+                if (rows.length > 0) {
+
+                    let row = rows[0];
+                    let password = row.hashed_password;
+
+                    connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + password + "')");
+                    connection.query("DELETE FROM deactivated WHERE email='" + email + "'");
+
+                }
+
+            });
+
+            connection.release();
+        });
+
+        var mailOptions = {
+            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+            to: email,
+            subject: "Dein Account wurde aktiviert!",
+            html: activated
         };
 
 
