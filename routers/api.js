@@ -277,14 +277,14 @@ router.post('/add/wifi/user', (req, res) => {
     body = body.replace('replacethis1', "http://it.lg-n.de:8080/accounts/activate/token/" + token);
     body = body.replace('replacethis2', "http://it.lg-n.de:8080/accounts/activate/token/" + token);
 
+    let already = false;
 
     pool.getConnection((err, connection) => {
 
         connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
 
             if (rows.length > 0) {
-                res.redirect('http://it.lg-n.de:8080/accounts/add');
-                return;
+                already = true;
             } else {
                 connection.query("INSERT INTO activate (firstname, lastname, form, email, token) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + token + "')");
             }
@@ -295,20 +295,24 @@ router.post('/add/wifi/user', (req, res) => {
 
     });
 
-    var mailOptions = {
-        from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-        to: email,
-        subject: "Deine Zugangsdaten!",
-        html: body
-    };
+    if (already != true) {
+        var mailOptions = {
+            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+            to: email,
+            subject: "Deine Zugangsdaten!",
+            html: body
+        };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            return console.log(error);
-        }
-    });
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+        });
 
-    res.redirect('http://it.lg-n.de:8080/accounts/add');
+        res.redirect('http://it.lg-n.de:8080/accounts/add');
+    } else {
+        res.redirect('http://it.lg-n.de:8080/accounts/add');
+    }
 
 });
 
