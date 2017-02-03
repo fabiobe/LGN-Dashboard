@@ -284,6 +284,7 @@ router.post('/add/wifi/user', (req, res) => {
 
             if (rows.length > 0) {
                 res.redirect('http://it.lg-n.de:8080/accounts/add');
+                return;
             } else {
                 connection.query("INSERT INTO activate (firstname, lastname, form, email, token) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + token + "')");
             }
