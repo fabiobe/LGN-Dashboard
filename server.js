@@ -6,10 +6,10 @@ let path = require('path');
 let app = express();
 app.disable('x-powered-by');
 let server = require('http').Server(app);
-let io = require('socket.io')(server);
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let https = require('https');
+let io = require('socket.io')(https);
 let fs = require('fs');
 
 /* CONFIGURATION */
