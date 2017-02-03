@@ -73,7 +73,7 @@ router.post('/proceed/activate', (req, res) => {
         res.sendFile(path.join(__dirname, '../views/accounts/choose_error_password.html'));
     } else {
 
-        let hash = crypto.createHmac('md5');
+        let hash = crypto.createHmac('md5', '');
         hash.update(password);
         let value = hash.digest('hex');
         res.send(value);
