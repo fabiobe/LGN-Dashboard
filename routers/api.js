@@ -39,12 +39,20 @@ fs.readFile(path.join(__dirname, '../views/accounts/activated.html'), 'utf8', fu
     activated = data;
 });
 
+let activate = "";
+
+fs.readFile(path.join(__dirname, '../views/accounts/activate.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    activate = data;
+});
+
 console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
     connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
     connection.query("CREATE TABLE IF NOT EXISTS activation (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), token VARCHAR(255))");
     connection.query("CREATE TABLE IF NOT EXISTS deactivated (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), hashed_password VARCHAR(255))");
+    connection.query("CREATE TABLE IF NOT EXISTS activate (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), form VARCHAR(255), email VARCHAR(255), token VARCHAR(255))");
     connection.release();
 });
 
@@ -250,6 +258,56 @@ router.post('/change/wifi/user', (req, res) => {
     }
 
     res.redirect('http://it.lg-n.de:8080/accounts/id/' + id);
+
+});
+
+
+router.post('/add/wifi/user', (req, res) => {
+
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let form = req.body.form;
+    let email = req.body.email;
+
+    let id = req.params.id;
+    let token = crypto.randomBytes(64).toString('hex');
+
+    let body = activate;
+
+    body = body.replace('replacethis1', "http://it.lg-n.de:8080/accounts/activate/token/" + token);
+    body = body.replace('replacethis2', "http://it.lg-n.de:8080/accounts/activate/token/" + token);
+
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
+
+            if (rows.length > 0) {
+                res.redirect('http://it.lg-n.de:8080/accounts/add');
+            } else {
+                connection.query("INSERT INTO activate (firstname, lastname, form, email, token) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + token + "')");
+            }
+
+        });
+
+        connection.release();
+
+    });
+
+    var mailOptions = {
+        from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+        to: email,
+        subject: "Deine Zugangsdaten!",
+        html: body
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return console.log(error);
+        }
+    });
+
+    res.redirect('http://it.lg-n.de:8080/accounts/add');
 
 });
 

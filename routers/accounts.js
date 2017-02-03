@@ -27,6 +27,12 @@ router.get('/id/:id', (req, res) => {
 
 });
 
+router.get('/add', (req, res) => {
+
+    res.sendFile(path.join(__dirname, '../views/accounts/add.html'));
+
+});
+
 router.post('/proceed/change/password', (req, res) => {
 
     let user = req.body.user;
