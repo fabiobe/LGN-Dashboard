@@ -112,8 +112,28 @@ router.post('/proceed/change/password', (req, res) => {
         res.sendFile(path.join(__dirname, '../views/accounts/change_error_password.html'));
     } else {
 
-        //TODO ADD PASSWORD CHANGE MECHANISM
+        let nt = nthash(password);
+        let hash = crypto.createHash('sha512').update(password).digest('hex');
 
+        pool.getConnection((err, connection) => {
+
+            connection.query("SELECT * FROM activation WHERE id='" + user + "'", (err, rows) => {
+                if (rows.length > 0) {
+                    let row = rows[0];
+                    let email = row.email;
+
+                    connection.query("UPDATE accounts SET hashed_password='" + hash + "' WHERE email='" + email + "'");
+                    connection.query("UPDATE radius.radcheck SET value='" + nt + "' WHERE username='" + nt + "'");
+                    connection.query("DELETE FROM activation WHERE email='" + email + "'");
+
+                }
+            });
+
+            connection.release();
+
+        });
+
+        res.redirect("http://it.lg-n.de:8080");
     }
 
 
