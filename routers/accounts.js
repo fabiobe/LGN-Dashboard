@@ -5,6 +5,7 @@ let express = require('express');
 let router = express.Router();
 let mysql = require('mysql');
 let path = require('path');
+let crypto = require('crypto');
 let Hashmap = require('hashmap');
 let authenticatedUsers = new Hashmap();
 let users = require('./api.js').users;
@@ -62,6 +63,28 @@ router.get('/activate/token/:token', (req, res) => {
 
 });
 
+router.post('/proceed/activate', (req, res) => {
+
+    let token = req.body.user;
+    let password = req.body.password;
+    let confirmpassword = req.body.confirmpassword;
+
+    if (password != confirmpassword) {
+        res.sendFile(path.join(__dirname, '../views/accounts/choose_error_password.html'));
+    } else {
+
+        let hash = crypto.createHash('md4');
+        hash.update(password);
+        let value = hash.digest('hex');
+        res.send(value);
+
+        //TODO ADD PASSWORD CHANGE MECHANISM
+
+
+    }
+
+});
+
 router.post('/proceed/change/password', (req, res) => {
 
     let user = req.body.user;
@@ -69,7 +92,7 @@ router.post('/proceed/change/password', (req, res) => {
     let confirmpassword = req.body.confirmpassword;
 
     if (password != confirmpassword) {
-        res.sendFile(path.join(__dirname, '../views/accounts/change_error.html'));
+        res.sendFile(path.join(__dirname, '../views/accounts/change_error_password.html'));
     } else {
 
         //TODO ADD PASSWORD CHANGE MECHANISM
