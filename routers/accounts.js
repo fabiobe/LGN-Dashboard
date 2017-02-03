@@ -117,17 +117,9 @@ router.post('/proceed/change/password', (req, res) => {
 
         pool.getConnection((err, connection) => {
 
-            connection.query("SELECT * FROM activation WHERE id='" + user + "'", (err, rows) => {
-                if (rows.length > 0) {
-                    let row = rows[0];
-                    let email = row.email;
-
-                    connection.query("UPDATE accounts SET hashed_password='" + hash + "' WHERE email='" + email + "'");
-                    connection.query("UPDATE radius.radcheck SET value='" + nt + "' WHERE username='" + nt + "'");
-                    connection.query("DELETE FROM activation WHERE email='" + email + "'");
-
-                }
-            });
+            connection.query("UPDATE accounts SET hashed_password='" + hash + "' WHERE email='" + user + "'");
+            connection.query("UPDATE radius.radcheck SET value='" + nt + "' WHERE username='" + user + "'");
+            connection.query("DELETE FROM activation WHERE email='" + user + "'");
 
             connection.release();
 
@@ -159,7 +151,7 @@ router.get('/change/password/token/:token', (req, res) => {
 
                     let firstname = rows[0].firstname;
                     let lastname = rows[0].lastname;
-                    let user = rows[0].id;
+                    let user = rows[0].email;
 
 
                     let html = change.replace("CHANGETHISTOO", firstname + " " + lastname);
