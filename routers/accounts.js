@@ -86,15 +86,14 @@ router.post('/proceed/activate', (req, res) => {
                     let lastname = row.lastname;
                     let form = row.form;
                     let email = row.email;
+
+                    console.log(rows);
                     connection.query("INSERT INTO accounts (firstname, lastname, form, email, hashed_password, status) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + hash + "', 'ok')");
                     connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + nt + "')");
 
                 }
             });
-
-            setTimeout(() => {
-                connection.query("DELETE FROM activate WHERE token='" + token + "'");
-            }, 200);
+            //connection.query("DELETE FROM activate WHERE token='" + token + "'");
 
             connection.release();
 
