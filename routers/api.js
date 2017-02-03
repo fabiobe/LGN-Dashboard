@@ -37,6 +37,7 @@ console.log("\x1b[36m[Debug] [API] starting...");
 pool.getConnection((err, connection) => {
     connection.query("CREATE TABLE IF NOT EXISTS dashboard_users (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), password VARCHAR(255))");
     connection.query("CREATE TABLE IF NOT EXISTS activation (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), token VARCHAR(255))");
+    connection.query("CREATE TABLE IF NOT EXISTS deactivated (id INT(255) NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), hashed_password VARCHAR(255))");
     connection.release();
 });
 
@@ -169,9 +170,26 @@ router.post('/change/wifi/user', (req, res) => {
 
     });
 
-    if (status == ''){
+    if (status == '') {
 
-        //TODO MOVE TO DEACTIVED
+        pool.getConnection((err, connection) => {
+
+            connection.query("SELECT * FROM radius.radcheck WHERE username='" + email + "'", (err, rows) => {
+
+                if (rows.length > 0) {
+
+                    let row = rows[0];
+                    let password = row.value;
+
+                    connection.query("INSERT INTO deactivated (email, hashed_password) VALUES('" + email + "', '" + password + "')");
+                    connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
+
+                }
+
+            });
+            connection.release();
+
+        });
 
         var mailOptions = {
             from: "Netzwerk AG IT-Administration <it@lg-n.de>",
