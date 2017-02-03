@@ -77,6 +77,8 @@ router.post('/proceed/activate', (req, res) => {
         let nt = nthash(password);
         let hash = crypto.createHash('sha512').update(password).digest('hex');
 
+        console.log(token);
+
         pool.getConnection((err, connection) => {
 
             connection.query("SELECT * FROM activate WHERE token='" + token + "'", (err, rows) => {
@@ -87,13 +89,12 @@ router.post('/proceed/activate', (req, res) => {
                     let form = row.form;
                     let email = row.email;
 
-                    console.log(rows);
                     connection.query("INSERT INTO accounts (firstname, lastname, form, email, hashed_password, status) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + hash + "', 'ok')");
                     connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + nt + "')");
+                    connection.query("DELETE FROM activate WHERE token='" + token + "'");
 
                 }
             });
-            //connection.query("DELETE FROM activate WHERE token='" + token + "'");
 
             connection.release();
 
