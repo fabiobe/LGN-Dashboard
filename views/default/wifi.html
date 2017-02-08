@@ -144,6 +144,18 @@
 
         });
 
+        $.getJSON("https://it.lg-n.de/api/wifi-users/notactivated/json/callback/list", (json) => {
+
+            for (i = 0; i < json.length; i++) {
+                let row = $("<tr name='" + json[i].id + "' />");
+                $('#data').append(row);
+                row.append($("<td>" + json[i].firstname + "</td>"));
+                row.append($("<td>" + json[i].lastname + "</td>"));
+                row.append($("<td><span class='label label-yellow'>!</span></td>"));
+
+            }
+        });
+
         $("body").on("click", "#data tr", function () {
             if ($(this).attr('id') != undefined) {
                 window.location.href = 'https://it.lg-n.de/accounts/id/' + $(this).attr('id');

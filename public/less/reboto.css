@@ -148,6 +148,9 @@ body {
 .label-red {
   background-color: #d9534f !important;
 }
+.label-yellow {
+  background-color: #f0ad4e !important;
+}
 .button-danger {
   background-color: #d9534f !important;
 }
