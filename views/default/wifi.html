@@ -156,6 +156,13 @@
             }
         });
 
+        setInterval(() => {
+
+            th = document.getElementsByTagName("th")[0];
+            sorttable.innerSortFunction().apply(th, []);
+
+        }, 2);
+
         $("body").on("click", "#data tr", function () {
             if ($(this).attr('id') != undefined) {
                 window.location.href = 'https://it.lg-n.de/accounts/id/' + $(this).attr('id');
