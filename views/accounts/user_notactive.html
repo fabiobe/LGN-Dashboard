@@ -100,8 +100,6 @@
     <div class="page-header"><h1>Wi-Fi Benutzer</h1></div>
     <div class="page-content">
         </br>
-        <input type="button" class="form-input-button button-danger" id="reset" value="Passwort zurücksetzen">
-        </br>
         </br>
         <form onsubmit="setFormSubmitting();" action="https://it.lg-n.de/api/change/wifi/notactive/user" method="post">
             <label class="form-label">Vorname: </label>
@@ -154,12 +152,6 @@
         });
 
         var changes = false;
-
-        $('#reset').on("click", () => {
-
-            window.location.href = "https://it.lg-n.de/api/wifi-users/reset/password/" + id;
-
-        });
 
 
         $(".form-input").on("change keyup paste", function () {
