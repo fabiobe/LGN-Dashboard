@@ -433,7 +433,7 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                 });
 
                 connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
-                connection.query("DELETE FROM radius.radcheck WHERE email='" + email + "'");
+                connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
                 connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
 
                 var mailOptions = {
@@ -482,7 +482,7 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
                 });
 
                 connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
-                connection.query("DELETE FROM radius.radcheck WHERE email='" + email + "'");
+                connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
                 connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
 
                 var mailOptions = {
