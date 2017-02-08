@@ -156,6 +156,12 @@
             }
         });
 
+        setTimeout(() => {
+
+            sorttable.innerSortFunction.apply(document.getElementById('firstname'), []);
+
+        }, 200);
+
         $("body").on("click", "#data tr", function () {
             if ($(this).attr('id') != undefined) {
                 window.location.href = 'https://it.lg-n.de/accounts/id/' + $(this).attr('id');
@@ -167,12 +173,6 @@
         });
 
     });
-
-    setTimeout(() => {
-
-        sorttable.innerSortFunction().apply(document.getElementById('firstname'), []);
-
-    }, 200);
 
 
 </script>
