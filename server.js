@@ -23,6 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public/')));
 
+app2.get("/logo", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/images/logo.png'));
+});
+
 app2.get("*", (req, res) => {
     res.status = 301;
     res.redirect("https://it.lg-n.de");
