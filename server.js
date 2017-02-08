@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public/')));
 
 app2.get("*", (req, res) => {
-    res.status = 320;
+    res.status = 301;
     res.redirect("https://it.lg-n.de");
 });
 
