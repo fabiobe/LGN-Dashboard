@@ -5,7 +5,8 @@ let express = require('express');
 let path = require('path');
 let app = express();
 app.disable('x-powered-by');
-let server = require('http').Server(app);
+let app2 = express();
+let server = require('http').Server(app2);
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let https = require('https');
@@ -21,6 +22,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public/')));
+
+app2.get("*", (req, res) => {
+    res.status = 320;
+    res.redirect("https://it.lg-n.de");
+});
 
 if (config.setup) {
 
