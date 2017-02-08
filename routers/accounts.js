@@ -36,6 +36,12 @@ router.get('/id/:id', (req, res) => {
 
 });
 
+router.get('/notactivated/id/:id', (req, res) => {
+
+    res.sendFile(path.join(__dirname, '../views/accounts/user_notactive.html'));
+
+});
+
 router.get('/add', (req, res) => {
 
     res.sendFile(path.join(__dirname, '../views/accounts/add.html'));

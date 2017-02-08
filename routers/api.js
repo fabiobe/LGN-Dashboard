@@ -169,6 +169,45 @@ router.get('/wifi-users/json/callback/user/:id', (req, res) => {
 
 });
 
+router.get('/wifi-users/notactivated/json/callback/user/:id', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("SELECT * FROM activate WHERE id='" + req.params.id + "'", (err, rows) => {
+
+            if (err) {
+                res.json({"status": "500"});
+                res.status(500);
+            }
+
+            if (rows.length > 0) {
+
+                res.charset = "utf8";
+                let json = [];
+                for (let i = 0; i < rows.length; i++) {
+                    let row = rows[i];
+                    json.push({
+                        "id": row.id,
+                        "firstname": row.firstname,
+                        "lastname": row.lastname,
+                        "form": row.form,
+                        "email": row.email
+                    });
+                }
+
+                res.json(json);
+
+            }
+
+        });
+
+        connection.release();
+
+    });
+
+
+});
+
 router.get('/wifi-users/notactivated/json/callback/list', (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -297,6 +336,25 @@ router.post('/change/wifi/user', (req, res) => {
     }
 
     res.redirect('https://it.lg-n.de/accounts/id/' + id);
+
+});
+
+router.post('/change/wifi/notactive/user', (req, res) => {
+
+    let id = req.body.user;
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let form = req.body.form;
+    let email = req.body.email;
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "' WHERE id='" + id + "'");
+        connection.release();
+
+    });
+
+    res.redirect('https://it.lg-n.de/accounts/notactivated/id/' + id);
 
 });
 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=0.75, maximum-scale=1.0, user-scalable=0">
+    <meta lang="de">
+    <meta name="content-language" content="de"/>
+    <meta name="author" content="Fabio Bertuzzi"/>
+    <meta name="publisher" content="Netzwerk AG Lessing-Gymnasium Norderstedt"/>
+    <meta name="copyright" content="Netzwerk AG Lessing-Gymnasium Norderstedt"/>
+    <meta name="keywords"
+          content="IT-Dashboard, WLAN-Verwaltung, WLAN, Lessing-Gymnasium Norderstedt, Norderstedt, Lessing-Gymnasium, WLAN, WIFI, LOGIN, IT, Netzwerk, AG, Netzwerk, Verwaltung"/>
+    <meta name="description" content="Hier können Lehrer und Schüler ihren WLAN-Zugang verwalten."/>
+    <meta name="language" content="Deutsch"/>
+    <meta name="revisit" content="After 1 days"/>
+    <title>Lessing-Gymnasium Norderstedt | IT-Dashboard</title>
+    <link rel="stylesheet" href="https://it.lg-n.de/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://it.lg-n.de/css/reboto.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://it.lg-n.de/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://it.lg-n.de/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://it.lg-n.de/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://it.lg-n.de/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://it.lg-n.de/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://it.lg-n.de/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://it.lg-n.de/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://it.lg-n.de/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://it.lg-n.de/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://it.lg-n.de/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://it.lg-n.de/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://it.lg-n.de/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://it.lg-n.de/images/favicon-16x16.png">
+    <link rel="manifest" href="https://it.lg-n.de/documents/manifest.json">
+    <meta name="msapplication-TileColor" content="##733D9A">
+    <meta name="msapplication-TileImage" content="https://it.lg-n.de/images/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="https://it.lg-n.de/documents/browserconfig.xml">
+    <meta name="theme-color" content="#733D9A">
+</head>
+<body>
+<div id="upper-nav">
+    <img id="logo" src="/images/logo.png" alt="Logo" onclick="redirect('/')">
+    <p id="logo-title">Lessing-Gymnasium Norderstedt</br>Netzwerk AG</p>
+    <a href="/profile" id="profile">Mein Profil</a>
+</div>
+<div id="lower-nav">
+    <div class="navigation">
+        <i class="fa fa-bars fa-3x" style="color: white;" aria-hidden="true"></i>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/dashboard"><i class="fa fa-tachometer fa-3x" style="color:white;" aria-hidden="true"></i></br>
+            Dashboard</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/reports"><i class="fa fa-bug fa-3x" style="color: white;" aria-hidden="true"></i></br>Berichte</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/users"><i class="fa fa-users fa-3x" style="color: white;" aria-hidden="true"></i></br>Benutzer</a>
+    </div>
+    <div class="navigation-item-left active">
+        <a href="/wifi"><i class="fa fa-wifi fa-3x" style="color: white;" aria-hidden="true"></i></br>Wi-Fi</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/email"><i class="fa fa-envelope fa-3x" style="color: white;" aria-hidden="true"></i></br>E-Mail</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/tasks"><i class="fa fa-tasks fa-3x" style="color: white;" aria-hidden="true"></i></br>Aufgaben</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/servers"><i class="fa fa-server fa-3x" style="color: white;" aria-hidden="true"></i></br>Server</a>
+    </div>
+    <div class="navigation-item-left">
+        <a href="/printers"><i class="fa fa-print fa-3x" style="color: white;" aria-hidden="true"></i></br>Drucker</a>
+    </div>
+    <div class="navigation-item-right">
+        <a href="/settings"><i class="fa fa-cogs fa-3x" style="color: white;" aria-hidden="true"></i></br>
+            Einstellungen</a>
+    </div>
+</div>
+
+<div id="navigation-mobile" class="overlay">
+
+    <a href="javascript:void(0)" class="close" onclick="closeNav()">&times;</a>
+
+    <div class="navigation-content">
+        <a href="/dashboard"><i class="fa fa-tachometer fa-3x" aria-hidden="true"></i></a>
+        <a href="/reports"><i class="fa fa-bug fa-3x" aria-hidden="true"></i></a>
+        <a href="/users"><i class="fa fa-users fa-3x" aria-hidden="true"></i></a>
+        <a href="/wifi"><i class="fa fa-wifi fa-3x active" aria-hidden="true"></i></a>
+        <a href="/email"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        <a href="/tasks"><i class="fa fa-tasks fa-3x" aria-hidden="true"></i></a>
+        <a href="/servers"><i class="fa fa-server fa-3x" aria-hidden="true"></i></a>
+        <a href="/printers"><i class="fa fa-print fa-3x" aria-hidden="true"></i></a>
+        <a href="/settings"><i class="fa fa-cogs fa-3x" aria-hidden="true"></i></a>
+        <a href="/profile"><i class="fa fa-user fa-3x" aria-hidden="true"></i></a>
+    </div>
+
+</div>
+
+<div class="content">
+    <div class="page-header"><h1>Wi-Fi Benutzer</h1></div>
+    <div class="page-content">
+        </br>
+        <input type="button" class="form-input-button button-danger" id="reset" value="Passwort zurücksetzen">
+        </br>
+        </br>
+        <form onsubmit="setFormSubmitting();" action="https://it.lg-n.de/api/change/wifi/notactive/user" method="post">
+            <label class="form-label">Vorname: </label>
+            <input class="form-input" type="text" id="firstname" name="firstname">
+            <label class="form-label">Nachname: </label>
+            <input class="form-input" type="text" id="lastname" name="lastname">
+            <label class="form-label">Klasse: </label>
+            <input class="form-input" type="text" id="form" name="form">
+            <label class="form-label">E-Mail: </label>
+            <input class="form-input" type="email" id="email" name="email">
+            <input type="hidden" id="user" name="user" value="0">
+            <input type="submit" value="Speichern" class="form-input-button" disabled id="save">
+        </form>
+    </div>
+</div>
+
+</body>
+
+<script src="https://it.lg-n.de/js/redirect.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+
+<script>
+
+    var formSubmitting = false;
+    var setFormSubmitting = function () {
+        formSubmitting = true;
+    };
+
+    $(document).ready(function () {
+
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+
+        document.getElementById("user").value = id;
+
+        $.getJSON("https://it.lg-n.de/api/wifi-users/notactivated/json/callback/user/" + id, (json) => {
+
+            var firstname = document.getElementById("firstname");
+            var lastname = document.getElementById("lastname");
+            var form = document.getElementById("form");
+            var email = document.getElementById("email");
+
+            firstname.value = json[0].firstname;
+            lastname.value = json[0].lastname;
+            form.value = json[0].form;
+            email.value = json[0].email;
+
+
+        });
+
+        var changes = false;
+
+        $('#reset').on("click", () => {
+
+            window.location.href = "https://it.lg-n.de/api/wifi-users/reset/password/" + id;
+
+        });
+
+
+        $(".form-input").on("change keyup paste", function () {
+            changes = true;
+            document.getElementById('save').removeAttribute("disabled");
+        });
+
+        $(window).bind('beforeunload', function () {
+            if (changes && !formSubmitting) {
+                return 'Es sind ungespeicherte Änderungen vorgenommen worden. Willst du wirklich die Seite verlassen?';
+            }
+        });
+    });
+
+
+</script>
+<script src="/js/mobileNavigation.js"></script>
+</html>
