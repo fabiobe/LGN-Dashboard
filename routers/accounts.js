@@ -11,7 +11,10 @@ let authenticatedUsers = new Hashmap();
 let users = require('./api.js').users;
 let mysql_config = require('./../config/mysql.json');
 let pool = mysql.createPool(mysql_config);
+var nodemailer = require("nodemailer");
 let fs = require('fs');
+
+var transporter = nodemailer.createTransport('smtps://it@lg-n.de:itaglgn@smtp.variomedia.de');
 var nthash = require('smbhash').nthash;
 
 console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");
@@ -22,6 +25,14 @@ fs.readFile(path.join(__dirname, '../views/accounts/change.html'), 'utf8', funct
     if (err) throw err;
     change = data;
 });
+
+let changed = "";
+
+fs.readFile(path.join(__dirname, '../views/accounts/password_changed.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    changed = data;
+});
+
 
 let choose = "";
 
@@ -103,7 +114,21 @@ router.post('/proceed/activate', (req, res) => {
 
         });
 
-        res.redirect("https://it.lg-n.de");
+        var mailOptions = {
+            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+            to: email,
+            subject: "Dein Passwort wurde geändert!",
+            html: changed
+        };
+
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+        });
+
+        res.sendFile(path.join(__dirname, '../views/accounts/password_changed_success.html'));
     }
 
 });
@@ -131,7 +156,21 @@ router.post('/proceed/change/password', (req, res) => {
 
         });
 
-        res.redirect("https://it.lg-n.de");
+        var mailOptions = {
+            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+            to: user,
+            subject: "Dein Passwort wurde geändert!",
+            html: changed
+        };
+
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+        });
+
+        res.sendFile(path.join(__dirname, '../views/accounts/password_changed_success.html'));
     }
 
 

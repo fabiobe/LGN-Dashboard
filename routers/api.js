@@ -46,6 +46,9 @@ fs.readFile(path.join(__dirname, '../views/accounts/activate.html'), 'utf8', fun
     activate = data;
 });
 
+
+
+
 console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
