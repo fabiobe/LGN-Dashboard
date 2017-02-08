@@ -149,7 +149,7 @@ router.post('/proceed/change/password', (req, res) => {
         pool.getConnection((err, connection) => {
 
             connection.query("UPDATE accounts SET hashed_password='" + hash + "' WHERE email='" + user + "'");
-            connection.query("UPDATE radius.radcheck SET value='" + nt + "' WHERE username='" + user + "'");
+            connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + user + "', 'NT-Password', ':=', '" + nt + "')");
             connection.query("DELETE FROM activation WHERE email='" + user + "'");
 
             connection.release();

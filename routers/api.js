@@ -47,8 +47,6 @@ fs.readFile(path.join(__dirname, '../views/accounts/activate.html'), 'utf8', fun
 });
 
 
-
-
 console.log("\x1b[36m[Debug] [API] starting...");
 
 pool.getConnection((err, connection) => {
@@ -435,6 +433,8 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
                 });
 
                 connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+                connection.query("DELETE FROM radius.radcheck WHERE email='" + email + "'");
+                connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
 
                 var mailOptions = {
                     from: "Netzwerk AG IT-Administration <it@lg-n.de>",
@@ -482,6 +482,8 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
                 });
 
                 connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+                connection.query("DELETE FROM radius.radcheck WHERE email='" + email + "'");
+                connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
 
                 var mailOptions = {
                     from: "Netzwerk AG IT-Administration <it@lg-n.de>",
