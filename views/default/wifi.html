@@ -162,7 +162,7 @@
 
         }, 200);
 
-        $("body").on("click", "#data tr", function () {
+        $("body").on("click touchstart", "#data tr", function () {
             if ($(this).attr('id') != undefined) {
                 window.location.href = 'https://it.lg-n.de/accounts/id/' + $(this).attr('id');
             } else if ($(this).attr('name') != undefined) {
