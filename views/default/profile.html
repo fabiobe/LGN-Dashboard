@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="https://it.lg-n.de/images/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="https://it.lg-n.de/images/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://it.lg-n.de/images/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="https://it.lg-n.de/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://it.lg-n.de/images/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://it.lg-n.de/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="https://it.lg-n.de/images/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://it.lg-n.de/images/favicon-16x16.png">
@@ -71,7 +71,8 @@
         <a href="printers"><i class="fa fa-print fa-3x" style="color: white;" aria-hidden="true"></i></br>Drucker</a>
     </div>
     <div class="navigation-item-right">
-        <a href="settings"><i class="fa fa-cogs fa-3x" style="color: white;" aria-hidden="true"></i></br>Einstellungen</a>
+        <a href="settings"><i class="fa fa-cogs fa-3x" style="color: white;" aria-hidden="true"></i></br>
+            Einstellungen</a>
     </div>
 </div>
 
@@ -94,14 +95,41 @@
 
 </div>
 
-</body>
+<div class="content">
+    <div class="page-header"><h1>Mein Profil</h1></div>
+    <div class="page-content">
+        <input type="button" class="form-input-button button-danger" value="Abmelden" id="logout">
+    </div>
+</div>
 
+
+</body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
 </script>
 <script src="js/redirect.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
+<script>
 
+    function setCookie(name, value, seconds) {
+
+        if (typeof(seconds) != 'undefined') {
+            var date = new Date();
+            date.setTime(date.getTime() + (seconds * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else {
+            var expires = "";
+        }
+
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    $("#logout").on("click", function () {
+        setCookie("token", null, -1);
+        window.location.href = '/';
+    });
+</script>
 <script src="js/mobileNavigation.js"></script>
 </html>
