@@ -161,11 +161,8 @@
             });
         });
 
-        $("body").on("click touchstart", "ul li", function () {
-            socket.emit("todo-update", {"id": $(this).attr("id")});
-        });
+        function nextEvent(e) {
 
-        $("body").on("click touchstart", "#add", function (e) {
             e.stopPropagation();
             e.preventDefault();
 
@@ -184,7 +181,13 @@
             $(this).on('touchmove', function (e) {
                 $(this).off('touchend');
             });
+        }
+
+        $("body").on("click", "ul li", function () {
+            socket.emit("todo-update", {"id": $(this).attr("id")});
         });
+
+        $("body").on("click", "#add", nextEvent());
 
 
     });
