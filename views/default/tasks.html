@@ -150,7 +150,22 @@
         });
 
         $("body").on("click touchstart", "ul li", function () {
-            socket.emit("todo-update", {"id": $(this).attr("id")});
+            socket.broadcast.emit("todo-update", {"id": $(this).attr("id")});
+            var ul = document.getElementById("tasks");
+            ul.innerHTML = "";
+            $.getJSON("https://it.lg-n.de/api/todo/list", (json) => {
+                for (i = 0; i < json.length; i++) {
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(json[i].task));
+                    li.setAttribute("id", json[i].id);
+                    if (json[i].checked == 0) {
+                        li.setAttribute("class", "todo-element uncompleted");
+                    } else {
+                        li.setAttribute("class", "todo-element completed");
+                    }
+                    ul.appendChild(li);
+                }
+            });
         });
 
 
