@@ -12,7 +12,7 @@ let bodyParser = require('body-parser');
 let https = require('https');
 let fs = require('fs');
 let mysql = require('mysql');
-let mysql_config = require('./../config/mysql.json');
+let mysql_config = require('./config/mysql.json');
 let pool = mysql.createPool(mysql_config);
 
 /* CONFIGURATION */
