@@ -88,6 +88,42 @@ router.get('/login', (req, res) => {
 
 });
 
+router.get('/todo/list', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+
+        connection.query("SELECT * FROM todo", (err, rows) => {
+            if (err) {
+                res.json({"status": "500"});
+                res.status(500);
+            }
+
+            if (rows.length > 0) {
+
+                res.charset = "utf8";
+                let json = [];
+                for (let i = 0; i < rows.length; i++) {
+                    let row = rows[i];
+                    json.push({
+                        "id": row.id,
+                        "firstname": row.firstname,
+                        "lastname": row.lastname,
+                        "form": row.form,
+                        "email": row.email,
+                        "status": row.status
+                    });
+                }
+
+                res.json(json);
+            }
+
+        });
+
+        connection.release();
+
+    });
+});
+
 router.get('/wifi-users/json/callback/list', (req, res) => {
 
     pool.getConnection((err, connection) => {
