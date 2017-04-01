@@ -92,7 +92,7 @@ router.get('/todo/list', (req, res) => {
 
     pool.getConnection((err, connection) => {
 
-        connection.query("SELECT * FROM `todo` ORDER BY CASE 'checked' WHEN 0 THEN priority ELSE checked END DESC;", (err, rows) => {
+        connection.query("SELECT * FROM `todo` ORDER BY IF(checked=0, priority, NULL) DESC, IF(checked=1, checked, NULL) ASC;", (err, rows) => {
             if (err) {
                 res.json({"status": "500"});
                 res.status(500);
