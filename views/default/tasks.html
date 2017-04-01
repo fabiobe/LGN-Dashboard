@@ -124,10 +124,19 @@
                 li.appendChild(document.createTextNode(json[i].task));
                 li.setAttribute("id", json[i].id);
                 li.setAttribute("class", "todo-element");
-                li.onclick = clicked(this);
                 ul.appendChild(li);
             }
         });
+
+        setTimeout(() => {
+
+            var todo_elements = document.getElementsByClassName("todo-element");
+            for (i = 0; i < todo_elements.length; i++) {
+                todo_elements[i].onclick = clicked(todo_elements[i]);
+            }
+
+        }, 1000);
+
     });
 
     var socket = io(window.location.host);
