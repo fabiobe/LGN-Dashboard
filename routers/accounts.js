@@ -42,20 +42,35 @@ fs.readFile(path.join(__dirname, '../views/accounts/choose.html'), 'utf8', funct
 });
 
 router.get('/id/:id', (req, res) => {
-
-    res.sendFile(path.join(__dirname, '../views/accounts/user.html'));
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            res.sendFile(path.join(__dirname, '../views/accounts/user.html'));
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 
 router.get('/notactivated/id/:id', (req, res) => {
-
-    res.sendFile(path.join(__dirname, '../views/accounts/user_notactive.html'));
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            res.sendFile(path.join(__dirname, '../views/accounts/user_notactive.html'));
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 
 router.get('/add', (req, res) => {
-
-    res.sendFile(path.join(__dirname, '../views/accounts/add.html'));
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            res.sendFile(path.join(__dirname, '../views/accounts/add.html'));
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 

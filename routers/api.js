@@ -89,159 +89,179 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/todo/list', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM `todo` ORDER BY IF(checked=0, priority, NULL) DESC, IF(checked=1, checked, NULL) ASC;", (err, rows) => {
+                    if (err) {
+                        res.json({"status": "500"});
+                        res.status(500);
+                    }
 
-        connection.query("SELECT * FROM `todo` ORDER BY IF(checked=0, priority, NULL) DESC, IF(checked=1, checked, NULL) ASC;", (err, rows) => {
-            if (err) {
-                res.json({"status": "500"});
-                res.status(500);
-            }
+                    if (rows.length > 0) {
 
-            if (rows.length > 0) {
+                        res.charset = "utf8";
+                        let json = [];
+                        for (let i = 0; i < rows.length; i++) {
+                            let row = rows[i];
+                            json.push({
+                                "id": row.id,
+                                "priority": row.priority,
+                                "task": row.task,
+                                "checked": row.checked
+                            });
+                        }
 
-                res.charset = "utf8";
-                let json = [];
-                for (let i = 0; i < rows.length; i++) {
-                    let row = rows[i];
-                    json.push({
-                        "id": row.id,
-                        "priority": row.priority,
-                        "task": row.task,
-                        "checked": row.checked
-                    });
-                }
+                        res.json(json);
+                    } else {
+                        res.json({});
+                    }
 
-                res.json(json);
-            } else {
-                res.json({});
-            }
+                });
 
-        });
+                connection.release();
 
-        connection.release();
-
-    });
+            });
+            return;
+        }
+    }
+    res.redirect("/");
 });
 
 router.get('/wifi-users/json/callback/list', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM accounts", (err, rows) => {
 
-        connection.query("SELECT * FROM accounts", (err, rows) => {
+                    if (err) {
+                        res.json({"status": "500"});
+                        res.status(500);
+                    }
 
-            if (err) {
-                res.json({"status": "500"});
-                res.status(500);
-            }
+                    if (rows.length > 0) {
 
-            if (rows.length > 0) {
+                        res.charset = "utf8";
+                        let json = [];
+                        for (let i = 0; i < rows.length; i++) {
+                            let row = rows[i];
+                            json.push({
+                                "id": row.id,
+                                "firstname": row.firstname,
+                                "lastname": row.lastname,
+                                "form": row.form,
+                                "email": row.email,
+                                "status": row.status
+                            });
+                        }
 
-                res.charset = "utf8";
-                let json = [];
-                for (let i = 0; i < rows.length; i++) {
-                    let row = rows[i];
-                    json.push({
-                        "id": row.id,
-                        "firstname": row.firstname,
-                        "lastname": row.lastname,
-                        "form": row.form,
-                        "email": row.email,
-                        "status": row.status
-                    });
-                }
-
-                res.json(json);
+                        res.json(json);
 
 
-            }
+                    }
 
-        });
+                });
 
-        connection.release();
+                connection.release();
 
-    });
+            });
+            return;
+        }
+    }
 
+    res.redirect("/");
 
 });
 
 router.get('/wifi-users/json/callback/user/:id', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM accounts WHERE id='" + req.params.id + "'", (err, rows) => {
 
-        connection.query("SELECT * FROM accounts WHERE id='" + req.params.id + "'", (err, rows) => {
+                    if (err) {
+                        res.json({"status": "500"});
+                        res.status(500);
+                    }
 
-            if (err) {
-                res.json({"status": "500"});
-                res.status(500);
-            }
+                    if (rows.length > 0) {
 
-            if (rows.length > 0) {
+                        res.charset = "utf8";
+                        let json = [];
+                        for (let i = 0; i < rows.length; i++) {
+                            let row = rows[i];
+                            json.push({
+                                "id": row.id,
+                                "firstname": row.firstname,
+                                "lastname": row.lastname,
+                                "form": row.form,
+                                "email": row.email,
+                                "status": row.status
+                            });
+                        }
 
-                res.charset = "utf8";
-                let json = [];
-                for (let i = 0; i < rows.length; i++) {
-                    let row = rows[i];
-                    json.push({
-                        "id": row.id,
-                        "firstname": row.firstname,
-                        "lastname": row.lastname,
-                        "form": row.form,
-                        "email": row.email,
-                        "status": row.status
-                    });
-                }
-
-                res.json(json);
+                        res.json(json);
 
 
-            }
+                    }
 
-        });
+                });
 
-        connection.release();
+                connection.release();
 
-    });
+            });
+            return;
+        }
+    }
+    res.redirect("/");
 
 
 });
 
 router.get('/wifi-users/notactivated/json/callback/user/:id', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM activate WHERE id='" + req.params.id + "'", (err, rows) => {
 
-        connection.query("SELECT * FROM activate WHERE id='" + req.params.id + "'", (err, rows) => {
+                    if (err) {
+                        res.json({"status": "500"});
+                        res.status(500);
+                    }
 
-            if (err) {
-                res.json({"status": "500"});
-                res.status(500);
-            }
+                    if (rows.length > 0) {
 
-            if (rows.length > 0) {
+                        res.charset = "utf8";
+                        let json = [];
+                        for (let i = 0; i < rows.length; i++) {
+                            let row = rows[i];
+                            json.push({
+                                "id": row.id,
+                                "firstname": row.firstname,
+                                "lastname": row.lastname,
+                                "form": row.form,
+                                "email": row.email
+                            });
+                        }
 
-                res.charset = "utf8";
-                let json = [];
-                for (let i = 0; i < rows.length; i++) {
-                    let row = rows[i];
-                    json.push({
-                        "id": row.id,
-                        "firstname": row.firstname,
-                        "lastname": row.lastname,
-                        "form": row.form,
-                        "email": row.email
-                    });
-                }
+                        res.json(json);
 
-                res.json(json);
+                    }
 
-            }
+                });
 
-        });
+                connection.release();
 
-        connection.release();
+            });
 
-    });
-
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 
@@ -291,261 +311,286 @@ router.get('/wifi-users/notactivated/json/callback/list', (req, res) => {
 
 
 router.post('/change/wifi/user', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            let id = req.body.user;
+            let firstname = req.body.firstname;
+            let lastname = req.body.lastname;
+            let form = req.body.form;
+            let email = req.body.email;
+            let status = req.body.status;
 
-    let id = req.body.user;
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let form = req.body.form;
-    let email = req.body.email;
-    let status = req.body.status;
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
-
-        connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "', status='" + status + "' WHERE id='" + id + "'");
-        connection.release();
-
-    });
-
-    if (status == '') {
-
-        pool.getConnection((err, connection) => {
-
-            connection.query("SELECT * FROM radius.radcheck WHERE username='" + email + "'", (err, rows) => {
-
-                if (rows.length > 0) {
-
-                    let row = rows[0];
-                    let password = row.value;
-
-                    connection.query("INSERT INTO deactivated (email, hashed_password) VALUES('" + email + "', '" + password + "')");
-                    connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
-
-                }
-
-            });
-            connection.release();
-
-        });
-
-        var mailOptions = {
-            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-            to: email,
-            subject: "Dein Account wurde deaktiviert!",
-            html: deactivated
-        };
-
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return console.log(error);
-            }
-        });
-
-    } else {
-
-        pool.getConnection((err, connection) => {
-
-            connection.query("SELECT * FROM deactivated WHERE email='" + email + "'", (err, rows) => {
-
-                if (rows.length > 0) {
-
-                    let row = rows[0];
-                    let password = row.hashed_password;
-
-                    connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + password + "')");
-                    connection.query("DELETE FROM deactivated WHERE email='" + email + "'");
-
-                }
+                connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "', status='" + status + "' WHERE id='" + id + "'");
+                connection.release();
 
             });
 
-            connection.release();
-        });
+            if (status == '') {
 
-        var mailOptions = {
-            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-            to: email,
-            subject: "Dein Account wurde aktiviert!",
-            html: activated
-        };
+                pool.getConnection((err, connection) => {
+
+                    connection.query("SELECT * FROM radius.radcheck WHERE username='" + email + "'", (err, rows) => {
+
+                        if (rows.length > 0) {
+
+                            let row = rows[0];
+                            let password = row.value;
+
+                            connection.query("INSERT INTO deactivated (email, hashed_password) VALUES('" + email + "', '" + password + "')");
+                            connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
+
+                        }
+
+                    });
+                    connection.release();
+
+                });
+
+                var mailOptions = {
+                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                    to: email,
+                    subject: "Dein Account wurde deaktiviert!",
+                    html: deactivated
+                };
 
 
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return console.log(error);
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                });
+
+            } else {
+
+                pool.getConnection((err, connection) => {
+
+                    connection.query("SELECT * FROM deactivated WHERE email='" + email + "'", (err, rows) => {
+
+                        if (rows.length > 0) {
+
+                            let row = rows[0];
+                            let password = row.hashed_password;
+
+                            connection.query("INSERT INTO radius.radcheck (username, attribute, op, value) VALUES('" + email + "', 'NT-Password', ':=', '" + password + "')");
+                            connection.query("DELETE FROM deactivated WHERE email='" + email + "'");
+
+                        }
+
+                    });
+
+                    connection.release();
+                });
+
+                var mailOptions = {
+                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                    to: email,
+                    subject: "Dein Account wurde aktiviert!",
+                    html: activated
+                };
+
+
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                });
+
             }
-        });
 
+            res.redirect('https://it.lg-n.de/accounts/id/' + id);
+            return;
+        }
     }
-
-    res.redirect('https://it.lg-n.de/accounts/id/' + id);
+    res.redirect("/");
 
 });
 
 router.post('/change/wifi/notactive/user', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            let id = req.body.user;
+            let firstname = req.body.firstname;
+            let lastname = req.body.lastname;
+            let form = req.body.form;
+            let email = req.body.email;
 
-    let id = req.body.user;
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let form = req.body.form;
-    let email = req.body.email;
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "' WHERE id='" + id + "'");
+                connection.release();
 
-        connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "' WHERE id='" + id + "'");
-        connection.release();
+            });
 
-    });
-
-    res.redirect('https://it.lg-n.de/accounts/notactivated/id/' + id);
+            res.redirect('https://it.lg-n.de/accounts/notactivated/id/' + id);
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 
 
 router.post('/add/wifi/user', (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            let firstname = req.body.firstname;
+            let lastname = req.body.lastname;
+            let form = req.body.form;
+            let email = req.body.email;
 
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let form = req.body.form;
-    let email = req.body.email;
+            let id = req.params.id;
+            let token = crypto.randomBytes(64).toString('hex');
 
-    let id = req.params.id;
-    let token = crypto.randomBytes(64).toString('hex');
+            let body = activate;
 
-    let body = activate;
+            body = body.replace('replacethis1', "https://it.lg-n.de/accounts/activate/token/" + token);
+            body = body.replace('replacethis2', "https://it.lg-n.de/accounts/activate/token/" + token);
 
-    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/activate/token/" + token);
-    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/activate/token/" + token);
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
 
-        connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
+                    if (rows.length > 0) {
+                        already = true;
+                    } else {
+                        connection.query("INSERT INTO activate (firstname, lastname, form, email, token) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + token + "')");
+                        var mailOptions = {
+                            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                            to: email,
+                            subject: "Deine Zugangsdaten!",
+                            html: body
+                        };
 
-            if (rows.length > 0) {
-                already = true;
-            } else {
-                connection.query("INSERT INTO activate (firstname, lastname, form, email, token) VALUES('" + firstname + "', '" + lastname + "', '" + form + "', '" + email + "', '" + token + "')");
-                var mailOptions = {
-                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-                    to: email,
-                    subject: "Deine Zugangsdaten!",
-                    html: body
-                };
-
-                transporter.sendMail(mailOptions, function (error, info) {
-                    if (error) {
-                        return console.log(error);
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                return console.log(error);
+                            }
+                        });
                     }
+
                 });
-            }
 
-        });
+                connection.release();
 
-        connection.release();
+            });
 
-    });
-
-    res.redirect('https://it.lg-n.de/accounts/add');
+            res.redirect('https://it.lg-n.de/accounts/add');
+            return;
+        }
+    }
+    res.redirect("/");
 
 
 });
 
 router.get("/wifi-users/reset/password/:id", (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            let id = req.params.id;
+            let token = crypto.randomBytes(64).toString('hex');
 
-    let id = req.params.id;
-    let token = crypto.randomBytes(64).toString('hex');
+            let body = htmlmail;
 
-    let body = htmlmail;
+            body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
+            body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
 
-    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
-    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM accounts WHERE id='" + id + "'", (err, rows) => {
 
-        connection.query("SELECT * FROM accounts WHERE id='" + id + "'", (err, rows) => {
-
-            if (rows.length > 0) {
-                let row = rows[0];
-                let email = row.email;
-
-                connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
                     if (rows.length > 0) {
-                        connection.query("DELETE FROM activation WHERE email='" + email + "'");
+                        let row = rows[0];
+                        let email = row.email;
+
+                        connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
+                            if (rows.length > 0) {
+                                connection.query("DELETE FROM activation WHERE email='" + email + "'");
+                            }
+                        });
+
+                        connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+                        connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
+                        connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
+
+                        var mailOptions = {
+                            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                            to: email,
+                            subject: "Dein Passwort wurde zurückgesetzt!",
+                            html: body
+                        };
+
+
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                return console.log(error);
+                            }
+                        });
                     }
                 });
+                connection.release();
+            });
 
-                connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
-                connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
-                connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
-
-                var mailOptions = {
-                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-                    to: email,
-                    subject: "Dein Passwort wurde zurückgesetzt!",
-                    html: body
-                };
-
-
-                transporter.sendMail(mailOptions, function (error, info) {
-                    if (error) {
-                        return console.log(error);
-                    }
-                });
-            }
-        });
-        connection.release();
-    });
-
-    res.redirect('https://it.lg-n.de/accounts/id/' + id);
+            res.redirect('https://it.lg-n.de/accounts/id/' + id);
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 
 router.post("/wifi-users/reset/password/email/", (req, res) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            let email = req.body.email;
+            let token = crypto.randomBytes(64).toString('hex');
 
-    let email = req.body.email;
-    let token = crypto.randomBytes(64).toString('hex');
+            let body = htmlmail;
 
-    let body = htmlmail;
+            body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
+            body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
 
-    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
-    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
+            pool.getConnection((err, connection) => {
 
-    pool.getConnection((err, connection) => {
+                connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
 
-        connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
-
-            if (rows.length > 0) {
-
-                connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
                     if (rows.length > 0) {
-                        let id = rows[0].id;
-                        connection.query("DELETE FROM activation WHERE id='" + id + "'");
+
+                        connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
+                            if (rows.length > 0) {
+                                let id = rows[0].id;
+                                connection.query("DELETE FROM activation WHERE id='" + id + "'");
+                            }
+                        });
+
+                        connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+                        connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
+                        connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
+
+                        var mailOptions = {
+                            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                            to: email,
+                            subject: "Dein Passwort wurde zurückgesetzt!",
+                            html: body
+                        };
+
+
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                return console.log(error);
+                            }
+                        });
                     }
                 });
+                connection.release();
+            });
 
-                connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
-                connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
-                connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
-
-                var mailOptions = {
-                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-                    to: email,
-                    subject: "Dein Passwort wurde zurückgesetzt!",
-                    html: body
-                };
-
-
-                transporter.sendMail(mailOptions, function (error, info) {
-                    if (error) {
-                        return console.log(error);
-                    }
-                });
-            }
-        });
-        connection.release();
-    });
-
-    res.redirect('https://it.lg-n.de/');
+            res.redirect('https://it.lg-n.de/');
+            return;
+        }
+    }
+    res.redirect("/");
 
 });
 
@@ -611,11 +656,6 @@ router.post('/login', (req, res) => {
         });
         connection.release();
     });
-
-
-});
-
-router.post('/mail', (res, req) => {
 
 
 });
