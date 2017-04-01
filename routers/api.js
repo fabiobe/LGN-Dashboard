@@ -541,8 +541,6 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 });
 
 router.post("/wifi-users/reset/password/email/", (req, res) => {
-    if (req.cookies.token != undefined) {
-        if (users.indexOf(req.cookies.token) > -1) {
             let email = req.body.email;
             let token = crypto.randomBytes(64).toString('hex');
 
@@ -587,10 +585,6 @@ router.post("/wifi-users/reset/password/email/", (req, res) => {
             });
 
             res.redirect('https://it.lg-n.de/');
-            return;
-        }
-    }
-    res.redirect("/");
 
 });
 
