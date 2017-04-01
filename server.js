@@ -93,6 +93,9 @@ io.on('connection', (socket) => {
             });
             connection.release();
         });
+
+        io.emit("todo-update", data);
+
     });
 
 });
