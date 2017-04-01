@@ -112,6 +112,11 @@
 <script>
 
     $(document).ready(function () {
+
+        function clicked(element) {
+            alert(element.getAttribute("id"));
+        }
+
         $.getJSON("https://it.lg-n.de/api/todo/list", (json) => {
             for (i = 0; i < json.length; i++) {
                 var ul = document.getElementById("tasks");
@@ -119,6 +124,7 @@
                 li.appendChild(document.createTextNode(json[i].task));
                 li.setAttribute("id", json[i].id);
                 li.setAttribute("class", "todo-element");
+                li.onclick = clicked(this);
                 ul.appendChild(li);
             }
         });
