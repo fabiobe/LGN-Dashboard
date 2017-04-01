@@ -98,6 +98,17 @@ io.on('connection', (socket) => {
 
     });
 
+    socket.on("todo-add", (data) => {
+
+        pool.getConnection((err, connection) => {
+            connection.query("INSERT INTO todo (priority, task, checked) VALUES ('" + data.priority + "', '" + data.task + "', 0)");
+            connection.release();
+        });
+
+        io.emit("todo-update", {});
+
+    });
+
 });
 
 
