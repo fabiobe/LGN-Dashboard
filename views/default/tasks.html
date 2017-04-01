@@ -119,17 +119,10 @@
                 li.appendChild(document.createTextNode(json[i].task));
                 li.setAttribute("id", json[i].id);
                 li.setAttribute("class", "todo-element");
-                li.onclick = todo(li);
                 ul.appendChild(li);
             }
         });
     });
-
-    function todo(element) {
-
-        element.removeAttribute("class");
-
-    }
 
     var socket = io(window.location.host);
 
