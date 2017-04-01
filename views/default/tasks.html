@@ -111,11 +111,11 @@
         crossorigin="anonymous"></script>
 <script>
 
-    $(document).ready(function () {
+    function clicked(element) {
+        alert("clicked");
+    }
 
-        function clicked(element) {
-            alert("clicked");
-        }
+    $(document).ready(function () {
 
         $.getJSON("https://it.lg-n.de/api/todo/list", (json) => {
             for (i = 0; i < json.length; i++) {
