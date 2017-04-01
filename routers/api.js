@@ -247,38 +247,44 @@ router.get('/wifi-users/notactivated/json/callback/user/:id', (req, res) => {
 
 router.get('/wifi-users/notactivated/json/callback/list', (req, res) => {
 
-    pool.getConnection((err, connection) => {
+    if (req.cookies.token != undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            pool.getConnection((err, connection) => {
 
-        connection.query("SELECT * FROM activate", (err, rows) => {
+                connection.query("SELECT * FROM activate", (err, rows) => {
 
-            if (err) {
-                res.json({"status": "500"});
-                res.status(500);
-            }
+                    if (err) {
+                        res.json({"status": "500"});
+                        res.status(500);
+                    }
 
-            if (rows.length > 0) {
+                    if (rows.length > 0) {
 
-                res.charset = "utf8";
-                let json = [];
-                for (let i = 0; i < rows.length; i++) {
-                    let row = rows[i];
-                    json.push({
-                        "id": row.id,
-                        "firstname": row.firstname,
-                        "lastname": row.lastname,
-                        "form": row.form,
-                        "email": row.email
-                    });
-                }
+                        res.charset = "utf8";
+                        let json = [];
+                        for (let i = 0; i < rows.length; i++) {
+                            let row = rows[i];
+                            json.push({
+                                "id": row.id,
+                                "firstname": row.firstname,
+                                "lastname": row.lastname,
+                                "form": row.form,
+                                "email": row.email
+                            });
+                        }
 
-                res.json(json);
-            }
+                        res.json(json);
+                    }
 
-        });
+                });
 
-        connection.release();
+                connection.release();
 
-    });
+            });
+        }
+        return;
+    }
+    res.redirect("/");
 
 
 });
