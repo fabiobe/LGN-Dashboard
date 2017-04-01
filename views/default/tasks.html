@@ -161,19 +161,30 @@
             });
         });
 
+        function nextEvent() {
+
+            $(this).on('touchend', function (e) {
+
+                if ($("#priority").val() != null && $("#task").val() != null) {
+                    socket.emit("todo-add", {"priority": $("#priority").val(), "task": $("#task").val()});
+                    $("#priority").val('');
+                    $("#task").val('');
+                } else {
+                    alert("Bitte fülle beide Input Felder aus um einen neuen Task zu erstellen.");
+                }
+
+                $(this).off('touchend');
+            });
+            $(this).on('touchmove', function (e) {
+                $(this).off('touchend');
+            });
+        }
+
         $("body").on("click touchstart", "ul li", function () {
             socket.emit("todo-update", {"id": $(this).attr("id")});
         });
 
-        $("body").on("click touchstart", "#add", function () {
-            if ($("#priority").val() != null && $("#task").val() != null) {
-                socket.emit("todo-add", {"priority": $("#priority").val(), "task": $("#task").val()});
-                $("#priority").val('');
-                $("#task").val('');
-            } else {
-                alert("Bitte fülle beide Input Felder aus um einen neuen Task zu erstellen.");
-            }
-        });
+        $("body").on("click touchstart", "#add", nextEvent());
 
 
     });
