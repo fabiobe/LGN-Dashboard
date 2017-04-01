@@ -161,10 +161,7 @@
             });
         });
 
-        function nextEvent(e) {
-
-            e.stopPropagation();
-            e.preventDefault();
+        function nextEvent() {
 
             $(this).on('touchend', function (e) {
 
@@ -183,11 +180,15 @@
             });
         }
 
-        $("body").on("click", "ul li", function () {
+        /*$("body").on("click touchstart", "ul li", function () {
+            socket.emit("todo-update", {"id": $(this).attr("id")});
+         });*/
+
+        $("ul li").click(() => {
             socket.emit("todo-update", {"id": $(this).attr("id")});
         });
 
-        $("body").on("click", "#add", nextEvent());
+        $("body").on("click touchstart", "#add", nextEvent());
 
 
     });
