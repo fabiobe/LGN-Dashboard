@@ -90,12 +90,10 @@ body {
   font-family: "Roboto Light", sans-serif;
   font-size: 1.5rem;
 }
-
 .priority-label {
     display: inline-block;
     float: right;
 }
-
 .task-label {
     display: inline-block;
 }
@@ -240,7 +238,6 @@ input[type=text] {
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
 }
-
 .input-task {
     width: 48%;
     height: 42px;
@@ -248,11 +245,9 @@ input[type=text] {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
 }
-
 .number {
     float: right;
 }
-
 .add {
     border-bottom: 1px solid #e2e2e2;
 }
