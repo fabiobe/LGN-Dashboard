@@ -161,7 +161,10 @@
             });
         });
 
-        function nextEvent() {
+        function nextEvent(e) {
+
+            e.stopPropagation();
+            e.preventDefault();
 
             $(this).on('touchend', function (e) {
 
