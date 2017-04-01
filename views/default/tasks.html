@@ -111,10 +111,6 @@
         crossorigin="anonymous"></script>
 <script>
 
-    function clicked(element) {
-        alert("clicked");
-    }
-
     $(document).ready(function () {
 
         $.getJSON("https://it.lg-n.de/api/todo/list", (json) => {
@@ -128,14 +124,11 @@
             }
         });
 
-        setTimeout(() => {
 
-            var todo_elements = document.getElementsByClassName("todo-element");
-            for (i = 0; i < todo_elements.length; i++) {
-                //todo_elements[i].onclick = clicked(todo_elements[i]);
-            }
+        $("body").on("click touchstart", "ul li", function () {
+            alert($(this).attr("id"));
+        });
 
-        }, 1000);
 
     });
 
