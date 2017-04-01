@@ -106,11 +106,9 @@ router.get('/todo/list', (req, res) => {
                     let row = rows[i];
                     json.push({
                         "id": row.id,
-                        "firstname": row.firstname,
-                        "lastname": row.lastname,
-                        "form": row.form,
-                        "email": row.email,
-                        "status": row.status
+                        "priority": row.priority,
+                        "task": row.task,
+                        "checked": row.checked
                     });
                 }
 
