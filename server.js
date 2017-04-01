@@ -88,7 +88,7 @@ io.on('connection', (socket) => {
                     } else {
                         checked = 0;
                     }
-                    connection.query("UPDATE todo SET checked='" + checked + "'");
+                    connection.query("UPDATE todo SET checked='" + checked + "' WHERE id='" + id + "'");
                 }
             });
             connection.release();
