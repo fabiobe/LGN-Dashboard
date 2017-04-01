@@ -113,6 +113,8 @@ router.get('/todo/list', (req, res) => {
                 }
 
                 res.json(json);
+            } else {
+                res.json({});
             }
 
         });
