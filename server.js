@@ -11,6 +11,9 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let https = require('https');
 let fs = require('fs');
+let mysql = require('mysql');
+let mysql_config = require('./../config/mysql.json');
+let pool = mysql.createPool(mysql_config);
 
 /* CONFIGURATION */
 
@@ -71,6 +74,26 @@ let io = require('socket.io')(sserver);
 
 io.on('connection', (socket) => {
 
+    socket.on("todo-update", (data) => {
+        let id = data.id;
+
+        pool.getConnection((err, connection) => {
+            connection.query("SELECT * FROM todo WHERE id='" + id + "'", (err, rows) => {
+
+                if (rows.length > 0) {
+                    let row = rows[0];
+                    let checked = 0;
+                    if (row.checked == 0) {
+                        checked = 1;
+                    } else {
+                        checked = 0;
+                    }
+                    connection.query("UPDATE todo SET checked='" + checked + "'");
+                }
+            });
+            connection.release();
+        });
+    });
 
 });
 

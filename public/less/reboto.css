@@ -182,11 +182,18 @@ body {
     font-size: 30px;
     font-family: 'Roboto Black', sans-serif;
     list-style: none;
-    background: #d54339;
     margin-left: -42px;
     text-align: center;
     color: #FFF;
     padding: 15px;
+}
+
+.uncompleted {
+    background: #d54339;
+}
+
+.completed {
+    background: #4CAF50;
 }
 .overlay {
   height: 0;
