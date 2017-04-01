@@ -118,6 +118,7 @@
                 var li = document.createElement("li");
                 li.appendChild(document.createTextNode(json[i].task));
                 li.setAttribute("id", json[i].id);
+                li.setAttribute("class", "todo-element");
                 ul.appendChild(li);
             }
         });

@@ -178,6 +178,17 @@ body {
   font-size: 20px;
   font-family: 'Roboto Black', sans-serif;
 }
+
+.todo-element {
+    font-size: 30px;
+    font-family: 'Roboto Black', sans-serif;
+    list-style: none;
+    background: #d9534f;
+    margin-left: -42px;
+    text-align: center;
+    color: #FFF;
+    padding: 15px;
+}
 .overlay {
   height: 0;
   width: 100%;

@@ -159,11 +159,9 @@ body {
 .button-danger:focus {
   background-color: #d54339 !important;
 }
-
 .button-green {
     background-color: #5cb85c !important;
 }
-
 .button-green:hover,
 .button-green:active,
 .button-green:focus {
@@ -179,6 +177,17 @@ body {
   color: #4CAF50;
   font-size: 20px;
   font-family: 'Roboto Black', sans-serif;
+}
+
+.todo-element {
+    font-size: 30px;
+    font-family: 'Roboto Black', sans-serif;
+    list-style: none;
+    background: #d9534f;
+    margin-left: -42px;
+    text-align: center;
+    color: #FFF;
+    padding: 15px;
 }
 .overlay {
   height: 0;
