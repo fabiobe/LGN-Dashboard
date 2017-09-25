@@ -418,10 +418,36 @@ router.post('/change/wifi/notactive/user', (req, res) => {
 
             pool.getConnection((err, connection) => {
 
-                connection.query("UPDATE accounts SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "' WHERE id='" + id + "'");
+                connection.query("UPDATE activate SET firstname='" + firstname + "', lastname='" + lastname + "', form='" + form + "', email='" + email + "' WHERE id='" + id + "'");
+
+
+                connection.query("SELECT * FROM activate WHERE id='" + id + "'", (err, rows) => {
+                    let row = rows[0];
+                    let token = row.token;
+
+                    let body = activate;
+
+                    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/activate/token/" + token);
+                    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/activate/token/" + token);
+
+                    var mailOptions = {
+                        from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                        to: email,
+                        subject: "Dein Account wurde aktiviert!",
+                        html: body
+                    };
+
+
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            return console.log(error);
+                        }
+                    });
+                });
                 connection.release();
 
             });
+
 
             res.redirect('https://it.lg-n.de/accounts/notactivated/id/' + id);
             return;

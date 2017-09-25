@@ -1,6 +1,6 @@
 html,
 body {
-  background: #913D88;
+    background: #3498db;
   margin: 0;
   height: 100%;
   width: 100%;
@@ -297,14 +297,14 @@ tr:hover {
 #upper-nav {
   width: 100%;
   height: 76px;
-  background: #733D9A;
+    background: #2980b9;
   top: 0;
   position: absolute;
 }
 #lower-nav {
   width: 100%;
   height: 65px;
-  background: #8245AD;
+    background: #148edb;
   top: 76px;
   position: absolute;
 }
@@ -384,7 +384,7 @@ div.navigation-item-right:hover {
 @media screen and (min-width: 980px) {
   html,
   body {
-    background: #913D88;
+      background: #3498db;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -397,7 +397,7 @@ div.navigation-item-right:hover {
     display: inline-block;
     width: 100%;
     height: 76px;
-    background: #733D9A;
+      background: #2980b9;
     top: 0;
     position: absolute;
   }
@@ -405,7 +405,7 @@ div.navigation-item-right:hover {
     display: inline-block;
     width: 100%;
     height: 104px;
-    background: #8245AD;
+      background: #148edb;
     top: 76px;
     position: absolute;
   }
@@ -457,7 +457,7 @@ div.navigation-item-right:hover {
     margin-top: 10px;
     text-align: center;
     float: left;
-    background: #8245AD;
+      background: #148edb;
     height: 84px;
     width: 96px;
     border-radius: 5px;
@@ -479,7 +479,7 @@ div.navigation-item-right:hover {
     margin-top: 10px;
     text-align: center;
     float: right;
-    background: #8245AD;
+      background: #148edb;
     height: 84px;
     width: 96px;
     border-radius: 5px;
