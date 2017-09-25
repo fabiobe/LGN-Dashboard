@@ -475,7 +475,7 @@ div.navigation-item-right:hover {
 
     div.navigation-item-left:hover {
         display: inline-block;
-        background: #7424ad;
+        background: #0f66b9;
         height: 84px;
         width: 96px;
         border-radius: 5px;
@@ -500,7 +500,7 @@ div.navigation-item-right:hover {
 
     div.navigation-item-right:hover {
         display: inline-block;
-        background: #7424ad;
+        background: #0f66b9;
         height: 84px;
         width: 96px;
         border-radius: 5px;
@@ -525,7 +525,7 @@ div.navigation-item-right:hover {
 
     .active {
         display: inline-block;
-        background: #7c2fad;
+        background: #2980b9;
         height: 84px;
         width: 96px;
         border-radius: 5px;
