@@ -12,30 +12,30 @@ let pool = mysql.createPool(mysql_config);
 
 router.get('/', (req, res) => {
 
-    let maintenance = true;
-
-    pool.getConnection((err, connection) => {
-        connection.query("SELECT value FROM status WHERE type='Maintenance'", (err, rows) => {
-
-            if (rows.length > 0) {
-                if (rows[0] == "false") {
-                    maintenance = false;
-                }
-            }
-        });
-    });
-
-    if (req.cookies.token != undefined) {
+    if (req.cookies.token !== undefined) {
         if (users.indexOf(req.cookies.token) > -1) {
             res.sendFile(path.join(__dirname, '../views/default/dashboard.html'));
             return;
         }
     }
-    if (maintenance == false) {
-        res.sendFile(path.join(__dirname, '../views/default/login.html'));
-    } else {
-        res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
-    }
+
+    pool.getConnection((err, connection) => {
+        connection.query("SELECT value FROM status WHERE type='Maintenance'", (err, rows) => {
+
+            if (rows.length > 0) {
+                if (rows[0].value === "false") {
+                    res.sendFile(path.join(__dirname, '../views/api/login.html'));
+                } else {
+                    res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
+                }
+            } else {
+                res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
+            }
+        });
+
+        connection.release();
+    });
+
 
 });
 
