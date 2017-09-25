@@ -59,37 +59,37 @@ pool.getConnection((err, connection) => {
 
 router.get('/login', (req, res) => {
 
-    let maintenance = true;
+    if (req.cookies.token !== undefined) {
+        if (users.indexOf(req.cookies.token) > -1) {
+            res.sendFile(path.join(__dirname, '../views/default/dashboard.html'));
+            return;
+        }
+    }
 
     pool.getConnection((err, connection) => {
         connection.query("SELECT value FROM status WHERE type='Maintenance'", (err, rows) => {
 
             if (rows.length > 0) {
-                if (rows[0] == "false") {
-                    maintenance = false;
+                if (rows[0] === "false") {
+                    res.sendFile(path.join(__dirname, '../views/api/login.html'));
+
+                } else {
+                    res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
+                    
                 }
+            } else {
+                res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
             }
         });
 
         connection.release();
     });
 
-    if (req.cookies.token != undefined) {
-        if (users.indexOf(req.cookies.token) > -1) {
-            res.sendFile(path.join(__dirname, '../views/default/dashboard.html'));
-            return;
-        }
-    }
-    if (maintenance == false) {
-        res.sendFile(path.join(__dirname, '../views/api/login.html'));
-    } else {
-        res.sendFile(path.join(__dirname, '../views/default/maintenance-login.html'));
-    }
 
 });
 
 router.get('/todo/list', (req, res) => {
-    if (req.cookies.token != undefined) {
+    if (req.cookies.token !== undefined) {
         if (users.indexOf(req.cookies.token) > -1) {
             pool.getConnection((err, connection) => {
 
@@ -567,50 +567,50 @@ router.get("/wifi-users/reset/password/:id", (req, res) => {
 });
 
 router.post("/wifi-users/reset/password/email/", (req, res) => {
-            let email = req.body.email;
-            let token = crypto.randomBytes(64).toString('hex');
+    let email = req.body.email;
+    let token = crypto.randomBytes(64).toString('hex');
 
-            let body = htmlmail;
+    let body = htmlmail;
 
-            body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
-            body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
+    body = body.replace('replacethis1', "https://it.lg-n.de/accounts/change/password/token/" + token);
+    body = body.replace('replacethis2', "https://it.lg-n.de/accounts/change/password/token/" + token);
 
-            pool.getConnection((err, connection) => {
+    pool.getConnection((err, connection) => {
 
-                connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
+        connection.query("SELECT * FROM accounts WHERE email='" + email + "'", (err, rows) => {
 
+            if (rows.length > 0) {
+
+                connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
                     if (rows.length > 0) {
-
-                        connection.query("SELECT * FROM activation WHERE email='" + email + "'", (err, rows) => {
-                            if (rows.length > 0) {
-                                let id = rows[0].id;
-                                connection.query("DELETE FROM activation WHERE id='" + id + "'");
-                            }
-                        });
-
-                        connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
-                        connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
-                        connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
-
-                        var mailOptions = {
-                            from: "Netzwerk AG IT-Administration <it@lg-n.de>",
-                            to: email,
-                            subject: "Dein Passwort wurde zurückgesetzt!",
-                            html: body
-                        };
-
-
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                return console.log(error);
-                            }
-                        });
+                        let id = rows[0].id;
+                        connection.query("DELETE FROM activation WHERE id='" + id + "'");
                     }
                 });
-                connection.release();
-            });
 
-            res.redirect('https://it.lg-n.de/');
+                connection.query("INSERT INTO activation (email, token) VALUES('" + email + "', '" + token + "')");
+                connection.query("DELETE FROM radius.radcheck WHERE username='" + email + "'");
+                connection.query("UPDATE accounts SET status='' WHERE email='" + email + "'");
+
+                var mailOptions = {
+                    from: "Netzwerk AG IT-Administration <it@lg-n.de>",
+                    to: email,
+                    subject: "Dein Passwort wurde zurückgesetzt!",
+                    html: body
+                };
+
+
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                });
+            }
+        });
+        connection.release();
+    });
+
+    res.redirect('https://it.lg-n.de/');
 
 });
 
