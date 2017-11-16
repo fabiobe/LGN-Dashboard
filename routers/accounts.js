@@ -14,7 +14,7 @@ let pool = mysql.createPool(mysql_config);
 var nodemailer = require("nodemailer");
 let fs = require('fs');
 
-var transporter = nodemailer.createTransport('smtps://it@lg-n.de:itaglgn@smtp.variomedia.de');
+var transporter = nodemailer.createTransport('smtps://it@lg-n.de:lgnIT2017!@smtp.variomedia.de');
 var nthash = require('smbhash').nthash;
 
 console.log("\x1b[36m[Debug] [ACCOUNTS] starting...");

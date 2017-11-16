@@ -14,7 +14,7 @@ let mysql_config = require('./../config/mysql.json');
 var nodemailer = require("nodemailer");
 let fs = require('fs');
 
-var transporter = nodemailer.createTransport('smtps://it@lg-n.de:itaglgn@smtp.variomedia.de');
+var transporter = nodemailer.createTransport('smtps://it@lg-n.de:lgnIT2017!@smtp.variomedia.de');
 
 let pool = mysql.createPool(mysql_config);
 
